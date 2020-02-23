@@ -10,7 +10,7 @@ import UIKit
 
 class AppCoordinator: BaseCoordinator {
     private let window: UIWindow
-    var databaseService: DatabaseService = CoreDataService(name: "SmallSteps")
+    let databaseService: DatabaseService = CoreDataService(name: "SmallSteps")
 
     init(window: UIWindow) {
         self.window = window

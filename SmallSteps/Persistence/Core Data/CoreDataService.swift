@@ -15,6 +15,8 @@ class CoreDataService: DatabaseService {
         stack = CoreDataStack(name: name)
     }
 
+    var newGoal: Goal?
+
     func saveContext() {
         stack.saveContext()
     }

@@ -9,5 +9,6 @@
 import Foundation
 
 protocol DatabaseService {
+    var newGoal: Goal? { get set }
     func saveContext()
 }

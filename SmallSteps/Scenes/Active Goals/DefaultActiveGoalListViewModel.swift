@@ -9,7 +9,8 @@
 import Foundation
 
 class DefaultActiveGoalListViewModel: ActiveGoalListViewModel {
-    private let databaseService: DatabaseService
+    private var databaseService: DatabaseService
+    var enterCreateGoalSecene: (() -> Void)?
 
     private var goals: [Goal] = [
         Goal(uuid: "1",
@@ -49,7 +50,9 @@ class DefaultActiveGoalListViewModel: ActiveGoalListViewModel {
     init(databaseService: DatabaseService) {
         self.databaseService = databaseService
     }
+}
 
+extension DefaultActiveGoalListViewModel {
     func takeAStep(at indexPath: IndexPath) {
         steps[indexPath.row] = true
     }
@@ -59,6 +62,20 @@ class DefaultActiveGoalListViewModel: ActiveGoalListViewModel {
         steps.remove(at: indexPath.row)
     }
 
+    func addGoal() {
+        enterCreateGoalSecene?()
+    }
+
+    func refreshGoals() {
+        if let goal = databaseService.newGoal {
+            goals.insert(goal, at: 0)
+            steps.insert(false, at: 0)
+            databaseService.newGoal = nil
+        }
+    }
+}
+
+extension DefaultActiveGoalListViewModel {
     var goalsCount: Int {
         return goals.count
     }

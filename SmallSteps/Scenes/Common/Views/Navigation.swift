@@ -14,4 +14,5 @@ protocol Navigation {
     func pushViewController(_ viewController: UIViewController, animated: Bool, backClosure: NavigationBackClosure?)
     func popViewController(animated: Bool) -> UIViewController?
     func popToRootViewController(animated: Bool) -> [UIViewController]?
+    func present(_ viewControllerToPresent: UIViewController, animated flag: Bool)
 }

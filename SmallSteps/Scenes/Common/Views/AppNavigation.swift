@@ -37,6 +37,10 @@ class AppNavigation: NSObject, Navigation {
         guard let closure = backClosures.removeValue(forKey: viewController.description) else { return }
         closure()
     }
+
+    func present(_ viewControllerToPresent: UIViewController, animated flag: Bool) {
+        navigationController.present(viewControllerToPresent, animated: flag, completion: nil)
+    }
 }
 
 extension AppNavigation: UINavigationControllerDelegate {

@@ -10,7 +10,7 @@ import UIKit
 
 class ActiveGoalListViewController: UIViewController {
     private let cellIdentifier = "ActiveGoalListCell"
-    private let viewModel: ActiveGoalListViewModel
+    let viewModel: ActiveGoalListViewModel
 
     lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -40,7 +40,7 @@ class ActiveGoalListViewController: UIViewController {
     }
 
     @objc func didTapAddButton(sender: UIBarButtonItem) {
-
+        viewModel.addGoal()
     }
 
     private func setupConstraints() {
