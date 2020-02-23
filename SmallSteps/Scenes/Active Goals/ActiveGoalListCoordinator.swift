@@ -24,7 +24,8 @@ class ActiveGoalListCoordinator: BaseCoordinator {
     }
 
     override func start() {
-        let viewController = ActiveGoalListViewController()
+        let viewModel = DefaultActiveGoalListViewModel(databaseService: databaseService)
+        let viewController = ActiveGoalListViewController(viewModel: viewModel)
         viewController.title = "Goals"
         navigation.pushViewController(viewController, animated: false, backClosure: isCompleted)
         tabBarController.addChild(navigation.navigationController)

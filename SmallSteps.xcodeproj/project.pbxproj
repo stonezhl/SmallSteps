@@ -23,6 +23,11 @@
 		254AFC812401FF5F006B5F4E /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AFC802401FF5F006B5F4E /* DatabaseService.swift */; };
 		254AFC832401FFF6006B5F4E /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AFC822401FFF6006B5F4E /* CoreDataService.swift */; };
 		254AFC8524020318006B5F4E /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AFC8424020318006B5F4E /* CoreDataStack.swift */; };
+		254AFC872402116B006B5F4E /* ActiveGoalListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AFC862402116B006B5F4E /* ActiveGoalListCell.swift */; };
+		254AFC8A2402125F006B5F4E /* ActiveGoalListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AFC892402125F006B5F4E /* ActiveGoalListCellViewModel.swift */; };
+		254AFC8C240215B5006B5F4E /* ActiveGoalListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AFC8B240215B5006B5F4E /* ActiveGoalListViewModel.swift */; };
+		254AFC8E24021619006B5F4E /* DefaultActiveGoalListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AFC8D24021619006B5F4E /* DefaultActiveGoalListViewModel.swift */; };
+		254AFC902402173C006B5F4E /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AFC8F2402173C006B5F4E /* Goal.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +49,11 @@
 		254AFC802401FF5F006B5F4E /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 		254AFC822401FFF6006B5F4E /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		254AFC8424020318006B5F4E /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		254AFC862402116B006B5F4E /* ActiveGoalListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveGoalListCell.swift; sourceTree = "<group>"; };
+		254AFC892402125F006B5F4E /* ActiveGoalListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveGoalListCellViewModel.swift; sourceTree = "<group>"; };
+		254AFC8B240215B5006B5F4E /* ActiveGoalListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveGoalListViewModel.swift; sourceTree = "<group>"; };
+		254AFC8D24021619006B5F4E /* DefaultActiveGoalListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultActiveGoalListViewModel.swift; sourceTree = "<group>"; };
+		254AFC8F2402173C006B5F4E /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +114,9 @@
 			children = (
 				254AFBD723F04A03006B5F4E /* ActiveGoalListCoordinator.swift */,
 				254AFBE023F04D34006B5F4E /* ActiveGoalListViewController.swift */,
+				254AFC8B240215B5006B5F4E /* ActiveGoalListViewModel.swift */,
+				254AFC8D24021619006B5F4E /* DefaultActiveGoalListViewModel.swift */,
+				254AFC882402117C006B5F4E /* Cell */,
 			);
 			path = "Active Goals";
 			sourceTree = "<group>";
@@ -120,8 +133,8 @@
 		254AFBDB23F04A82006B5F4E /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				254AFBDC23F04AA7006B5F4E /* Navigation.swift */,
-				254AFBDE23F04B45006B5F4E /* AppNavigation.swift */,
+				254AFC972402482E006B5F4E /* Views */,
+				254AFC91240217BE006B5F4E /* Models */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -143,6 +156,32 @@
 				254AFC702400C5DA006B5F4E /* SmallSteps.xcdatamodeld */,
 			);
 			path = "Core Data";
+			sourceTree = "<group>";
+		};
+		254AFC882402117C006B5F4E /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				254AFC862402116B006B5F4E /* ActiveGoalListCell.swift */,
+				254AFC892402125F006B5F4E /* ActiveGoalListCellViewModel.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		254AFC91240217BE006B5F4E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				254AFC8F2402173C006B5F4E /* Goal.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		254AFC972402482E006B5F4E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				254AFBDC23F04AA7006B5F4E /* Navigation.swift */,
+				254AFBDE23F04B45006B5F4E /* AppNavigation.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -218,13 +257,18 @@
 				254AFC812401FF5F006B5F4E /* DatabaseService.swift in Sources */,
 				254AFBD423F041EB006B5F4E /* AppCoordinator.swift in Sources */,
 				254AFBE323F04D46006B5F4E /* ArchivedGoalListViewController.swift in Sources */,
+				254AFC8E24021619006B5F4E /* DefaultActiveGoalListViewModel.swift in Sources */,
 				254AFBBD23F03885006B5F4E /* AppDelegate.swift in Sources */,
 				254AFBDD23F04AA7006B5F4E /* Navigation.swift in Sources */,
 				254AFBBF23F03885006B5F4E /* SceneDelegate.swift in Sources */,
+				254AFC8C240215B5006B5F4E /* ActiveGoalListViewModel.swift in Sources */,
 				254AFBD223F04121006B5F4E /* Coordinator.swift in Sources */,
 				254AFC722400C5DA006B5F4E /* SmallSteps.xcdatamodeld in Sources */,
+				254AFC872402116B006B5F4E /* ActiveGoalListCell.swift in Sources */,
+				254AFC8A2402125F006B5F4E /* ActiveGoalListCellViewModel.swift in Sources */,
 				254AFBD823F04A03006B5F4E /* ActiveGoalListCoordinator.swift in Sources */,
 				254AFBE123F04D34006B5F4E /* ActiveGoalListViewController.swift in Sources */,
+				254AFC902402173C006B5F4E /* Goal.swift in Sources */,
 				254AFC832401FFF6006B5F4E /* CoreDataService.swift in Sources */,
 				254AFBDA23F04A13006B5F4E /* ArchivedGoalListCoordinator.swift in Sources */,
 				254AFC8524020318006B5F4E /* CoreDataStack.swift in Sources */,
