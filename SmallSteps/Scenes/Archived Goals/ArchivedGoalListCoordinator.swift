@@ -10,6 +10,7 @@ import UIKit
 
 class ArchivedGoalListCoordinator: BaseCoordinator {
     private let tabBarController: UITabBarController
+    private let databaseService: DatabaseService
 
     lazy var navigation: AppNavigation = {
         let navigationController = UINavigationController()
@@ -17,8 +18,9 @@ class ArchivedGoalListCoordinator: BaseCoordinator {
         return AppNavigation(navigationController: navigationController)
     }()
 
-    init(tabBarController: UITabBarController) {
+    init(tabBarController: UITabBarController, databaseService: DatabaseService) {
         self.tabBarController = tabBarController
+        self.databaseService = databaseService
     }
 
     override func start() {

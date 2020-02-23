@@ -19,6 +19,10 @@
 		254AFBDF23F04B45006B5F4E /* AppNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AFBDE23F04B45006B5F4E /* AppNavigation.swift */; };
 		254AFBE123F04D34006B5F4E /* ActiveGoalListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AFBE023F04D34006B5F4E /* ActiveGoalListViewController.swift */; };
 		254AFBE323F04D46006B5F4E /* ArchivedGoalListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AFBE223F04D46006B5F4E /* ArchivedGoalListViewController.swift */; };
+		254AFC722400C5DA006B5F4E /* SmallSteps.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 254AFC702400C5DA006B5F4E /* SmallSteps.xcdatamodeld */; };
+		254AFC812401FF5F006B5F4E /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AFC802401FF5F006B5F4E /* DatabaseService.swift */; };
+		254AFC832401FFF6006B5F4E /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AFC822401FFF6006B5F4E /* CoreDataService.swift */; };
+		254AFC8524020318006B5F4E /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AFC8424020318006B5F4E /* CoreDataStack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +40,10 @@
 		254AFBDE23F04B45006B5F4E /* AppNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigation.swift; sourceTree = "<group>"; };
 		254AFBE023F04D34006B5F4E /* ActiveGoalListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveGoalListViewController.swift; sourceTree = "<group>"; };
 		254AFBE223F04D46006B5F4E /* ArchivedGoalListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivedGoalListViewController.swift; sourceTree = "<group>"; };
+		254AFC712400C5DA006B5F4E /* SmallSteps.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SmallSteps.xcdatamodel; sourceTree = "<group>"; };
+		254AFC802401FF5F006B5F4E /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
+		254AFC822401FFF6006B5F4E /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
+		254AFC8424020318006B5F4E /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +76,7 @@
 		254AFBBB23F03885006B5F4E /* SmallSteps */ = {
 			isa = PBXGroup;
 			children = (
+				254AFC6F2400C58F006B5F4E /* Persistence */,
 				254AFBD023F03FBF006B5F4E /* Scenes */,
 				254AFBBC23F03885006B5F4E /* AppDelegate.swift */,
 				254AFBBE23F03885006B5F4E /* SceneDelegate.swift */,
@@ -115,6 +124,25 @@
 				254AFBDE23F04B45006B5F4E /* AppNavigation.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		254AFC6F2400C58F006B5F4E /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				254AFC802401FF5F006B5F4E /* DatabaseService.swift */,
+				254AFC732400C653006B5F4E /* Core Data */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		254AFC732400C653006B5F4E /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				254AFC822401FFF6006B5F4E /* CoreDataService.swift */,
+				254AFC8424020318006B5F4E /* CoreDataStack.swift */,
+				254AFC702400C5DA006B5F4E /* SmallSteps.xcdatamodeld */,
+			);
+			path = "Core Data";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -187,15 +215,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				254AFC812401FF5F006B5F4E /* DatabaseService.swift in Sources */,
 				254AFBD423F041EB006B5F4E /* AppCoordinator.swift in Sources */,
 				254AFBE323F04D46006B5F4E /* ArchivedGoalListViewController.swift in Sources */,
 				254AFBBD23F03885006B5F4E /* AppDelegate.swift in Sources */,
 				254AFBDD23F04AA7006B5F4E /* Navigation.swift in Sources */,
 				254AFBBF23F03885006B5F4E /* SceneDelegate.swift in Sources */,
 				254AFBD223F04121006B5F4E /* Coordinator.swift in Sources */,
+				254AFC722400C5DA006B5F4E /* SmallSteps.xcdatamodeld in Sources */,
 				254AFBD823F04A03006B5F4E /* ActiveGoalListCoordinator.swift in Sources */,
 				254AFBE123F04D34006B5F4E /* ActiveGoalListViewController.swift in Sources */,
+				254AFC832401FFF6006B5F4E /* CoreDataService.swift in Sources */,
 				254AFBDA23F04A13006B5F4E /* ArchivedGoalListCoordinator.swift in Sources */,
+				254AFC8524020318006B5F4E /* CoreDataStack.swift in Sources */,
 				254AFBDF23F04B45006B5F4E /* AppNavigation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -386,6 +418,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		254AFC702400C5DA006B5F4E /* SmallSteps.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				254AFC712400C5DA006B5F4E /* SmallSteps.xcdatamodel */,
+			);
+			currentVersion = 254AFC712400C5DA006B5F4E /* SmallSteps.xcdatamodel */;
+			path = SmallSteps.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 254AFBB123F03885006B5F4E /* Project object */;
 }
