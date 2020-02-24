@@ -10,6 +10,7 @@ import Foundation
 
 class DefaultArchivedGoalListViewModel: ArchivedGoalListViewModel {
     private var databaseService: DatabaseService
+    var enterGoalDetailScene: ((Goal) -> Void)?
 
     init(databaseService: DatabaseService) {
         self.databaseService = databaseService
@@ -23,6 +24,10 @@ extension DefaultArchivedGoalListViewModel {
 
     func deleteGoal(at indexPath: IndexPath) {
         databaseService.deleteGoal(at: indexPath.row)
+    }
+
+    func showDetail(at indexPath: IndexPath) {
+        enterGoalDetailScene?(databaseService.archivedGoals[indexPath.row])
     }
 }
 

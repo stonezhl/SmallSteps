@@ -91,4 +91,8 @@ extension ActiveGoalListViewController: UITableViewDelegate {
         }
         return UISwipeActionsConfiguration(actions: [stepAction])
     }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.showDetail(at: indexPath)
+    }
 }

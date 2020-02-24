@@ -27,8 +27,11 @@ class ActiveGoalListCoordinator: BaseCoordinator {
         let viewModel = DefaultActiveGoalListViewModel(databaseService: databaseService)
         let viewController = ActiveGoalListViewController(viewModel: viewModel)
         viewController.title = "Goals"
-        viewModel.enterCreateGoalSecene = { [weak self] in
+        viewModel.enterCreateGoalScene = { [weak self] in
             self?.showCreateGoalScene()
+        }
+        viewModel.enterGoalDetailScene = { [weak self] goal in
+            self?.showGoalDetailScene(goal: goal)
         }
         navigation.pushViewController(viewController, animated: false, backClosure: isCompleted)
         tabBarController.addChild(navigation.navigationController)
@@ -41,5 +44,14 @@ class ActiveGoalListCoordinator: BaseCoordinator {
             self?.free(coordinator: createGoalCoordinator)
         }
         createGoalCoordinator.start()
+    }
+
+    func showGoalDetailScene(goal: Goal) {
+        let goalDetailCoordinator = GoalDetailCoordinator(navigation: navigation, databaseService: databaseService, goal: goal)
+        store(coordinator: goalDetailCoordinator)
+        goalDetailCoordinator.isCompleted = { [weak self] in
+            self?.free(coordinator: goalDetailCoordinator)
+        }
+        goalDetailCoordinator.start()
     }
 }

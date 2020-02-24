@@ -83,5 +83,9 @@ extension ArchivedGoalListViewController: UITableViewDelegate {
         }
         return UISwipeActionsConfiguration(actions: [restoreAction])
     }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.showDetail(at: indexPath)
+    }
 }
 

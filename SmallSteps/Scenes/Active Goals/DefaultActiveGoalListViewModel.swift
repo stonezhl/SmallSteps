@@ -10,7 +10,8 @@ import Foundation
 
 class DefaultActiveGoalListViewModel: ActiveGoalListViewModel {
     private var databaseService: DatabaseService
-    var enterCreateGoalSecene: (() -> Void)?
+    var enterCreateGoalScene: (() -> Void)?
+    var enterGoalDetailScene: ((Goal) -> Void)?
 
     init(databaseService: DatabaseService) {
         self.databaseService = databaseService
@@ -27,7 +28,11 @@ extension DefaultActiveGoalListViewModel {
     }
 
     func addGoal() {
-        enterCreateGoalSecene?()
+        enterCreateGoalScene?()
+    }
+
+    func showDetail(at indexPath: IndexPath) {
+        enterGoalDetailScene?(databaseService.activeGoals[indexPath.row])
     }
 }
 

@@ -11,11 +11,13 @@ import Foundation
 protocol ArchivedGoalListViewModelInput {
     func restoreGoal(at indexPath: IndexPath)
     func deleteGoal(at indexPath: IndexPath)
+    func showDetail(at indexPath: IndexPath)
 }
 
 protocol ArchivedGoalListViewModelOutput {
     var goalsCount: Int { get }
     func cellViewModel(at indexPath: IndexPath) -> ArchivedGoalListCellViewModel
+    var enterGoalDetailScene: ((Goal) -> Void)? { get set }
 }
 
 protocol ArchivedGoalListViewModel: ArchivedGoalListViewModelInput, ArchivedGoalListViewModelOutput { }

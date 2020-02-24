@@ -27,7 +27,19 @@ class ArchivedGoalListCoordinator: BaseCoordinator {
         let viewModel = DefaultArchivedGoalListViewModel(databaseService: databaseService)
         let viewController = ArchivedGoalListViewController(viewModel: viewModel)
         viewController.title = "Archived"
+        viewModel.enterGoalDetailScene = { [weak self] goal in
+            self?.showGoalDetailScene(goal: goal)
+        }
         navigation.pushViewController(viewController, animated: false, backClosure: isCompleted)
         tabBarController.addChild(navigation.navigationController)
+    }
+
+    func showGoalDetailScene(goal: Goal) {
+        let goalDetailCoordinator = GoalDetailCoordinator(navigation: navigation, databaseService: databaseService, goal: goal)
+        store(coordinator: goalDetailCoordinator)
+        goalDetailCoordinator.isCompleted = { [weak self] in
+            self?.free(coordinator: goalDetailCoordinator)
+        }
+        goalDetailCoordinator.start()
     }
 }
