@@ -39,6 +39,11 @@ class ActiveGoalListViewController: UIViewController {
         setupConstraints()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+
     @objc func didTapAddButton(sender: UIBarButtonItem) {
         viewModel.addGoal()
     }
@@ -77,9 +82,9 @@ extension ActiveGoalListViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        guard viewModel.canTakeAStep(at: indexPath) else { return nil }
+        guard viewModel.canTakeStep(at: indexPath) else { return nil }
         let stepAction = UIContextualAction(style: .normal, title: "Take a step") { [weak self] action, view, completion in
-            self?.viewModel.takeAStep(at: indexPath)
+            self?.viewModel.takeStep(at: indexPath)
             let cell = tableView.cellForRow(at: indexPath) as! ActiveGoalListCell
             cell.viewModel = self?.viewModel.cellViewModel(at: indexPath)
             completion(true)

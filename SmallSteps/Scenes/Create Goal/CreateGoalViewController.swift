@@ -68,7 +68,6 @@ class CreateGoalViewController: UIViewController {
         if let tabBarController = presentingViewController as? UITabBarController,
             let navigationController = tabBarController.viewControllers?.first as? UINavigationController,
             let viewController = navigationController.viewControllers.first as? ActiveGoalListViewController {
-            viewController.viewModel.refreshGoals()
             viewController.tableView.reloadData()
         }
         dismiss()

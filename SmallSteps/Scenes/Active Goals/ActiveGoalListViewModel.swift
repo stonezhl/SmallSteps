@@ -9,16 +9,15 @@
 import Foundation
 
 protocol ActiveGoalListViewModelInput {
-    func takeAStep(at indexPath: IndexPath)
+    func takeStep(at indexPath: IndexPath)
     func archiveGoal(at indexPath: IndexPath)
     func addGoal()
-    func refreshGoals()
 }
 
 protocol ActiveGoalListViewModelOutput {
     var goalsCount: Int { get }
     func cellViewModel(at indexPath: IndexPath) -> ActiveGoalListCellViewModel
-    func canTakeAStep(at indexPath: IndexPath) -> Bool
+    func canTakeStep(at indexPath: IndexPath) -> Bool
     var enterCreateGoalSecene: (() -> Void)? { get set }
 }
 

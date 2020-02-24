@@ -47,6 +47,6 @@ class DefaultCreateGoalViewModel: CreateGoalViewModel {
                         status: .active,
                         createdDate: currentDate,
                         updatedDate: currentDate)
-        self.databaseService.newGoal = goal
+        databaseService.addGoal(goal)
     }
 }

@@ -12,79 +12,35 @@ class DefaultActiveGoalListViewModel: ActiveGoalListViewModel {
     private var databaseService: DatabaseService
     var enterCreateGoalSecene: (() -> Void)?
 
-    private var goals: [Goal] = [
-        Goal(uuid: "1",
-             title: "Everyday",
-             frequency: .everyday,
-             status: .active,
-             createdDate: Date(),
-             updatedDate: Date()),
-        Goal(uuid: "2",
-             title: "Weekdays",
-             frequency: .weekdays,
-             status: .active,
-             createdDate: Date(),
-             updatedDate: Date()),
-        Goal(uuid: "3",
-             title: "Weekends",
-             frequency: .weekends,
-             status: .active,
-             createdDate: Date(),
-             updatedDate: Date()),
-        Goal(uuid: "4",
-             title: "Today",
-             frequency: .everySunday,
-             status: .active,
-             createdDate: Date(),
-             updatedDate: Date()),
-        Goal(uuid: "5",
-             title: "Except today",
-             frequency: [.everyMonday, .everyTuesday, .everyWednesday, .everyThursday, .everyFriday, .everySaturday],
-             status: .active,
-             createdDate: Date(),
-             updatedDate: Date()),
-    ]
-
-    private var steps: [Bool] = [false, false, false, false, false]
-
     init(databaseService: DatabaseService) {
         self.databaseService = databaseService
     }
 }
 
 extension DefaultActiveGoalListViewModel {
-    func takeAStep(at indexPath: IndexPath) {
-        steps[indexPath.row] = true
+    func takeStep(at indexPath: IndexPath) {
+        databaseService.takeStep(at: indexPath.row)
     }
 
     func archiveGoal(at indexPath: IndexPath) {
-        goals.remove(at: indexPath.row)
-        steps.remove(at: indexPath.row)
+        databaseService.archiveGoal(at: indexPath.row)
     }
 
     func addGoal() {
         enterCreateGoalSecene?()
     }
-
-    func refreshGoals() {
-        if let goal = databaseService.newGoal {
-            goals.insert(goal, at: 0)
-            steps.insert(false, at: 0)
-            databaseService.newGoal = nil
-        }
-    }
 }
 
 extension DefaultActiveGoalListViewModel {
     var goalsCount: Int {
-        return goals.count
+        return databaseService.activeGoals.count
     }
 
     func cellViewModel(at indexPath: IndexPath) -> ActiveGoalListCellViewModel {
-        return ActiveGoalListCellViewModel(goal: goals[indexPath.row], hasAStep: steps[indexPath.row])
+        return ActiveGoalListCellViewModel(goal: databaseService.activeGoals[indexPath.row], hasAStep: databaseService.activeSteps[indexPath.row])
     }
 
-    func canTakeAStep(at indexPath: IndexPath) -> Bool {
-        return goals[indexPath.row].isAvailable(date: Date()) && steps[indexPath.row] == false
+    func canTakeStep(at indexPath: IndexPath) -> Bool {
+        return databaseService.activeGoals[indexPath.row].isAvailable(date: Date()) && databaseService.activeSteps[indexPath.row] == false
     }
 }
