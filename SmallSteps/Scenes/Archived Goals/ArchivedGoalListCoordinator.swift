@@ -24,7 +24,8 @@ class ArchivedGoalListCoordinator: BaseCoordinator {
     }
 
     override func start() {
-        let viewController = ArchivedGoalListViewController()
+        let viewModel = DefaultArchivedGoalListViewModel(databaseService: databaseService)
+        let viewController = ArchivedGoalListViewController(viewModel: viewModel)
         viewController.title = "Archived"
         navigation.pushViewController(viewController, animated: false, backClosure: isCompleted)
         tabBarController.addChild(navigation.navigationController)
