@@ -9,14 +9,18 @@
 import Foundation
 
 protocol DatabaseService {
-    var activeGoals: [Goal] { get set }
     var activeSteps: [Bool] { get set }
-    var archivedGoals: [Goal] { get set }
-    var archivedSteps: [Bool] { get set }
     func takeStep(at index: Int)
-    func archiveGoal(at index: Int)
-    func addGoal(_ goal: Goal)
-    func restoreGoal(at index: Int)
-    func deleteGoal(at index: Int)
+    func archiveStep(at index: Int)
+    func addStep()
+    var archivedSteps: [Bool] { get set }
+    func restoreStep(at index: Int)
+    func deleteStep(at index: Int)
+    func fetchActiveGoals() throws -> [Goal]
+    func archiveGoal(_ goal: Goal) throws
+    func addGoal(_ goal: Goal) throws
+    func fetchArchivedGoals() throws -> [Goal]
+    func restoreGoal(_ goal: Goal) throws
+    func deleteGoal(_ goal: Goal) throws
     func saveContext()
 }

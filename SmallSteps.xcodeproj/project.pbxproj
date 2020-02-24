@@ -40,6 +40,11 @@
 		25F8B08F2403658300E599D8 /* GoalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B08E2403658300E599D8 /* GoalDetailViewController.swift */; };
 		25F8B0912403659500E599D8 /* GoalDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0902403659500E599D8 /* GoalDetailViewModel.swift */; };
 		25F8B0932403662B00E599D8 /* DefaultGoalDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0922403662B00E599D8 /* DefaultGoalDetailViewModel.swift */; };
+		25F8B0992403A32800E599D8 /* StepDBModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0952403A32800E599D8 /* StepDBModel+CoreDataClass.swift */; };
+		25F8B09A2403A32800E599D8 /* StepDBModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0962403A32800E599D8 /* StepDBModel+CoreDataProperties.swift */; };
+		25F8B09B2403A32800E599D8 /* GoalDBModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0972403A32800E599D8 /* GoalDBModel+CoreDataClass.swift */; };
+		25F8B09C2403A32800E599D8 /* GoalDBModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0982403A32800E599D8 /* GoalDBModel+CoreDataProperties.swift */; };
+		25F8B09E2403B43C00E599D8 /* DatabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B09D2403B43C00E599D8 /* DatabaseError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +83,11 @@
 		25F8B08E2403658300E599D8 /* GoalDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailViewController.swift; sourceTree = "<group>"; };
 		25F8B0902403659500E599D8 /* GoalDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailViewModel.swift; sourceTree = "<group>"; };
 		25F8B0922403662B00E599D8 /* DefaultGoalDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultGoalDetailViewModel.swift; sourceTree = "<group>"; };
+		25F8B0952403A32800E599D8 /* StepDBModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StepDBModel+CoreDataClass.swift"; sourceTree = "<group>"; };
+		25F8B0962403A32800E599D8 /* StepDBModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StepDBModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		25F8B0972403A32800E599D8 /* GoalDBModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GoalDBModel+CoreDataClass.swift"; sourceTree = "<group>"; };
+		25F8B0982403A32800E599D8 /* GoalDBModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GoalDBModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		25F8B09D2403B43C00E599D8 /* DatabaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,8 +137,8 @@
 				254AFBD123F04121006B5F4E /* Coordinator.swift */,
 				254AFBD323F041EB006B5F4E /* AppCoordinator.swift */,
 				254AFBDB23F04A82006B5F4E /* Common */,
-				254AFC9A2402683F006B5F4E /* Create Goal */,
 				254AFBD523F04993006B5F4E /* Active Goals */,
+				254AFC9A2402683F006B5F4E /* Create Goal */,
 				254AFBD623F0499D006B5F4E /* Archived Goals */,
 				25F8B0892403651700E599D8 /* Goal Detail */,
 			);
@@ -171,6 +181,7 @@
 		254AFC6F2400C58F006B5F4E /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
+				25F8B09D2403B43C00E599D8 /* DatabaseError.swift */,
 				254AFC802401FF5F006B5F4E /* DatabaseService.swift */,
 				254AFC732400C653006B5F4E /* Core Data */,
 			);
@@ -183,6 +194,7 @@
 				254AFC822401FFF6006B5F4E /* CoreDataService.swift */,
 				254AFC8424020318006B5F4E /* CoreDataStack.swift */,
 				254AFC702400C5DA006B5F4E /* SmallSteps.xcdatamodeld */,
+				25F8B0942403A2C100E599D8 /* Models */,
 			);
 			path = "Core Data";
 			sourceTree = "<group>";
@@ -242,6 +254,17 @@
 				25F8B0922403662B00E599D8 /* DefaultGoalDetailViewModel.swift */,
 			);
 			path = "Goal Detail";
+			sourceTree = "<group>";
+		};
+		25F8B0942403A2C100E599D8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				25F8B0972403A32800E599D8 /* GoalDBModel+CoreDataClass.swift */,
+				25F8B0982403A32800E599D8 /* GoalDBModel+CoreDataProperties.swift */,
+				25F8B0952403A32800E599D8 /* StepDBModel+CoreDataClass.swift */,
+				25F8B0962403A32800E599D8 /* StepDBModel+CoreDataProperties.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -319,11 +342,13 @@
 				254AFC9E24026906006B5F4E /* CreateGoalViewController.swift in Sources */,
 				254AFBD423F041EB006B5F4E /* AppCoordinator.swift in Sources */,
 				254AFBE323F04D46006B5F4E /* ArchivedGoalListViewController.swift in Sources */,
+				25F8B09E2403B43C00E599D8 /* DatabaseError.swift in Sources */,
 				25F8B08D2403656600E599D8 /* GoalDetailCoordinator.swift in Sources */,
 				254AFC8E24021619006B5F4E /* DefaultActiveGoalListViewModel.swift in Sources */,
 				254AFBBD23F03885006B5F4E /* AppDelegate.swift in Sources */,
 				254AFBDD23F04AA7006B5F4E /* Navigation.swift in Sources */,
 				254AFBBF23F03885006B5F4E /* SceneDelegate.swift in Sources */,
+				25F8B09A2403A32800E599D8 /* StepDBModel+CoreDataProperties.swift in Sources */,
 				25F8B0882403572A00E599D8 /* ArchivedGoalListCellViewModel.swift in Sources */,
 				254AFC8C240215B5006B5F4E /* ActiveGoalListViewModel.swift in Sources */,
 				254AFBD223F04121006B5F4E /* Coordinator.swift in Sources */,
@@ -331,11 +356,13 @@
 				254AFCA22402692D006B5F4E /* DefaultCreateGoalViewModel.swift in Sources */,
 				25F8B08F2403658300E599D8 /* GoalDetailViewController.swift in Sources */,
 				254AFCA02402691A006B5F4E /* CreateGoalViewModel.swift in Sources */,
+				25F8B0992403A32800E599D8 /* StepDBModel+CoreDataClass.swift in Sources */,
 				254AFC872402116B006B5F4E /* ActiveGoalListCell.swift in Sources */,
 				254AFC8A2402125F006B5F4E /* ActiveGoalListCellViewModel.swift in Sources */,
 				254AFBD823F04A03006B5F4E /* ActiveGoalListCoordinator.swift in Sources */,
 				254AFBE123F04D34006B5F4E /* ActiveGoalListViewController.swift in Sources */,
 				25F8B0912403659500E599D8 /* GoalDetailViewModel.swift in Sources */,
+				25F8B09B2403A32800E599D8 /* GoalDBModel+CoreDataClass.swift in Sources */,
 				254AFC902402173C006B5F4E /* Goal.swift in Sources */,
 				25F8B0862403570B00E599D8 /* ArchivedGoalListCell.swift in Sources */,
 				254AFC832401FFF6006B5F4E /* CoreDataService.swift in Sources */,
@@ -345,6 +372,7 @@
 				254AFC9C240268D7006B5F4E /* CreateGoalCoordinator.swift in Sources */,
 				254AFC8524020318006B5F4E /* CoreDataStack.swift in Sources */,
 				254AFBDF23F04B45006B5F4E /* AppNavigation.swift in Sources */,
+				25F8B09C2403A32800E599D8 /* GoalDBModel+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

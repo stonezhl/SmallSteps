@@ -9,6 +9,7 @@
 import Foundation
 
 protocol ActiveGoalListViewModelInput {
+    func fetchActiveGoals()
     func takeStep(at indexPath: IndexPath)
     func archiveGoal(at indexPath: IndexPath)
     func addGoal()

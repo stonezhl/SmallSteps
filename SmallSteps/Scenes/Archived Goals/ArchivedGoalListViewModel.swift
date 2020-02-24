@@ -9,6 +9,7 @@
 import Foundation
 
 protocol ArchivedGoalListViewModelInput {
+    func fetchArchivedGoals()
     func restoreGoal(at indexPath: IndexPath)
     func deleteGoal(at indexPath: IndexPath)
     func showDetail(at indexPath: IndexPath)

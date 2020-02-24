@@ -9,7 +9,7 @@
 import Foundation
 
 struct GoalFrequency: OptionSet {
-    let rawValue: Int
+    let rawValue: Int16
 
     static let everySunday = GoalFrequency(rawValue: 1 << 0)
     static let everyMonday = GoalFrequency(rawValue: 1 << 1)
@@ -23,7 +23,7 @@ struct GoalFrequency: OptionSet {
     static let everyday: GoalFrequency = [.weekdays, .weekends]
 }
 
-enum GoalStatus: Int {
+enum GoalStatus: Int16 {
     case active = 0
     case archived = 1
 }

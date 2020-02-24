@@ -14,12 +14,12 @@ struct ActiveGoalListCellViewModel {
     let statusColor: UIColor?
     let isEnabled: Bool
 
-    init(goal: Goal, hasAStep: Bool) {
+    init(goal: Goal, hasStep: Bool) {
         title = goal.title
         frequency = goal.frequencyDescription
         isEnabled = goal.isAvailable(date: Date())
         if isEnabled {
-            statusColor = hasAStep ? UIColor.systemOrange : UIColor.systemGray
+            statusColor = hasStep ? UIColor.systemOrange : UIColor.systemGray
         } else {
             statusColor = nil
         }

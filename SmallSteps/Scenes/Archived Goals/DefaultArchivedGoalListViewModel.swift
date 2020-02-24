@@ -11,6 +11,7 @@ import Foundation
 class DefaultArchivedGoalListViewModel: ArchivedGoalListViewModel {
     private var databaseService: DatabaseService
     var enterGoalDetailScene: ((Goal) -> Void)?
+    private var goals: [Goal] = []
 
     init(databaseService: DatabaseService) {
         self.databaseService = databaseService
@@ -18,25 +19,33 @@ class DefaultArchivedGoalListViewModel: ArchivedGoalListViewModel {
 }
 
 extension DefaultArchivedGoalListViewModel {
+    func fetchArchivedGoals() {
+        goals = (try? databaseService.fetchArchivedGoals()) ?? []
+    }
+
     func restoreGoal(at indexPath: IndexPath) {
-        databaseService.restoreGoal(at: indexPath.row)
+        let goal = goals.remove(at: indexPath.row)
+        try? databaseService.restoreGoal(goal)
+        databaseService.restoreStep(at: indexPath.row)
     }
 
     func deleteGoal(at indexPath: IndexPath) {
-        databaseService.deleteGoal(at: indexPath.row)
+        let goal = goals.remove(at: indexPath.row)
+        try? databaseService.deleteGoal(goal)
+        databaseService.deleteStep(at: indexPath.row)
     }
 
     func showDetail(at indexPath: IndexPath) {
-        enterGoalDetailScene?(databaseService.archivedGoals[indexPath.row])
+        enterGoalDetailScene?(goals[indexPath.row])
     }
 }
 
 extension DefaultArchivedGoalListViewModel {
     var goalsCount: Int {
-        return databaseService.archivedGoals.count
+        return goals.count
     }
 
     func cellViewModel(at indexPath: IndexPath) -> ArchivedGoalListCellViewModel {
-        return ArchivedGoalListCellViewModel(goal: databaseService.archivedGoals[indexPath.row])
+        return ArchivedGoalListCellViewModel(goal: goals[indexPath.row])
     }
 }

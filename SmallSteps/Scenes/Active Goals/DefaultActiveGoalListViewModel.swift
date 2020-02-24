@@ -12,6 +12,7 @@ class DefaultActiveGoalListViewModel: ActiveGoalListViewModel {
     private var databaseService: DatabaseService
     var enterCreateGoalScene: (() -> Void)?
     var enterGoalDetailScene: ((Goal) -> Void)?
+    private var goals: [Goal] = []
 
     init(databaseService: DatabaseService) {
         self.databaseService = databaseService
@@ -19,12 +20,18 @@ class DefaultActiveGoalListViewModel: ActiveGoalListViewModel {
 }
 
 extension DefaultActiveGoalListViewModel {
+    func fetchActiveGoals() {
+        goals = (try? databaseService.fetchActiveGoals()) ?? []
+    }
+
     func takeStep(at indexPath: IndexPath) {
         databaseService.takeStep(at: indexPath.row)
     }
 
     func archiveGoal(at indexPath: IndexPath) {
-        databaseService.archiveGoal(at: indexPath.row)
+        let goal = goals.remove(at: indexPath.row)
+        try? databaseService.archiveGoal(goal)
+        databaseService.archiveStep(at: indexPath.row)
     }
 
     func addGoal() {
@@ -32,20 +39,20 @@ extension DefaultActiveGoalListViewModel {
     }
 
     func showDetail(at indexPath: IndexPath) {
-        enterGoalDetailScene?(databaseService.activeGoals[indexPath.row])
+        enterGoalDetailScene?(goals[indexPath.row])
     }
 }
 
 extension DefaultActiveGoalListViewModel {
     var goalsCount: Int {
-        return databaseService.activeGoals.count
+        return goals.count
     }
 
     func cellViewModel(at indexPath: IndexPath) -> ActiveGoalListCellViewModel {
-        return ActiveGoalListCellViewModel(goal: databaseService.activeGoals[indexPath.row], hasAStep: databaseService.activeSteps[indexPath.row])
+        return ActiveGoalListCellViewModel(goal: goals[indexPath.row], hasStep: databaseService.activeSteps[indexPath.row])
     }
 
     func canTakeStep(at indexPath: IndexPath) -> Bool {
-        return databaseService.activeGoals[indexPath.row].isAvailable(date: Date()) && databaseService.activeSteps[indexPath.row] == false
+        return goals[indexPath.row].isAvailable(date: Date()) && databaseService.activeSteps[indexPath.row] == false
     }
 }
