@@ -17,38 +17,21 @@ class CoreDataService: DatabaseService {
 
     init(name: String) {
         stack = CoreDataStack(name: name)
-        let activeGoalsCount = (try? fetchActiveGoals().count) ?? 0
-        let archivedGoalsCount = (try? fetchArchivedGoals().count) ?? 0
-        activeSteps = Array(repeating: false, count: activeGoalsCount)
-        archivedSteps = Array(repeating: false, count: archivedGoalsCount)
     }
 
-    var activeSteps: [Bool] = []
-
-    func takeStep(at index: Int) {
-        activeSteps[index] = true
+    func saveContext() {
+        stack.saveContext()
     }
 
-    func archiveStep(at index: Int) {
-        let step = activeSteps.remove(at: index)
-        archivedSteps.insert(step, at: 0)
+    private func fetchGoalDBModel(uuid: String) throws -> GoalDBModel? {
+        let request: NSFetchRequest<GoalDBModel> = GoalDBModel.fetchRequest()
+        request.fetchLimit = 1
+        request.predicate = NSPredicate(format: "uuid = %@", uuid)
+        return try context.fetch(request).first
     }
+}
 
-    func addStep() {
-        activeSteps.insert(false, at: 0)
-    }
-
-    var archivedSteps: [Bool] = []
-
-    func restoreStep(at index: Int) {
-        let step = archivedSteps.remove(at: index)
-        activeSteps.insert(step, at: 0)
-    }
-
-    func deleteStep(at index: Int) {
-        archivedSteps.remove(at: index)
-    }
-
+extension CoreDataService {
     func fetchActiveGoals() throws -> [Goal] {
         let request: NSFetchRequest<GoalDBModel> = GoalDBModel.fetchRequest()
         request.predicate = NSPredicate(format: "statusValue = %d", GoalStatus.active.rawValue)
@@ -61,12 +44,39 @@ class CoreDataService: DatabaseService {
         }
     }
 
-    func archiveGoal(_ goal: Goal) throws {
-        let request: NSFetchRequest<GoalDBModel> = GoalDBModel.fetchRequest()
-        request.fetchLimit = 1
-        request.predicate = NSPredicate(format: "uuid = %@", goal.uuid)
+    func hasStep(goal: Goal, on date: Date) -> Bool {
         do {
-            guard let dbModel = try context.fetch(request).first else { return }
+            guard let dbModel = try fetchGoalDBModel(uuid: goal.uuid) else { return false }
+            let calendar = Calendar.current
+            let dateFrom = calendar.startOfDay(for: date)
+            guard let dateTo = calendar.date(byAdding: .day, value: 1, to: dateFrom) else { return false }
+            let steps = dbModel.steps.filtered(using: NSPredicate(format: "createdDate >= %@ && createdDate <= %@", dateFrom as NSDate, dateTo as NSDate))
+            return !steps.isEmpty
+        } catch {
+            return false
+        }
+    }
+
+    func takeStep(goal: Goal, step: Step) throws {
+        do {
+            guard let goalDBModel = try fetchGoalDBModel(uuid: goal.uuid) else {
+                throw DatabaseError.goalNotFound(goal: goal)
+            }
+            let stepDBModel = StepDBModel(context: context)
+            stepDBModel.parseFromStep(step)
+            stepDBModel.goal = goalDBModel
+            try context.save()
+        } catch {
+            print("Taking step failed: \(error)")
+            throw DatabaseError.takingStepFailed(error: error)
+        }
+    }
+
+    func archiveGoal(_ goal: Goal) throws {
+        do {
+            guard let dbModel = try fetchGoalDBModel(uuid: goal.uuid) else {
+                throw DatabaseError.goalNotFound(goal: goal)
+            }
             dbModel.status = .archived
             try context.save()
         } catch {
@@ -74,7 +84,9 @@ class CoreDataService: DatabaseService {
             throw DatabaseError.archivingGoalFailed(error: error)
         }
     }
+}
 
+extension CoreDataService {
     func addGoal(_ goal: Goal) throws {
         let dbModel = GoalDBModel(context: context)
         dbModel.parseFromGoal(goal)
@@ -85,7 +97,9 @@ class CoreDataService: DatabaseService {
             throw DatabaseError.addingGoalFailed(error: error)
         }
     }
+}
 
+extension CoreDataService {
     func fetchArchivedGoals() throws -> [Goal] {
         let request: NSFetchRequest<GoalDBModel> = GoalDBModel.fetchRequest()
         request.predicate = NSPredicate(format: "statusValue = %d", GoalStatus.archived.rawValue)
@@ -99,11 +113,10 @@ class CoreDataService: DatabaseService {
     }
 
     func restoreGoal(_ goal: Goal) throws {
-        let request: NSFetchRequest<GoalDBModel> = GoalDBModel.fetchRequest()
-        request.fetchLimit = 1
-        request.predicate = NSPredicate(format: "uuid = %@", goal.uuid)
         do {
-            guard let dbModel = try context.fetch(request).first else { return }
+            guard let dbModel = try fetchGoalDBModel(uuid: goal.uuid) else {
+                throw DatabaseError.goalNotFound(goal: goal)
+            }
             dbModel.status = .active
             try context.save()
         } catch {
@@ -113,19 +126,12 @@ class CoreDataService: DatabaseService {
     }
 
     func deleteGoal(_ goal: Goal) throws {
-        let request: NSFetchRequest<GoalDBModel> = GoalDBModel.fetchRequest()
-        request.fetchLimit = 1
-        request.predicate = NSPredicate(format: "uuid = %@", goal.uuid)
         do {
-            guard let dbModel = try context.fetch(request).first else { return }
+            guard let dbModel = try fetchGoalDBModel(uuid: goal.uuid) else { return }
             context.delete(dbModel)
         } catch {
             print("Deleting goal failed: \(error)")
             throw DatabaseError.deletingGoalFailed(error: error)
         }
-    }
-
-    func saveContext() {
-        stack.saveContext()
     }
 }

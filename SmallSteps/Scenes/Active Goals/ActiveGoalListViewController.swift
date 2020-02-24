@@ -37,16 +37,27 @@ class ActiveGoalListViewController: UIViewController {
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAddButton(sender:)))
         navigationItem.rightBarButtonItems = [addButton]
         setupConstraints()
+        NotificationCenter.default.addObserver(self, selector: #selector(dayChanged(notification:)), name: .NSCalendarDayChanged, object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.fetchActiveGoals()
-        tableView.reloadData()
+        refreshTableView()
     }
 
     @objc func didTapAddButton(sender: UIBarButtonItem) {
         viewModel.addGoal()
+    }
+
+    @objc func dayChanged(notification: Notification) {
+        DispatchQueue.main.async { [weak self] in
+            self?.refreshTableView()
+        }
+    }
+
+    private func refreshTableView() {
+        viewModel.fetchActiveGoals()
+        tableView.reloadData()
     }
 
     private func setupConstraints() {

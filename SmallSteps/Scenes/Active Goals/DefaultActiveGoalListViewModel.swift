@@ -9,7 +9,7 @@
 import Foundation
 
 class DefaultActiveGoalListViewModel: ActiveGoalListViewModel {
-    private var databaseService: DatabaseService
+    private let databaseService: DatabaseService
     var enterCreateGoalScene: (() -> Void)?
     var enterGoalDetailScene: ((Goal) -> Void)?
     private var goals: [Goal] = []
@@ -25,13 +25,13 @@ extension DefaultActiveGoalListViewModel {
     }
 
     func takeStep(at indexPath: IndexPath) {
-        databaseService.takeStep(at: indexPath.row)
+        let step = Step(uuid: UUID().uuidString, createdDate: Date())
+        try? databaseService.takeStep(goal: goals[indexPath.row], step: step)
     }
 
     func archiveGoal(at indexPath: IndexPath) {
         let goal = goals.remove(at: indexPath.row)
         try? databaseService.archiveGoal(goal)
-        databaseService.archiveStep(at: indexPath.row)
     }
 
     func addGoal() {
@@ -49,10 +49,15 @@ extension DefaultActiveGoalListViewModel {
     }
 
     func cellViewModel(at indexPath: IndexPath) -> ActiveGoalListCellViewModel {
-        return ActiveGoalListCellViewModel(goal: goals[indexPath.row], hasStep: databaseService.activeSteps[indexPath.row])
+        let goal = goals[indexPath.row]
+        let hasStep = databaseService.hasStep(goal: goal, on: Date())
+        return ActiveGoalListCellViewModel(goal: goal, hasStep: hasStep)
     }
 
     func canTakeStep(at indexPath: IndexPath) -> Bool {
-        return goals[indexPath.row].isAvailable(date: Date()) && databaseService.activeSteps[indexPath.row] == false
+        let currentDate = Date()
+        let goal = goals[indexPath.row]
+        let hasStep = databaseService.hasStep(goal: goal, on: currentDate)
+        return goal.isAvailable(date: currentDate) && !hasStep
     }
 }

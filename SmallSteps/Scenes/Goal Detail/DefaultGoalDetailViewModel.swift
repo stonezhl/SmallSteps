@@ -9,7 +9,7 @@
 import Foundation
 
 class DefaultGoalDetailViewModel: GoalDetailViewModel {
-    private var databaseService: DatabaseService
+    private let databaseService: DatabaseService
     let goal: Goal
 
     init(databaseService: DatabaseService, goal: Goal) {

@@ -12,3 +12,14 @@ import CoreData
 public class StepDBModel: NSManagedObject {
 
 }
+
+extension StepDBModel {
+    func parseToStep() -> Step {
+        return Step(uuid: uuid, createdDate: createdDate)
+    }
+
+    func parseFromStep(_ step: Step) {
+        uuid = step.uuid
+        createdDate = step.createdDate
+    }
+}

@@ -45,6 +45,7 @@
 		25F8B09B2403A32800E599D8 /* GoalDBModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0972403A32800E599D8 /* GoalDBModel+CoreDataClass.swift */; };
 		25F8B09C2403A32800E599D8 /* GoalDBModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0982403A32800E599D8 /* GoalDBModel+CoreDataProperties.swift */; };
 		25F8B09E2403B43C00E599D8 /* DatabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B09D2403B43C00E599D8 /* DatabaseError.swift */; };
+		25F8B0A02404101400E599D8 /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B09F2404101400E599D8 /* Step.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +89,7 @@
 		25F8B0972403A32800E599D8 /* GoalDBModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GoalDBModel+CoreDataClass.swift"; sourceTree = "<group>"; };
 		25F8B0982403A32800E599D8 /* GoalDBModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GoalDBModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		25F8B09D2403B43C00E599D8 /* DatabaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseError.swift; sourceTree = "<group>"; };
+		25F8B09F2404101400E599D8 /* Step.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				254AFC8F2402173C006B5F4E /* Goal.swift */,
+				25F8B09F2404101400E599D8 /* Step.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 				254AFBBF23F03885006B5F4E /* SceneDelegate.swift in Sources */,
 				25F8B09A2403A32800E599D8 /* StepDBModel+CoreDataProperties.swift in Sources */,
 				25F8B0882403572A00E599D8 /* ArchivedGoalListCellViewModel.swift in Sources */,
+				25F8B0A02404101400E599D8 /* Step.swift in Sources */,
 				254AFC8C240215B5006B5F4E /* ActiveGoalListViewModel.swift in Sources */,
 				254AFBD223F04121006B5F4E /* Coordinator.swift in Sources */,
 				254AFC722400C5DA006B5F4E /* SmallSteps.xcdatamodeld in Sources */,

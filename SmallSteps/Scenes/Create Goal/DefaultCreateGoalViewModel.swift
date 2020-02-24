@@ -9,7 +9,7 @@
 import Foundation
 
 class DefaultCreateGoalViewModel: CreateGoalViewModel {
-    private var databaseService: DatabaseService
+    private let databaseService: DatabaseService
     var didExitScene: (() -> Void)?
 
     let frequencyTitles = [
@@ -48,6 +48,5 @@ class DefaultCreateGoalViewModel: CreateGoalViewModel {
                         createdDate: currentDate,
                         updatedDate: currentDate)
         try? databaseService.addGoal(goal)
-        databaseService.activeSteps.append(false)
     }
 }
