@@ -18,8 +18,9 @@ class CreateGoalViewController: UIViewController {
         view.addSubview(textField)
         textField.delegate = self
         textField.placeholder = "Enter a title for your goal"
-        textField.font = .systemFont(ofSize: 18)
+        textField.font = .systemFont(ofSize: 17)
         textField.borderStyle = .roundedRect
+        textField.backgroundColor = .secondarySystemGroupedBackground
         return textField
     }()
 
@@ -34,6 +35,8 @@ class CreateGoalViewController: UIViewController {
         return tableView
     }()
 
+    var tableViewBottomConstraint: NSLayoutConstraint?
+
     init(viewModel: CreateGoalViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -46,11 +49,11 @@ class CreateGoalViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Add Goal"
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(didTapCancelButton(sender:)))
-        navigationItem.leftBarButtonItems = [cancelButton]
+        navigationItem.leftBarButtonItem = cancelButton
         let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(didTapSaveButton(sender:)))
-        navigationItem.rightBarButtonItems = [saveButton]
+        navigationItem.rightBarButtonItem = saveButton
         enableKeyboardHideOnTap()
         setupConstraints()
     }
@@ -91,16 +94,21 @@ class CreateGoalViewController: UIViewController {
     }
 
     private func setupConstraints() {
+        let tableViewHeightConstraint = tableView.heightAnchor.constraint(equalToConstant: 44 * 7)
+        tableViewHeightConstraint.priority = UILayoutPriority(rawValue: 999)
+        tableViewBottomConstraint = tableView.bottomAnchor.constraint(lessThanOrEqualTo: view.bottomAnchor)
         let constraints = [
             // title
             titleTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
-            titleTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 64),
-            titleTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -64),
+            titleTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 32),
+            titleTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -32),
+            titleTextField.heightAnchor.constraint(equalToConstant: 34),
             // table
             tableView.topAnchor.constraint(equalTo: titleTextField.bottomAnchor, constant: 32),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableViewHeightConstraint,
+            tableViewBottomConstraint!,
         ]
         NSLayoutConstraint.activate(constraints)
     }
@@ -117,6 +125,7 @@ extension CreateGoalViewController: UITableViewDataSource {
         let selectedIndexPaths = tableView.indexPathsForSelectedRows
         let isSelected = selectedIndexPaths != nil && selectedIndexPaths!.contains(indexPath)
         cell.accessoryType = isSelected ? .checkmark : .none
+        cell.backgroundColor = .secondarySystemGroupedBackground
         return cell
     }
 }
@@ -162,15 +171,17 @@ extension CreateGoalViewController: UITextFieldDelegate {
             let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double else {
                 return
         }
-        UIView.animate(withDuration: duration) {
-            self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardFrame.height, right: 0)
+        UIView.animate(withDuration: duration) { [weak self] in
+            self?.tableViewBottomConstraint?.constant = -keyboardFrame.height
+            self?.view.layoutIfNeeded()
         }
     }
 
     @objc func keyboardWillHide(notification: NSNotification) {
         guard let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double else { return }
-        UIView.animate(withDuration: duration) {
-            self.tableView.contentInset = .zero
+        UIView.animate(withDuration: duration) { [weak self] in
+            self?.tableViewBottomConstraint?.constant = 0
+            self?.view.layoutIfNeeded()
         }
     }
 }
