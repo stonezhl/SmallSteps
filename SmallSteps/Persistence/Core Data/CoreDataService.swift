@@ -48,9 +48,9 @@ extension CoreDataService {
         do {
             guard let dbModel = try fetchGoalDBModel(uuid: goal.uuid) else { return false }
             let calendar = Calendar.current
-            let dateFrom = calendar.startOfDay(for: date)
-            guard let dateTo = calendar.date(byAdding: .day, value: 1, to: dateFrom) else { return false }
-            let steps = dbModel.steps.filtered(using: NSPredicate(format: "createdDate >= %@ && createdDate <= %@", dateFrom as NSDate, dateTo as NSDate))
+            let startDate = calendar.startOfDay(for: date)
+            guard let endDate = calendar.date(byAdding: .day, value: 1, to: startDate) else { return false }
+            let steps = dbModel.steps.filtered(using: NSPredicate(format: "createdDate >= %@ && createdDate <= %@", startDate as NSDate, endDate as NSDate))
             return !steps.isEmpty
         } catch {
             return false
@@ -132,6 +132,20 @@ extension CoreDataService {
         } catch {
             print("Deleting goal failed: \(error)")
             throw DatabaseError.deletingGoalFailed(error: error)
+        }
+    }
+}
+
+extension CoreDataService {
+    func fetchSteps(goal: Goal) throws -> [Step] {
+        do {
+            guard let dbModel = try fetchGoalDBModel(uuid: goal.uuid) else {
+                throw DatabaseError.goalNotFound(goal: goal)
+            }
+            return dbModel.steps.compactMap { ($0 as? StepDBModel)?.parseToStep() }.sorted { $0.createdDate < $1.createdDate }
+        } catch {
+            print("Fetching steps failed: \(error)")
+            throw DatabaseError.fetchingStepsFailed(error: error)
         }
     }
 }

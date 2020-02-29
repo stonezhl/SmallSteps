@@ -9,6 +9,7 @@
 import Foundation
 
 enum DatabaseError: Error {
+    case goalNotFound(goal: Goal)
     case fetchingActiveGoalsFailed(error: Error)
     case takingStepFailed(error: Error)
     case archivingGoalFailed(error: Error)
@@ -16,5 +17,5 @@ enum DatabaseError: Error {
     case fetchingArchivedGoalsFailed(error: Error)
     case restoringGoalFailed(error: Error)
     case deletingGoalFailed(error: Error)
-    case goalNotFound(goal: Goal)
+    case fetchingStepsFailed(error: Error)
 }

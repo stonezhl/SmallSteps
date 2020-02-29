@@ -26,7 +26,7 @@ class ActiveGoalListCell: UITableViewCell {
         return label
     }()
 
-    lazy var statusView: UIView = {
+    lazy var markView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(view)
@@ -37,7 +37,7 @@ class ActiveGoalListCell: UITableViewCell {
         didSet {
             titleLabel.isEnabled = isEnabled
             frequencyLabel.isEnabled = isEnabled
-            statusView.isHidden = !isEnabled
+            markView.isHidden = !isEnabled
         }
     }
 
@@ -46,7 +46,7 @@ class ActiveGoalListCell: UITableViewCell {
             guard let viewModel = viewModel else { return }
             titleLabel.text = viewModel.title
             frequencyLabel.text = viewModel.frequency
-            statusView.backgroundColor = viewModel.statusColor
+            markView.backgroundColor = viewModel.markColor
             isEnabled = viewModel.isEnabled
         }
     }
@@ -66,16 +66,16 @@ class ActiveGoalListCell: UITableViewCell {
             // title
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            titleLabel.trailingAnchor.constraint(lessThanOrEqualTo: statusView.leadingAnchor, constant: -20),
+            titleLabel.trailingAnchor.constraint(lessThanOrEqualTo: markView.leadingAnchor, constant: -20),
             // frequency
             frequencyLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             frequencyLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
-            frequencyLabel.trailingAnchor.constraint(lessThanOrEqualTo: statusView.leadingAnchor, constant: -20),
-            // status
-            statusView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            statusView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            statusView.widthAnchor.constraint(equalToConstant: 40),
-            statusView.heightAnchor.constraint(equalToConstant: 40),
+            frequencyLabel.trailingAnchor.constraint(lessThanOrEqualTo: markView.leadingAnchor, constant: -20),
+            // mark
+            markView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            markView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            markView.widthAnchor.constraint(equalToConstant: 40),
+            markView.heightAnchor.constraint(equalToConstant: 40),
         ]
         NSLayoutConstraint.activate(constraints)
     }

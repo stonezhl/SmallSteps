@@ -21,4 +21,6 @@ protocol DatabaseService {
     func fetchArchivedGoals() throws -> [Goal]
     func restoreGoal(_ goal: Goal) throws
     func deleteGoal(_ goal: Goal) throws
+    // goal detail
+    func fetchSteps(goal: Goal) throws -> [Step]
 }

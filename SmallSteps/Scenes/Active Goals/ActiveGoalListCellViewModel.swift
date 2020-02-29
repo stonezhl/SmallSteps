@@ -11,7 +11,7 @@ import UIKit
 struct ActiveGoalListCellViewModel {
     let title: String
     let frequency: String
-    let statusColor: UIColor?
+    let markColor: UIColor?
     let isEnabled: Bool
 
     init(goal: Goal, hasStep: Bool) {
@@ -19,9 +19,9 @@ struct ActiveGoalListCellViewModel {
         frequency = goal.frequencyDescription
         isEnabled = goal.isAvailable(date: Date())
         if isEnabled {
-            statusColor = hasStep ? UIColor.systemOrange : UIColor.systemGray
+            markColor = hasStep ? .systemOrange : .systemGray
         } else {
-            statusColor = nil
+            markColor = .clear
         }
     }
 }

@@ -46,7 +46,7 @@ class CreateGoalViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Add Goal"
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = .white
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(didTapCancelButton(sender:)))
         navigationItem.leftBarButtonItems = [cancelButton]
         let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(didTapSaveButton(sender:)))
