@@ -12,6 +12,16 @@ class ActiveGoalListViewController: UIViewController {
     private let cellIdentifier = "ActiveGoalListCell"
     let viewModel: ActiveGoalListViewModel
 
+    private lazy var segmentedControl: UISegmentedControl = {
+        let segmentedControl = UISegmentedControl()
+        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        segmentedControl.insertSegment(withTitle: "Today", at: 0, animated: false)
+        segmentedControl.insertSegment(withTitle: "All", at: 1, animated: false)
+        segmentedControl.selectedSegmentIndex = viewModel.isTodayOnly ? 0 : 1
+        segmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged(sender:)), for: .valueChanged)
+        return segmentedControl
+    }()
+
     lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -34,10 +44,13 @@ class ActiveGoalListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.titleView = segmentedControl
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAddButton(sender:)))
-        navigationItem.rightBarButtonItems = [addButton]
+        navigationItem.rightBarButtonItem = addButton
         setupConstraints()
-        NotificationCenter.default.addObserver(self, selector: #selector(dayChanged(notification:)), name: .NSCalendarDayChanged, object: nil)
+        viewModel.isDataUpdated = { [weak self] in
+            self?.tableView.reloadData()
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -45,19 +58,16 @@ class ActiveGoalListViewController: UIViewController {
         refreshTableView()
     }
 
+    @objc func segmentedControlValueChanged(sender: UISegmentedControl) {
+        refreshTableView()
+    }
+
     @objc func didTapAddButton(sender: UIBarButtonItem) {
         viewModel.addGoal()
     }
 
-    @objc func dayChanged(notification: Notification) {
-        DispatchQueue.main.async { [weak self] in
-            self?.refreshTableView()
-        }
-    }
-
     private func refreshTableView() {
-        viewModel.fetchActiveGoals()
-        tableView.reloadData()
+        try? viewModel.fetchActiveGoals(isTodayOnly: segmentedControl.selectedSegmentIndex == 0)
     }
 
     private func setupConstraints() {

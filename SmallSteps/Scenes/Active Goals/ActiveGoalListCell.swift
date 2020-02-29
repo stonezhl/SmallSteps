@@ -13,7 +13,7 @@ class ActiveGoalListCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(label)
-        label.font = .systemFont(ofSize: 18, weight: .medium)
+        label.font = .systemFont(ofSize: 17)
         return label
     }()
 
@@ -21,8 +21,8 @@ class ActiveGoalListCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(label)
-        label.font = .systemFont(ofSize: 14)
-        label.textColor = .systemGray
+        label.font = .systemFont(ofSize: 13)
+        label.textColor = .secondaryLabel
         return label
     }()
 
@@ -33,21 +33,12 @@ class ActiveGoalListCell: UITableViewCell {
         return view
     }()
 
-    var isEnabled: Bool = true {
-        didSet {
-            titleLabel.isEnabled = isEnabled
-            frequencyLabel.isEnabled = isEnabled
-            markView.isHidden = !isEnabled
-        }
-    }
-
     var viewModel: ActiveGoalListCellViewModel? {
         didSet {
             guard let viewModel = viewModel else { return }
             titleLabel.text = viewModel.title
             frequencyLabel.text = viewModel.frequency
             markView.backgroundColor = viewModel.markColor
-            isEnabled = viewModel.isEnabled
         }
     }
 

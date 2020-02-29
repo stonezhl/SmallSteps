@@ -86,8 +86,8 @@ struct Goal {
     }
 
     func isAvailable(date: Date) -> Bool {
-        let day = Calendar.current.component(.weekday, from: date)
-        switch day {
+        let weekday = Calendar.current.component(.weekday, from: date)
+        switch weekday {
         case 1: return frequency.contains(.everySunday)
         case 2: return frequency.contains(.everyMonday)
         case 3: return frequency.contains(.everyTuesday)

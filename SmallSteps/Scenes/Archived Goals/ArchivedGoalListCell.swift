@@ -13,7 +13,7 @@ class ArchivedGoalListCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(label)
-        label.font = .systemFont(ofSize: 18, weight: .medium)
+        label.font = .systemFont(ofSize: 17)
         return label
     }()
 
@@ -21,8 +21,8 @@ class ArchivedGoalListCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(label)
-        label.font = .systemFont(ofSize: 14)
-        label.textColor = .systemGray
+        label.font = .systemFont(ofSize: 13)
+        label.textColor = .secondaryLabel
         return label
     }()
 

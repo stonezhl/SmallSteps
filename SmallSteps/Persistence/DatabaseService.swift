@@ -11,6 +11,7 @@ import Foundation
 protocol DatabaseService {
     func saveContext()
     // active goals
+    func fetchActiveGoals(on date: Date) throws -> [Goal]
     func fetchActiveGoals() throws -> [Goal]
     func hasStep(goal: Goal, on date: Date) -> Bool
     func takeStep(goal: Goal, step: Step) throws

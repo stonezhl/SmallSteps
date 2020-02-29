@@ -37,7 +37,7 @@ extension DefaultGoalDetailViewModel {
     }
 
     var endDate: Date {
-        return Calendar.current.date(byAdding: .month, value: 3, to: today)!
+        return today
     }
 
     func hasStep(on date: Date) -> Bool? {

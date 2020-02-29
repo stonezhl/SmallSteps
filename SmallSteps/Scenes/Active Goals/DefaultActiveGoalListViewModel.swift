@@ -10,18 +10,41 @@ import Foundation
 
 class DefaultActiveGoalListViewModel: ActiveGoalListViewModel {
     private let databaseService: DatabaseService
+    var isDataUpdated: (() -> Void)?
     var enterCreateGoalScene: (() -> Void)?
     var enterGoalDetailScene: ((Goal) -> Void)?
     private var goals: [Goal] = []
 
+    var today: Date = Date()
+
+    var isTodayOnly: Bool = false
+
     init(databaseService: DatabaseService) {
         self.databaseService = databaseService
+        NotificationCenter.default.addObserver(self, selector: #selector(dayChanged(notification:)), name: .NSCalendarDayChanged, object: nil)
+    }
+
+    @objc func dayChanged(notification: Notification) {
+        DispatchQueue.main.async { [weak self] in
+            self?.today = Date()
+            try? self?.fetchActiveGoals()
+        }
     }
 }
 
 extension DefaultActiveGoalListViewModel {
-    func fetchActiveGoals() {
-        goals = (try? databaseService.fetchActiveGoals()) ?? []
+    func fetchActiveGoals() throws {
+        try fetchActiveGoals(isTodayOnly: isTodayOnly)
+    }
+
+    func fetchActiveGoals(isTodayOnly: Bool) throws {
+        if isTodayOnly {
+            goals = try databaseService.fetchActiveGoals(on: today)
+        } else {
+            goals = try databaseService.fetchActiveGoals()
+        }
+        self.isTodayOnly = isTodayOnly
+        isDataUpdated?()
     }
 
     func takeStep(at indexPath: IndexPath) {
@@ -50,14 +73,13 @@ extension DefaultActiveGoalListViewModel {
 
     func cellViewModel(at indexPath: IndexPath) -> ActiveGoalListCellViewModel {
         let goal = goals[indexPath.row]
-        let hasStep = databaseService.hasStep(goal: goal, on: Date())
-        return ActiveGoalListCellViewModel(goal: goal, hasStep: hasStep)
+        let hasStep = databaseService.hasStep(goal: goal, on: today)
+        return ActiveGoalListCellViewModel(goal: goal, hasStep: hasStep, date: today)
     }
 
     func canTakeStep(at indexPath: IndexPath) -> Bool {
-        let currentDate = Date()
         let goal = goals[indexPath.row]
-        let hasStep = databaseService.hasStep(goal: goal, on: currentDate)
-        return goal.isAvailable(date: currentDate) && !hasStep
+        let hasStep = databaseService.hasStep(goal: goal, on: today)
+        return goal.isAvailable(date: today) && !hasStep
     }
 }
