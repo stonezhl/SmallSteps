@@ -22,7 +22,7 @@ class GoalDetailCoordinator: BaseCoordinator {
     override func start() {
         let viewModel = DefaultGoalDetailViewModel(databaseService: databaseService, goal: goal)
         let viewController = GoalDetailViewController(viewModel: viewModel)
-        viewController.hidesBottomBarWhenPushed = true
+//        viewController.hidesBottomBarWhenPushed = true
         navigation.pushViewController(viewController, animated: true, backClosure: isCompleted)
     }
 }

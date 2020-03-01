@@ -11,6 +11,7 @@ import Foundation
 class DefaultArchivedGoalListViewModel: ArchivedGoalListViewModel {
     private let databaseService: DatabaseService
     var enterGoalDetailScene: ((Goal) -> Void)?
+    var didExitScene: (() -> Void)?
     private var goals: [Goal] = []
 
     init(databaseService: DatabaseService) {

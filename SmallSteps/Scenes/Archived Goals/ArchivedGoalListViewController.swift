@@ -34,6 +34,9 @@ class ArchivedGoalListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Archived"
+        let closeButton = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(didTapCloseButton(sender:)))
+        navigationItem.rightBarButtonItem = closeButton
         setupConstraints()
     }
 
@@ -41,6 +44,16 @@ class ArchivedGoalListViewController: UIViewController {
         super.viewWillAppear(animated)
         viewModel.fetchArchivedGoals()
         tableView.reloadData()
+    }
+
+    @objc func didTapCloseButton(sender: UIBarButtonItem) {
+        dismiss()
+    }
+
+    private func dismiss() {
+        dismiss(animated: true) {
+            self.viewModel.didExitScene?()
+        }
     }
 
     private func setupConstraints() {

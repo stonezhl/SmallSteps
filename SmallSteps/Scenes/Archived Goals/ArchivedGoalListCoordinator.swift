@@ -9,7 +9,7 @@
 import UIKit
 
 class ArchivedGoalListCoordinator: BaseCoordinator {
-    private let tabBarController: UITabBarController
+    private let presentingNavigation: AppNavigation
     private let databaseService: DatabaseService
 
     lazy var navigation: AppNavigation = {
@@ -18,20 +18,22 @@ class ArchivedGoalListCoordinator: BaseCoordinator {
         return AppNavigation(navigationController: navigationController)
     }()
 
-    init(tabBarController: UITabBarController, databaseService: DatabaseService) {
-        self.tabBarController = tabBarController
+    init(navigation: AppNavigation, databaseService: DatabaseService) {
+        self.presentingNavigation = navigation
         self.databaseService = databaseService
     }
 
     override func start() {
         let viewModel = DefaultArchivedGoalListViewModel(databaseService: databaseService)
         let viewController = ArchivedGoalListViewController(viewModel: viewModel)
-        viewController.title = "Archived"
         viewModel.enterGoalDetailScene = { [weak self] goal in
             self?.showGoalDetailScene(goal: goal)
         }
+        viewModel.didExitScene = { [weak self] in
+            self?.isCompleted?()
+        }
         navigation.pushViewController(viewController, animated: false, backClosure: isCompleted)
-        tabBarController.addChild(navigation.navigationController)
+        presentingNavigation.present(navigation.navigationController, animated: true)
     }
 
     func showGoalDetailScene(goal: Goal) {

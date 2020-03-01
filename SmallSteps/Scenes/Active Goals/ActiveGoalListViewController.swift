@@ -44,10 +44,12 @@ class ActiveGoalListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tabBarController?.tabBar.isHidden = true
         navigationItem.titleView = segmentedControl
         navigationItem.leftBarButtonItem = editButtonItem
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAddButton(sender:)))
-        navigationItem.rightBarButtonItem = addButton
+        let archiveButton = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(didTapArchiveButton(sender:)))
+        navigationItem.rightBarButtonItems = [addButton, archiveButton]
         setupConstraints()
         viewModel.isDataUpdated = { [weak self] in
             self?.tableView.reloadData()
@@ -70,6 +72,10 @@ class ActiveGoalListViewController: UIViewController {
 
     @objc func didTapAddButton(sender: UIBarButtonItem) {
         viewModel.addGoal()
+    }
+
+    @objc func didTapArchiveButton(sender: UIBarButtonItem) {
+        viewModel.showArchived()
     }
 
     private func refreshTableView() {

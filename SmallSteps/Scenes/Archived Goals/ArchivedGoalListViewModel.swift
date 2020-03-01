@@ -19,6 +19,7 @@ protocol ArchivedGoalListViewModelOutput {
     var goalsCount: Int { get }
     func cellViewModel(at indexPath: IndexPath) -> ArchivedGoalListCellViewModel
     var enterGoalDetailScene: ((Goal) -> Void)? { get set }
+    var didExitScene: (() -> Void)? { get set }
 }
 
 protocol ArchivedGoalListViewModel: ArchivedGoalListViewModelInput, ArchivedGoalListViewModelOutput { }

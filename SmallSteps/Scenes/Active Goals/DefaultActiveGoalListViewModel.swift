@@ -12,6 +12,7 @@ class DefaultActiveGoalListViewModel: ActiveGoalListViewModel {
     private let databaseService: DatabaseService
     var isDataUpdated: (() -> Void)?
     var enterCreateGoalScene: (() -> Void)?
+    var enterArchivedGoalsScene: (() -> Void)?
     var enterGoalDetailScene: ((Goal) -> Void)?
     private var goals: [Goal] = []
 
@@ -59,6 +60,10 @@ extension DefaultActiveGoalListViewModel {
 
     func addGoal() {
         enterCreateGoalScene?()
+    }
+
+    func showArchived() {
+        enterArchivedGoalsScene?()
     }
 
     func showDetail(at indexPath: IndexPath) {

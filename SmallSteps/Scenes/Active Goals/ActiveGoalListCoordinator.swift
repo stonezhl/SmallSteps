@@ -30,6 +30,9 @@ class ActiveGoalListCoordinator: BaseCoordinator {
         viewModel.enterCreateGoalScene = { [weak self] in
             self?.showCreateGoalScene()
         }
+        viewModel.enterArchivedGoalsScene = { [weak self] in
+            self?.showArchivedGoalsScene()
+        }
         viewModel.enterGoalDetailScene = { [weak self] goal in
             self?.showGoalDetailScene(goal: goal)
         }
@@ -44,6 +47,15 @@ class ActiveGoalListCoordinator: BaseCoordinator {
             self?.free(coordinator: createGoalCoordinator)
         }
         createGoalCoordinator.start()
+    }
+
+    func showArchivedGoalsScene() {
+        let archivedGoalListCoordinator = ArchivedGoalListCoordinator(navigation: navigation, databaseService: databaseService)
+        store(coordinator: archivedGoalListCoordinator)
+        archivedGoalListCoordinator.isCompleted = { [weak self] in
+            self?.free(coordinator: archivedGoalListCoordinator)
+        }
+        archivedGoalListCoordinator.start()
     }
 
     func showGoalDetailScene(goal: Goal) {

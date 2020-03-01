@@ -14,6 +14,7 @@ protocol ActiveGoalListViewModelInput {
     func takeStep(at indexPath: IndexPath)
     func archiveGoal(at indexPath: IndexPath)
     func addGoal()
+    func showArchived()
     func showDetail(at indexPath: IndexPath)
 }
 
@@ -25,6 +26,7 @@ protocol ActiveGoalListViewModelOutput: AnyObject {
     func canTakeStep(at indexPath: IndexPath) -> Bool
     var isDataUpdated: (() -> Void)? { get set }
     var enterCreateGoalScene: (() -> Void)? { get set }
+    var enterArchivedGoalsScene: (() -> Void)? { get set }
     var enterGoalDetailScene: ((Goal) -> Void)? { get set }
 }
 

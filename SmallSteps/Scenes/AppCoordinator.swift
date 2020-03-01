@@ -19,7 +19,6 @@ class AppCoordinator: BaseCoordinator {
     override func start() {
         let tabBarController = UITabBarController()
         showActiveGoalsScene(tabBarController: tabBarController)
-        showArchivedGoalsScene(tabBarController: tabBarController)
         window.rootViewController = tabBarController
         window.makeKeyAndVisible()
     }
@@ -31,15 +30,6 @@ class AppCoordinator: BaseCoordinator {
             self?.free(coordinator: activeGoalListCoordinator)
         }
         activeGoalListCoordinator.start()
-    }
-
-    func showArchivedGoalsScene(tabBarController: UITabBarController) {
-        let archivedGoalListCoordinator = ArchivedGoalListCoordinator(tabBarController: tabBarController, databaseService: databaseService)
-        store(coordinator: archivedGoalListCoordinator)
-        archivedGoalListCoordinator.isCompleted = { [weak self] in
-            self?.free(coordinator: archivedGoalListCoordinator)
-        }
-        archivedGoalListCoordinator.start()
     }
 }
 
