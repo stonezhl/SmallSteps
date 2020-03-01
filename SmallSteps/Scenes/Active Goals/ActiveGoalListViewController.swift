@@ -45,6 +45,7 @@ class ActiveGoalListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.titleView = segmentedControl
+        navigationItem.leftBarButtonItem = editButtonItem
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAddButton(sender:)))
         navigationItem.rightBarButtonItem = addButton
         setupConstraints()
@@ -60,6 +61,11 @@ class ActiveGoalListViewController: UIViewController {
 
     @objc func segmentedControlValueChanged(sender: UISegmentedControl) {
         refreshTableView()
+    }
+
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        tableView.setEditing(isEditing, animated: true)
     }
 
     @objc func didTapAddButton(sender: UIBarButtonItem) {
@@ -94,17 +100,25 @@ extension ActiveGoalListViewController: UITableViewDataSource {
 }
 
 extension ActiveGoalListViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let archiveAction = UIContextualAction(style: .destructive, title: "Archive") { [weak self] action, view, completion in
-            self?.viewModel.archiveGoal(at: indexPath)
-            self?.tableView.deleteRows(at: [indexPath], with: .automatic)
-            completion(true)
-        }
-        return UISwipeActionsConfiguration(actions: [archiveAction])
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return isEditing ? .delete : .none
+    }
+
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "Archived"
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        viewModel.archiveGoal(at: indexPath)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
     }
 
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        guard viewModel.canTakeStep(at: indexPath) else { return nil }
+        guard !isEditing, viewModel.canTakeStep(at: indexPath) else { return nil }
         let stepAction = UIContextualAction(style: .normal, title: "Take a step") { [weak self] action, view, completion in
             self?.viewModel.takeStep(at: indexPath)
             let cell = tableView.cellForRow(at: indexPath) as! ActiveGoalListCell
