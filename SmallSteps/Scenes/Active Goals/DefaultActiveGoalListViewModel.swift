@@ -18,7 +18,14 @@ class DefaultActiveGoalListViewModel: ActiveGoalListViewModel {
 
     var today: Date = Date()
 
-    var isTodayOnly: Bool = false
+    var isTodayOnly: Bool {
+        get {
+            UserDefaults.standard.bool(forKey: "isTodayOnly")
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "isTodayOnly")
+        }
+    }
 
     init(databaseService: DatabaseService) {
         self.databaseService = databaseService

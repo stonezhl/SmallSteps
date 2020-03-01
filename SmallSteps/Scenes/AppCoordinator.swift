@@ -14,6 +14,7 @@ class AppCoordinator: BaseCoordinator {
 
     init(window: UIWindow) {
         self.window = window
+        UserDefaults.standard.register(defaults: ["isTodayOnly": false])
     }
 
     override func start() {
