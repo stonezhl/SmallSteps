@@ -68,6 +68,13 @@ class ActiveGoalListViewController: UIViewController {
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         tableView.setEditing(isEditing, animated: true)
+        if isEditing == false {
+            tableView.visibleCells.forEach { cell in
+                guard let indexPath = tableView.indexPath(for: cell) else { return }
+                let cell = cell as! ActiveGoalListCell
+                cell.viewModel = self.viewModel.cellViewModel(at: indexPath)
+            }
+        }
     }
 
     @objc func didTapAddButton(sender: UIBarButtonItem) {

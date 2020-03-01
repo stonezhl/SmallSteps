@@ -26,19 +26,23 @@ class ActiveGoalListCell: UITableViewCell {
         return label
     }()
 
-    lazy var markView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(view)
-        return view
+    lazy var markImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(imageView)
+        return imageView
     }()
+
+    var markImageViewTrailingConstraint: NSLayoutConstraint?
 
     var viewModel: ActiveGoalListCellViewModel? {
         didSet {
             guard let viewModel = viewModel else { return }
             titleLabel.text = viewModel.title
             frequencyLabel.text = viewModel.frequency
-            markView.backgroundColor = viewModel.markColor
+            markImageView.image = viewModel.footImage
+            markImageView.tintColor = viewModel.markColor
+            markImageViewTrailingConstraint?.constant = viewModel.isLeftFoot ? -60 : -20
         }
     }
 
@@ -53,20 +57,21 @@ class ActiveGoalListCell: UITableViewCell {
     }
 
     private func setupConstraints() {
+        markImageViewTrailingConstraint = markImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20)
         let constraints = [
             // title
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            titleLabel.trailingAnchor.constraint(lessThanOrEqualTo: markView.leadingAnchor, constant: -20),
+            titleLabel.trailingAnchor.constraint(lessThanOrEqualTo: markImageView.leadingAnchor, constant: -20),
             // frequency
             frequencyLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             frequencyLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
-            frequencyLabel.trailingAnchor.constraint(lessThanOrEqualTo: markView.leadingAnchor, constant: -20),
+            frequencyLabel.trailingAnchor.constraint(lessThanOrEqualTo: markImageView.leadingAnchor, constant: -20),
             // mark
-            markView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            markView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            markView.widthAnchor.constraint(equalToConstant: 40),
-            markView.heightAnchor.constraint(equalToConstant: 40),
+            markImageViewTrailingConstraint!,
+            markImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            markImageView.widthAnchor.constraint(equalToConstant: 40),
+            markImageView.heightAnchor.constraint(equalToConstant: 40),
         ]
         NSLayoutConstraint.activate(constraints)
     }

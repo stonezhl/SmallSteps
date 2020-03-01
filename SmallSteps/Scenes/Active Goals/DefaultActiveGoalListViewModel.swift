@@ -40,9 +40,9 @@ extension DefaultActiveGoalListViewModel {
 
     func fetchActiveGoals(isTodayOnly: Bool) throws {
         if isTodayOnly {
-            goals = try databaseService.fetchActiveGoals(on: today)
+            goals = try databaseService.fetchTodayActiveGoals(on: today)
         } else {
-            goals = try databaseService.fetchActiveGoals()
+            goals = try databaseService.fetchAllActiveGoals(on: today)
         }
         self.isTodayOnly = isTodayOnly
         isDataUpdated?()
@@ -79,7 +79,7 @@ extension DefaultActiveGoalListViewModel {
     func cellViewModel(at indexPath: IndexPath) -> ActiveGoalListCellViewModel {
         let goal = goals[indexPath.row]
         let hasStep = databaseService.hasStep(goal: goal, on: today)
-        return ActiveGoalListCellViewModel(goal: goal, hasStep: hasStep, date: today)
+        return ActiveGoalListCellViewModel(goal: goal, hasStep: hasStep, date: today, indexPath: indexPath)
     }
 
     func canTakeStep(at indexPath: IndexPath) -> Bool {

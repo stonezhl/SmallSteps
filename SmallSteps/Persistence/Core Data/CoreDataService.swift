@@ -32,7 +32,7 @@ class CoreDataService: DatabaseService {
 }
 
 extension CoreDataService {
-    func fetchActiveGoals(on date: Date) throws -> [Goal] {
+    func fetchTodayActiveGoals(on date: Date) throws -> [Goal] {
         let request: NSFetchRequest<GoalDBModel> = GoalDBModel.fetchRequest()
         request.predicate = NSPredicate(format: "statusValue = %d", GoalStatus.active.rawValue)
         request.sortDescriptors = [NSSortDescriptor(key: "updatedDate", ascending: false)]
@@ -44,12 +44,19 @@ extension CoreDataService {
         }
     }
 
-    func fetchActiveGoals() throws -> [Goal] {
+    func fetchAllActiveGoals(on date: Date) throws -> [Goal] {
         let request: NSFetchRequest<GoalDBModel> = GoalDBModel.fetchRequest()
         request.predicate = NSPredicate(format: "statusValue = %d", GoalStatus.active.rawValue)
-        request.sortDescriptors = [NSSortDescriptor(key: "updatedDate", ascending: false)]
         do {
-            return try context.fetch(request).map { $0.parseToGoal() }
+            return try context.fetch(request).map { $0.parseToGoal() }.sorted {
+                let isFirstOnDate = $0.isAvailable(date: date)
+                let isSecondOnDate = $1.isAvailable(date: date)
+                if isFirstOnDate != isSecondOnDate {
+                    return isFirstOnDate
+                } else {
+                    return $0.createdDate > $1.createdDate
+                }
+            }
         } catch {
             print("Fetching active goals failed: \(error)")
             throw DatabaseError.fetchingActiveGoalsFailed(error: error)
