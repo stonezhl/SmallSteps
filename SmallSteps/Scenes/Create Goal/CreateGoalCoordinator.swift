@@ -21,6 +21,7 @@ class CreateGoalCoordinator: BaseCoordinator {
         let viewModel = DefaultCreateGoalViewModel(databaseService: databaseService)
         let viewController = CreateGoalViewController(viewModel: viewModel)
         let navigationController = UINavigationController(rootViewController: viewController)
+        navigationController.navigationBar.tintColor = .label
         viewModel.didExitScene = { [weak self] in
             self?.isCompleted?()
         }

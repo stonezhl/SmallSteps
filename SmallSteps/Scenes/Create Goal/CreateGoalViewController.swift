@@ -21,6 +21,7 @@ class CreateGoalViewController: UIViewController {
         textField.font = .systemFont(ofSize: 17)
         textField.borderStyle = .roundedRect
         textField.backgroundColor = .secondarySystemGroupedBackground
+        textField.tintColor = .systemOrange
         return textField
     }()
 
@@ -125,6 +126,7 @@ extension CreateGoalViewController: UITableViewDataSource {
         let isSelected = selectedIndexPaths != nil && selectedIndexPaths!.contains(indexPath)
         cell.accessoryType = isSelected ? .checkmark : .none
         cell.backgroundColor = .secondarySystemGroupedBackground
+        cell.tintColor = .systemOrange
         return cell
     }
 }
