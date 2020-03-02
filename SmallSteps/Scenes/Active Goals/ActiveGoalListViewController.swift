@@ -67,8 +67,13 @@ class ActiveGoalListViewController: UIViewController {
 
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
-        tableView.setEditing(isEditing, animated: true)
-        if isEditing == false {
+        if editing {
+            if tableView.isEditing {
+                tableView.setEditing(false, animated: true)
+            }
+        }
+        tableView.setEditing(editing, animated: true)
+        if editing == false {
             tableView.visibleCells.forEach { cell in
                 guard let indexPath = tableView.indexPath(for: cell) else { return }
                 let cell = cell as! ActiveGoalListCell
