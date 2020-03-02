@@ -54,7 +54,7 @@ extension CoreDataService {
                 if isFirstOnDate != isSecondOnDate {
                     return isFirstOnDate
                 } else {
-                    return $0.createdDate > $1.createdDate
+                    return $0.updatedDate > $1.updatedDate
                 }
             }
         } catch {
@@ -97,6 +97,7 @@ extension CoreDataService {
                 throw DatabaseError.goalNotFound(goal: goal)
             }
             dbModel.status = .archived
+            dbModel.updatedDate = Date()
             try context.save()
         } catch {
             print("Archiving goal failed: \(error)")
@@ -137,6 +138,7 @@ extension CoreDataService {
                 throw DatabaseError.goalNotFound(goal: goal)
             }
             dbModel.status = .active
+            dbModel.updatedDate = Date()
             try context.save()
         } catch {
             print("Restoring goal failed: \(error)")
