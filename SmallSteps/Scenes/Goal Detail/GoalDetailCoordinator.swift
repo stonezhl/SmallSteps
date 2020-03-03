@@ -10,17 +10,17 @@ import UIKit
 
 class GoalDetailCoordinator: BaseCoordinator {
     private let navigation: Navigation
-    private let databaseService: DatabaseService
+    private let dataCenter: DataCenter
     private let goal: Goal
 
-    init(navigation: Navigation, databaseService: DatabaseService, goal: Goal) {
+    init(navigation: Navigation, dataCenter: DataCenter, goal: Goal) {
         self.navigation = navigation
-        self.databaseService = databaseService
+        self.dataCenter = dataCenter
         self.goal = goal
     }
 
     override func start() {
-        let viewModel = DefaultGoalDetailViewModel(databaseService: databaseService, goal: goal)
+        let viewModel = DefaultGoalDetailViewModel(dataCenter: dataCenter, goal: goal)
         let viewController = GoalDetailViewController(viewModel: viewModel)
 //        viewController.hidesBottomBarWhenPushed = true
         navigation.pushViewController(viewController, animated: true, backClosure: isCompleted)

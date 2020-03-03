@@ -49,6 +49,9 @@
 		25F8B0A32406AC4400E599D8 /* JTAppleCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F8B0A22406AC4400E599D8 /* JTAppleCalendar.framework */; };
 		25F8B0A92406B27300E599D8 /* GoalDetailDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0A82406B27300E599D8 /* GoalDetailDayCell.swift */; };
 		25F8B0AB2407FAB300E599D8 /* GoalDetailMonthHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0AA2407FAB300E599D8 /* GoalDetailMonthHeader.swift */; };
+		25F8B0B3240E887700E599D8 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0B2240E887700E599D8 /* Observable.swift */; };
+		25F8B0B6240EAE4500E599D8 /* DataCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0B5240EAE4500E599D8 /* DataCenter.swift */; };
+		25F8B0B8240EAE5500E599D8 /* AppDataCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0B7240EAE5500E599D8 /* AppDataCenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -109,6 +112,9 @@
 		25F8B0A22406AC4400E599D8 /* JTAppleCalendar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JTAppleCalendar.framework; path = Carthage/Build/iOS/JTAppleCalendar.framework; sourceTree = "<group>"; };
 		25F8B0A82406B27300E599D8 /* GoalDetailDayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailDayCell.swift; sourceTree = "<group>"; };
 		25F8B0AA2407FAB300E599D8 /* GoalDetailMonthHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailMonthHeader.swift; sourceTree = "<group>"; };
+		25F8B0B2240E887700E599D8 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		25F8B0B5240EAE4500E599D8 /* DataCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCenter.swift; sourceTree = "<group>"; };
+		25F8B0B7240EAE5500E599D8 /* AppDataCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDataCenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,7 +149,10 @@
 		254AFBBB23F03885006B5F4E /* SmallSteps */ = {
 			isa = PBXGroup;
 			children = (
+				25F8B0B1240E87B500E599D8 /* Utilities */,
 				254AFC6F2400C58F006B5F4E /* Persistence */,
+				25F8B0B4240EAE0B00E599D8 /* Data Center */,
+				254AFC91240217BE006B5F4E /* Domain Models */,
 				254AFBD023F03FBF006B5F4E /* Scenes */,
 				254AFBBC23F03885006B5F4E /* AppDelegate.swift */,
 				254AFBBE23F03885006B5F4E /* SceneDelegate.swift */,
@@ -159,7 +168,6 @@
 			children = (
 				254AFBD123F04121006B5F4E /* Coordinator.swift */,
 				254AFBD323F041EB006B5F4E /* AppCoordinator.swift */,
-				254AFBDB23F04A82006B5F4E /* Common */,
 				254AFBD523F04993006B5F4E /* Active Goals */,
 				254AFC9A2402683F006B5F4E /* Create Goal */,
 				254AFBD623F0499D006B5F4E /* Archived Goals */,
@@ -194,15 +202,6 @@
 			path = "Archived Goals";
 			sourceTree = "<group>";
 		};
-		254AFBDB23F04A82006B5F4E /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				254AFC972402482E006B5F4E /* Views */,
-				254AFC91240217BE006B5F4E /* Models */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
 		254AFC6F2400C58F006B5F4E /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
@@ -224,22 +223,13 @@
 			path = "Core Data";
 			sourceTree = "<group>";
 		};
-		254AFC91240217BE006B5F4E /* Models */ = {
+		254AFC91240217BE006B5F4E /* Domain Models */ = {
 			isa = PBXGroup;
 			children = (
 				254AFC8F2402173C006B5F4E /* Goal.swift */,
 				25F8B09F2404101400E599D8 /* Step.swift */,
 			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		254AFC972402482E006B5F4E /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				254AFBDC23F04AA7006B5F4E /* Navigation.swift */,
-				254AFBDE23F04B45006B5F4E /* AppNavigation.swift */,
-			);
-			path = Views;
+			path = "Domain Models";
 			sourceTree = "<group>";
 		};
 		254AFC9A2402683F006B5F4E /* Create Goal */ = {
@@ -283,6 +273,25 @@
 				25F8B0A22406AC4400E599D8 /* JTAppleCalendar.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		25F8B0B1240E87B500E599D8 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				254AFBDC23F04AA7006B5F4E /* Navigation.swift */,
+				254AFBDE23F04B45006B5F4E /* AppNavigation.swift */,
+				25F8B0B2240E887700E599D8 /* Observable.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		25F8B0B4240EAE0B00E599D8 /* Data Center */ = {
+			isa = PBXGroup;
+			children = (
+				25F8B0B5240EAE4500E599D8 /* DataCenter.swift */,
+				25F8B0B7240EAE5500E599D8 /* AppDataCenter.swift */,
+			);
+			path = "Data Center";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -381,6 +390,7 @@
 			files = (
 				254AFC812401FF5F006B5F4E /* DatabaseService.swift in Sources */,
 				25F8B0AB2407FAB300E599D8 /* GoalDetailMonthHeader.swift in Sources */,
+				25F8B0B6240EAE4500E599D8 /* DataCenter.swift in Sources */,
 				25F8B0932403662B00E599D8 /* DefaultGoalDetailViewModel.swift in Sources */,
 				254AFC9E24026906006B5F4E /* CreateGoalViewController.swift in Sources */,
 				254AFBD423F041EB006B5F4E /* AppCoordinator.swift in Sources */,
@@ -390,7 +400,9 @@
 				254AFC8E24021619006B5F4E /* DefaultActiveGoalListViewModel.swift in Sources */,
 				254AFBBD23F03885006B5F4E /* AppDelegate.swift in Sources */,
 				254AFBDD23F04AA7006B5F4E /* Navigation.swift in Sources */,
+				25F8B0B3240E887700E599D8 /* Observable.swift in Sources */,
 				254AFBBF23F03885006B5F4E /* SceneDelegate.swift in Sources */,
+				25F8B0B8240EAE5500E599D8 /* AppDataCenter.swift in Sources */,
 				25F8B09A2403A32800E599D8 /* StepDBModel+CoreDataProperties.swift in Sources */,
 				25F8B0882403572A00E599D8 /* ArchivedGoalListCellViewModel.swift in Sources */,
 				25F8B0A02404101400E599D8 /* Step.swift in Sources */,

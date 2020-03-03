@@ -9,29 +9,29 @@
 import Foundation
 
 class DefaultGoalDetailViewModel: GoalDetailViewModel {
-    private let databaseService: DatabaseService
+    private let dataCenter: DataCenter
     private let goal: Goal
     private var steps: [Step] = []
 
-    lazy var today: Date = {
-        return Date()
-    }()
-
     var todayIndex: IndexPath?
 
-    init(databaseService: DatabaseService, goal: Goal) {
-        self.databaseService = databaseService
+    init(dataCenter: DataCenter, goal: Goal) {
+        self.dataCenter = dataCenter
         self.goal = goal
     }
 }
 
 extension DefaultGoalDetailViewModel {
     func fetchSteps() {
-        steps = (try? databaseService.fetchSteps(goal: goal)) ?? []
+        steps = (try? dataCenter.fetchSteps(goal: goal)) ?? []
     }
 }
 
 extension DefaultGoalDetailViewModel {
+    var today: Date {
+        return dataCenter.today.value
+    }
+
     var startDate: Date {
         return goal.createdDate
     }

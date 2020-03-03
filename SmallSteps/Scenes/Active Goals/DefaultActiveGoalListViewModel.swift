@@ -9,60 +9,45 @@
 import Foundation
 
 class DefaultActiveGoalListViewModel: ActiveGoalListViewModel {
-    private let databaseService: DatabaseService
+    private let dataCenter: DataCenter
     var isDataUpdated: (() -> Void)?
     var enterCreateGoalScene: (() -> Void)?
     var enterArchivedGoalsScene: (() -> Void)?
     var enterGoalDetailScene: ((Goal) -> Void)?
-    private var goals: [Goal] = []
 
-    var today: Date = Date()
+    private var goals: [Goal] {
+        return dataCenter.activeGoals.value
+    }
 
-    var isTodayOnly: Bool {
-        get {
-            UserDefaults.standard.bool(forKey: "isTodayOnly")
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: "isTodayOnly")
+    private var today: Date {
+        return dataCenter.today.value
+    }
+
+    init(dataCenter: DataCenter) {
+        self.dataCenter = dataCenter
+        self.dataCenter.activeGoals.addObserver(self) { [weak self] goals in
+            self?.isDataUpdated?()
         }
     }
 
-    init(databaseService: DatabaseService) {
-        self.databaseService = databaseService
-        NotificationCenter.default.addObserver(self, selector: #selector(dayChanged(notification:)), name: .NSCalendarDayChanged, object: nil)
-    }
-
-    @objc func dayChanged(notification: Notification) {
-        DispatchQueue.main.async { [weak self] in
-            self?.today = Date()
-            try? self?.fetchActiveGoals()
-        }
+    deinit {
+        dataCenter.activeGoals.removeObserver(self)
     }
 }
 
 extension DefaultActiveGoalListViewModel {
-    func fetchActiveGoals() throws {
-        try fetchActiveGoals(isTodayOnly: isTodayOnly)
-    }
-
     func fetchActiveGoals(isTodayOnly: Bool) throws {
-        if isTodayOnly {
-            goals = try databaseService.fetchTodayActiveGoals(on: today)
-        } else {
-            goals = try databaseService.fetchAllActiveGoals(on: today)
-        }
-        self.isTodayOnly = isTodayOnly
-        isDataUpdated?()
+        dataCenter.isTodayOnly.value = isTodayOnly
+        try? dataCenter.fetchActiveGoals()
     }
 
     func takeStep(at indexPath: IndexPath) {
         let step = Step(uuid: UUID().uuidString, createdDate: Date())
-        try? databaseService.takeStep(goal: goals[indexPath.row], step: step)
+        try? dataCenter.takeStep(goal: goals[indexPath.row], step: step)
     }
 
     func archiveGoal(at indexPath: IndexPath) {
-        let goal = goals.remove(at: indexPath.row)
-        try? databaseService.archiveGoal(goal)
+        try? dataCenter.archiveGoal(goals[indexPath.row])
     }
 
     func addGoal() {
@@ -79,19 +64,23 @@ extension DefaultActiveGoalListViewModel {
 }
 
 extension DefaultActiveGoalListViewModel {
+    var isTodayOnly: Bool {
+        return dataCenter.isTodayOnly.value
+    }
+
     var goalsCount: Int {
         return goals.count
     }
 
     func cellViewModel(at indexPath: IndexPath) -> ActiveGoalListCellViewModel {
         let goal = goals[indexPath.row]
-        let hasStep = databaseService.hasStep(goal: goal, on: today)
+        let hasStep = dataCenter.hasStep(goal: goal, on: today)
         return ActiveGoalListCellViewModel(goal: goal, hasStep: hasStep, date: today, indexPath: indexPath)
     }
 
     func canTakeStep(at indexPath: IndexPath) -> Bool {
         let goal = goals[indexPath.row]
-        let hasStep = databaseService.hasStep(goal: goal, on: today)
+        let hasStep = dataCenter.hasStep(goal: goal, on: today)
         return goal.isAvailable(date: today) && !hasStep
     }
 }

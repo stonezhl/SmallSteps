@@ -1,17 +1,21 @@
 //
-//  DatabaseService.swift
+//  DataCenter.swift
 //  SmallSteps
 //
-//  Created by Stone Zhang on 2/23/20.
+//  Created by Stone Zhang on 3/4/20.
 //  Copyright © 2020 Stone Zhang. All rights reserved.
 //
 
 import Foundation
 
-protocol DatabaseService {
-    func saveContext()
+protocol DataCenter {
+    // app
+    var today: Observable<Date> { get }
+    func saveData()
     // active goals
-    func fetchActiveGoals() throws -> [Goal]
+    var isTodayOnly: Observable<Bool> { get }
+    var activeGoals: Observable<[Goal]> { get }
+    func fetchActiveGoals() throws
     func hasStep(goal: Goal, on date: Date) -> Bool
     func takeStep(goal: Goal, step: Step) throws
     func archiveGoal(_ goal: Goal) throws
@@ -24,3 +28,4 @@ protocol DatabaseService {
     // goal detail
     func fetchSteps(goal: Goal) throws -> [Step]
 }
+

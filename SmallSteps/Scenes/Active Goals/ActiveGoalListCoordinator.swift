@@ -10,7 +10,7 @@ import UIKit
 
 class ActiveGoalListCoordinator: BaseCoordinator {
     private let tabBarController: UITabBarController
-    private let databaseService: DatabaseService
+    private let dataCenter: DataCenter
 
     lazy var navigation: AppNavigation = {
         let navigationController = UINavigationController()
@@ -19,13 +19,13 @@ class ActiveGoalListCoordinator: BaseCoordinator {
         return AppNavigation(navigationController: navigationController)
     }()
 
-    init(tabBarController: UITabBarController, databaseService: DatabaseService) {
+    init(tabBarController: UITabBarController, dataCenter: DataCenter) {
         self.tabBarController = tabBarController
-        self.databaseService = databaseService
+        self.dataCenter = dataCenter
     }
 
     override func start() {
-        let viewModel = DefaultActiveGoalListViewModel(databaseService: databaseService)
+        let viewModel = DefaultActiveGoalListViewModel(dataCenter: dataCenter)
         let viewController = ActiveGoalListViewController(viewModel: viewModel)
         viewController.title = "Goals"
         viewModel.enterCreateGoalScene = { [weak self] in
@@ -42,7 +42,7 @@ class ActiveGoalListCoordinator: BaseCoordinator {
     }
 
     func showCreateGoalScene() {
-        let createGoalCoordinator = CreateGoalCoordinator(navigation: navigation, databaseService: databaseService)
+        let createGoalCoordinator = CreateGoalCoordinator(navigation: navigation, dataCenter: dataCenter)
         store(coordinator: createGoalCoordinator)
         createGoalCoordinator.isCompleted = { [weak self] in
             self?.free(coordinator: createGoalCoordinator)
@@ -51,7 +51,7 @@ class ActiveGoalListCoordinator: BaseCoordinator {
     }
 
     func showArchivedGoalsScene() {
-        let archivedGoalListCoordinator = ArchivedGoalListCoordinator(navigation: navigation, databaseService: databaseService)
+        let archivedGoalListCoordinator = ArchivedGoalListCoordinator(navigation: navigation, dataCenter: dataCenter)
         store(coordinator: archivedGoalListCoordinator)
         archivedGoalListCoordinator.isCompleted = { [weak self] in
             self?.free(coordinator: archivedGoalListCoordinator)
@@ -60,7 +60,7 @@ class ActiveGoalListCoordinator: BaseCoordinator {
     }
 
     func showGoalDetailScene(goal: Goal) {
-        let goalDetailCoordinator = GoalDetailCoordinator(navigation: navigation, databaseService: databaseService, goal: goal)
+        let goalDetailCoordinator = GoalDetailCoordinator(navigation: navigation, dataCenter: dataCenter, goal: goal)
         store(coordinator: goalDetailCoordinator)
         goalDetailCoordinator.isCompleted = { [weak self] in
             self?.free(coordinator: goalDetailCoordinator)

@@ -10,15 +10,15 @@ import UIKit
 
 class CreateGoalCoordinator: BaseCoordinator {
     private let navigation: Navigation
-    private let databaseService: DatabaseService
+    private let dataCenter: DataCenter
 
-    init(navigation: Navigation, databaseService: DatabaseService) {
+    init(navigation: Navigation, dataCenter: DataCenter) {
         self.navigation = navigation
-        self.databaseService = databaseService
+        self.dataCenter = dataCenter
     }
 
     override func start() {
-        let viewModel = DefaultCreateGoalViewModel(databaseService: databaseService)
+        let viewModel = DefaultCreateGoalViewModel(dataCenter: dataCenter)
         let viewController = CreateGoalViewController(viewModel: viewModel)
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.navigationBar.tintColor = .label

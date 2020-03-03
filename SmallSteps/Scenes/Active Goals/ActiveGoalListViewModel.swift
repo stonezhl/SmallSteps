@@ -9,7 +9,6 @@
 import Foundation
 
 protocol ActiveGoalListViewModelInput {
-    func fetchActiveGoals() throws
     func fetchActiveGoals(isTodayOnly: Bool) throws
     func takeStep(at indexPath: IndexPath)
     func archiveGoal(at indexPath: IndexPath)
@@ -19,7 +18,6 @@ protocol ActiveGoalListViewModelInput {
 }
 
 protocol ActiveGoalListViewModelOutput: AnyObject {
-    var today: Date { get }
     var isTodayOnly: Bool { get }
     var goalsCount: Int { get }
     func cellViewModel(at indexPath: IndexPath) -> ActiveGoalListCellViewModel

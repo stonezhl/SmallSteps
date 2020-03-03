@@ -10,7 +10,7 @@ import UIKit
 
 class ArchivedGoalListCoordinator: BaseCoordinator {
     private let presentingNavigation: AppNavigation
-    private let databaseService: DatabaseService
+    private let dataCenter: DataCenter
 
     lazy var navigation: AppNavigation = {
         let navigationController = UINavigationController()
@@ -19,13 +19,13 @@ class ArchivedGoalListCoordinator: BaseCoordinator {
         return AppNavigation(navigationController: navigationController)
     }()
 
-    init(navigation: AppNavigation, databaseService: DatabaseService) {
+    init(navigation: AppNavigation, dataCenter: DataCenter) {
         self.presentingNavigation = navigation
-        self.databaseService = databaseService
+        self.dataCenter = dataCenter
     }
 
     override func start() {
-        let viewModel = DefaultArchivedGoalListViewModel(databaseService: databaseService)
+        let viewModel = DefaultArchivedGoalListViewModel(dataCenter: dataCenter)
         let viewController = ArchivedGoalListViewController(viewModel: viewModel)
         viewModel.enterGoalDetailScene = { [weak self] goal in
             self?.showGoalDetailScene(goal: goal)
@@ -38,7 +38,7 @@ class ArchivedGoalListCoordinator: BaseCoordinator {
     }
 
     func showGoalDetailScene(goal: Goal) {
-        let goalDetailCoordinator = GoalDetailCoordinator(navigation: navigation, databaseService: databaseService, goal: goal)
+        let goalDetailCoordinator = GoalDetailCoordinator(navigation: navigation, dataCenter: dataCenter, goal: goal)
         store(coordinator: goalDetailCoordinator)
         goalDetailCoordinator.isCompleted = { [weak self] in
             self?.free(coordinator: goalDetailCoordinator)

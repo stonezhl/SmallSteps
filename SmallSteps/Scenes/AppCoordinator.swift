@@ -10,11 +10,10 @@ import UIKit
 
 class AppCoordinator: BaseCoordinator {
     private let window: UIWindow
-    let databaseService: DatabaseService = CoreDataService(name: "SmallSteps")
+    let dataCenter: DataCenter = AppDataCenter()
 
     init(window: UIWindow) {
         self.window = window
-        UserDefaults.standard.register(defaults: ["isTodayOnly": false])
     }
 
     override func start() {
@@ -25,7 +24,7 @@ class AppCoordinator: BaseCoordinator {
     }
 
     func showActiveGoalsScene(tabBarController: UITabBarController) {
-        let activeGoalListCoordinator = ActiveGoalListCoordinator(tabBarController: tabBarController, databaseService: databaseService)
+        let activeGoalListCoordinator = ActiveGoalListCoordinator(tabBarController: tabBarController, dataCenter: dataCenter)
         store(coordinator: activeGoalListCoordinator)
         activeGoalListCoordinator.isCompleted = { [weak self] in
             self?.free(coordinator: activeGoalListCoordinator)

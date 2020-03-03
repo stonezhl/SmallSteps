@@ -9,7 +9,7 @@
 import Foundation
 
 class DefaultCreateGoalViewModel: CreateGoalViewModel {
-    private let databaseService: DatabaseService
+    private let dataCenter: DataCenter
     var didExitScene: (() -> Void)?
 
     let frequencyTitles = [
@@ -22,8 +22,8 @@ class DefaultCreateGoalViewModel: CreateGoalViewModel {
         "Every Saturday",
     ]
 
-    init(databaseService: DatabaseService) {
-        self.databaseService = databaseService
+    init(dataCenter: DataCenter) {
+        self.dataCenter = dataCenter
     }
 
     func saveGoal(title: String, selectedIndexPaths: [IndexPath]) {
@@ -47,6 +47,6 @@ class DefaultCreateGoalViewModel: CreateGoalViewModel {
                         status: .active,
                         createdDate: currentDate,
                         updatedDate: currentDate)
-        try? databaseService.addGoal(goal)
+        try? dataCenter.addGoal(goal)
     }
 }

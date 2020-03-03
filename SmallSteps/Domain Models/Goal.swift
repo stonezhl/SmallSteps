@@ -28,7 +28,7 @@ enum GoalStatus: Int16 {
     case archived = 1
 }
 
-struct Goal {
+struct Goal: Equatable {
     let uuid: String
     let title: String
     let frequency: GoalFrequency
@@ -36,6 +36,12 @@ struct Goal {
     let createdDate: Date
     let updatedDate: Date
 
+    static func == (lhs: Goal, rhs: Goal) -> Bool {
+        return lhs.uuid == rhs.uuid
+    }
+}
+
+extension Goal {
     var frequencyDescription: String {
         if frequency == .everyday {
             return "Every day"

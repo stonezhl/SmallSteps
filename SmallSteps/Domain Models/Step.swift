@@ -8,7 +8,11 @@
 
 import Foundation
 
-struct Step {
+struct Step: Equatable {
     let uuid: String
     let createdDate: Date
+
+    static func == (lhs: Step, rhs: Step) -> Bool {
+        return lhs.uuid == rhs.uuid
+    }
 }
