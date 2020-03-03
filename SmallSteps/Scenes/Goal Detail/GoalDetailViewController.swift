@@ -72,7 +72,7 @@ class GoalDetailViewController: UIViewController {
         super.viewDidLoad()
         title = viewModel.title(on: viewModel.today)
         view.backgroundColor = .systemBackground
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Today", style: .plain, target: self, action: #selector(scrollToToday(sender:)))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "calendar"), style: .plain, target: self, action: #selector(scrollToToday(sender:)))
         setupConstraints()
         viewModel.fetchSteps()
         goToToday(animated: false)

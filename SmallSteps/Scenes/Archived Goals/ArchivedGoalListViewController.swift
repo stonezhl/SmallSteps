@@ -35,7 +35,7 @@ class ArchivedGoalListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Archived"
-        let closeButton = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(didTapCloseButton(sender:)))
+        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark.circle"), style: .plain, target: self, action: #selector(didTapCloseButton(sender:)))
         navigationItem.rightBarButtonItem = closeButton
         setupConstraints()
     }

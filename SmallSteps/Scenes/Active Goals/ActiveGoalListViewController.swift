@@ -47,8 +47,8 @@ class ActiveGoalListViewController: UIViewController {
         tabBarController?.tabBar.isHidden = true
         navigationItem.titleView = segmentedControl
         navigationItem.leftBarButtonItem = editButtonItem
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAddButton(sender:)))
-        let archiveButton = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(didTapArchiveButton(sender:)))
+        let addButton = UIBarButtonItem(image: UIImage(systemName: "plus.circle"), style: .plain, target: self, action: #selector(didTapAddButton(sender:)))
+        let archiveButton = UIBarButtonItem(image: UIImage(systemName: "archivebox"), style: .plain, target: self, action: #selector(didTapArchiveButton(sender:)))
         navigationItem.rightBarButtonItems = [addButton, archiveButton]
         setupConstraints()
         viewModel.isDataUpdated = { [weak self] in
