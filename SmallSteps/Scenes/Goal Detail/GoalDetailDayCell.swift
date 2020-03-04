@@ -65,7 +65,7 @@ class GoalDetailDayCell: JTACDayCell {
     var isMarked: Bool? {
         didSet {
             if let isMarked = isMarked {
-                markView.backgroundColor = isMarked ? .systemOrange : .systemFill
+                markView.backgroundColor = isMarked ? .systemOrange : .tertiaryLabel
                 markView.isHidden = false
             } else {
                 markView.isHidden = true

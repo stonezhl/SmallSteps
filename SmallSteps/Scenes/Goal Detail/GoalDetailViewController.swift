@@ -32,6 +32,14 @@ class GoalDetailViewController: UIViewController {
         return stackView
     }()
 
+    lazy var blurEffectView: UIVisualEffectView = {
+        let blurEffect = UIBlurEffect(style: .systemChromeMaterial)
+        let visualEffectView = UIVisualEffectView(effect: blurEffect)
+        visualEffectView.translatesAutoresizingMaskIntoConstraints = false
+        weekdaysView.insertSubview(visualEffectView, at: 0)
+        return visualEffectView
+    }()
+
     lazy var separatorView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -72,6 +80,7 @@ class GoalDetailViewController: UIViewController {
         super.viewDidLoad()
         title = viewModel.title(on: viewModel.today)
         view.backgroundColor = .systemBackground
+        navigationItem.largeTitleDisplayMode = .never
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "calendar"), style: .plain, target: self, action: #selector(scrollToToday(sender:)))
         setupConstraints()
         viewModel.fetchSteps()
@@ -95,6 +104,11 @@ class GoalDetailViewController: UIViewController {
             weekdaysView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             weekdaysView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             weekdaysView.heightAnchor.constraint(equalToConstant: 24),
+            // blur
+            blurEffectView.topAnchor.constraint(equalTo: weekdaysView.topAnchor),
+            blurEffectView.leadingAnchor.constraint(equalTo: weekdaysView.leadingAnchor),
+            blurEffectView.bottomAnchor.constraint(equalTo: weekdaysView.bottomAnchor),
+            blurEffectView.trailingAnchor.constraint(equalTo: weekdaysView.trailingAnchor),
             // separator
             separatorView.leadingAnchor.constraint(equalTo: weekdaysView.leadingAnchor),
             separatorView.bottomAnchor.constraint(equalTo: weekdaysView.bottomAnchor),

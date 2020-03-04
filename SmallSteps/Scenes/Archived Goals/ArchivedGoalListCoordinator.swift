@@ -14,7 +14,6 @@ class ArchivedGoalListCoordinator: BaseCoordinator {
 
     lazy var navigation: AppNavigation = {
         let navigationController = UINavigationController()
-        navigationController.navigationBar.prefersLargeTitles = true
         navigationController.navigationBar.tintColor = .label
         return AppNavigation(navigationController: navigationController)
     }()

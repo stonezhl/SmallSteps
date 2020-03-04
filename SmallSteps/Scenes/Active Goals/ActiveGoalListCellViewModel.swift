@@ -23,7 +23,7 @@ struct ActiveGoalListCellViewModel {
             let imageName = isLeftFoot ? "left_foot" : "right_foot"
             let image = UIImage(named: imageName)
             footImage = image?.withRenderingMode(.alwaysTemplate)
-            markColor = hasStep ? .systemOrange : .systemFill
+            markColor = hasStep ? .systemOrange : .tertiaryLabel
         } else {
             isLeftFoot = false
             footImage = nil
