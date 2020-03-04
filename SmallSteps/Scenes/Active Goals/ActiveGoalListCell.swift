@@ -30,6 +30,7 @@ class ActiveGoalListCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(imageView)
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
 
