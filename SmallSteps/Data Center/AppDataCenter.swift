@@ -10,15 +10,16 @@ import Foundation
 
 class AppDataCenter: DataCenter {
     private let databaseService: DatabaseService = CoreDataService(name: "SmallSteps")
+    private let preferencesService: PreferencesService = UserDefaultsService()
+
     let today: Observable<Date> = Observable(Date())
     let isTodayOnly: Observable<Bool>
     let activeGoals: Observable<[Goal]> = Observable([])
 
     init() {
-        UserDefaults.standard.register(defaults: ["isTodayOnly": false])
-        isTodayOnly = Observable(UserDefaults.standard.bool(forKey: "isTodayOnly"))
-        isTodayOnly.addObserver(self) { isTodayOnly in
-            UserDefaults.standard.set(isTodayOnly, forKey: "isTodayOnly")
+        isTodayOnly = Observable(preferencesService.isTodayOnly)
+        isTodayOnly.addObserver(self) { [weak self] isTodayOnly in
+            self?.preferencesService.isTodayOnly = isTodayOnly
         }
         NotificationCenter.default.addObserver(self, selector: #selector(dayChanged(notification:)), name: .NSCalendarDayChanged, object: nil)
     }

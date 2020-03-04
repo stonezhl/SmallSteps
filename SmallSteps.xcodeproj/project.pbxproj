@@ -52,6 +52,8 @@
 		25F8B0B3240E887700E599D8 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0B2240E887700E599D8 /* Observable.swift */; };
 		25F8B0B6240EAE4500E599D8 /* DataCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0B5240EAE4500E599D8 /* DataCenter.swift */; };
 		25F8B0B8240EAE5500E599D8 /* AppDataCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0B7240EAE5500E599D8 /* AppDataCenter.swift */; };
+		25F8B0BA240F364300E599D8 /* PreferencesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0B9240F364300E599D8 /* PreferencesService.swift */; };
+		25F8B0BC240F36CE00E599D8 /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0BB240F36CE00E599D8 /* UserDefaultsService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -115,6 +117,8 @@
 		25F8B0B2240E887700E599D8 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		25F8B0B5240EAE4500E599D8 /* DataCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCenter.swift; sourceTree = "<group>"; };
 		25F8B0B7240EAE5500E599D8 /* AppDataCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDataCenter.swift; sourceTree = "<group>"; };
+		25F8B0B9240F364300E599D8 /* PreferencesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesService.swift; sourceTree = "<group>"; };
+		25F8B0BB240F36CE00E599D8 /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +212,8 @@
 				25F8B09D2403B43C00E599D8 /* DatabaseError.swift */,
 				254AFC802401FF5F006B5F4E /* DatabaseService.swift */,
 				254AFC732400C653006B5F4E /* Core Data */,
+				25F8B0B9240F364300E599D8 /* PreferencesService.swift */,
+				25F8B0BB240F36CE00E599D8 /* UserDefaultsService.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -392,6 +398,7 @@
 				25F8B0AB2407FAB300E599D8 /* GoalDetailMonthHeader.swift in Sources */,
 				25F8B0B6240EAE4500E599D8 /* DataCenter.swift in Sources */,
 				25F8B0932403662B00E599D8 /* DefaultGoalDetailViewModel.swift in Sources */,
+				25F8B0BA240F364300E599D8 /* PreferencesService.swift in Sources */,
 				254AFC9E24026906006B5F4E /* CreateGoalViewController.swift in Sources */,
 				254AFBD423F041EB006B5F4E /* AppCoordinator.swift in Sources */,
 				254AFBE323F04D46006B5F4E /* ArchivedGoalListViewController.swift in Sources */,
@@ -399,6 +406,7 @@
 				25F8B08D2403656600E599D8 /* GoalDetailCoordinator.swift in Sources */,
 				254AFC8E24021619006B5F4E /* DefaultActiveGoalListViewModel.swift in Sources */,
 				254AFBBD23F03885006B5F4E /* AppDelegate.swift in Sources */,
+				25F8B0BC240F36CE00E599D8 /* UserDefaultsService.swift in Sources */,
 				254AFBDD23F04AA7006B5F4E /* Navigation.swift in Sources */,
 				25F8B0B3240E887700E599D8 /* Observable.swift in Sources */,
 				254AFBBF23F03885006B5F4E /* SceneDelegate.swift in Sources */,
