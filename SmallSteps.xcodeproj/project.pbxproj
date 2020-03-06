@@ -54,6 +54,7 @@
 		25F8B0B8240EAE5500E599D8 /* AppDataCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0B7240EAE5500E599D8 /* AppDataCenter.swift */; };
 		25F8B0BA240F364300E599D8 /* PreferencesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0B9240F364300E599D8 /* PreferencesService.swift */; };
 		25F8B0BC240F36CE00E599D8 /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0BB240F36CE00E599D8 /* UserDefaultsService.swift */; };
+		25F8B0BE241276D200E599D8 /* CreateGoalInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0BD241276D200E599D8 /* CreateGoalInputCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -119,6 +120,7 @@
 		25F8B0B7240EAE5500E599D8 /* AppDataCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDataCenter.swift; sourceTree = "<group>"; };
 		25F8B0B9240F364300E599D8 /* PreferencesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesService.swift; sourceTree = "<group>"; };
 		25F8B0BB240F36CE00E599D8 /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
+		25F8B0BD241276D200E599D8 /* CreateGoalInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGoalInputCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,6 +247,7 @@
 				254AFC9D24026906006B5F4E /* CreateGoalViewController.swift */,
 				254AFC9F2402691A006B5F4E /* CreateGoalViewModel.swift */,
 				254AFCA12402692D006B5F4E /* DefaultCreateGoalViewModel.swift */,
+				25F8B0BD241276D200E599D8 /* CreateGoalInputCell.swift */,
 			);
 			path = "Create Goal";
 			sourceTree = "<group>";
@@ -438,6 +441,7 @@
 				254AFC8524020318006B5F4E /* CoreDataStack.swift in Sources */,
 				254AFBDF23F04B45006B5F4E /* AppNavigation.swift in Sources */,
 				25F8B09C2403A32800E599D8 /* GoalDBModel+CoreDataProperties.swift in Sources */,
+				25F8B0BE241276D200E599D8 /* CreateGoalInputCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
