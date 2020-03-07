@@ -56,6 +56,7 @@
 		25F8B0BC240F36CE00E599D8 /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0BB240F36CE00E599D8 /* UserDefaultsService.swift */; };
 		25F8B0BE241276D200E599D8 /* CreateGoalInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0BD241276D200E599D8 /* CreateGoalInputCell.swift */; };
 		25F8B0C024137C1B00E599D8 /* GoalCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0BF24137C1B00E599D8 /* GoalCalendarView.swift */; };
+		25F8B0C32413970700E599D8 /* GoalChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0C22413970700E599D8 /* GoalChartView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -123,6 +124,7 @@
 		25F8B0BB240F36CE00E599D8 /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
 		25F8B0BD241276D200E599D8 /* CreateGoalInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGoalInputCell.swift; sourceTree = "<group>"; };
 		25F8B0BF24137C1B00E599D8 /* GoalCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCalendarView.swift; sourceTree = "<group>"; };
+		25F8B0C22413970700E599D8 /* GoalChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalChartView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -262,6 +264,7 @@
 				25F8B0902403659500E599D8 /* GoalDetailViewModel.swift */,
 				25F8B0922403662B00E599D8 /* DefaultGoalDetailViewModel.swift */,
 				25F8B0C124137CE100E599D8 /* Calendar */,
+				25F8B0C42413970B00E599D8 /* Chart */,
 			);
 			path = "Goal Detail";
 			sourceTree = "<group>";
@@ -312,6 +315,14 @@
 				25F8B0AA2407FAB300E599D8 /* GoalCalendarMonthHeader.swift */,
 			);
 			path = Calendar;
+			sourceTree = "<group>";
+		};
+		25F8B0C42413970B00E599D8 /* Chart */ = {
+			isa = PBXGroup;
+			children = (
+				25F8B0C22413970700E599D8 /* GoalChartView.swift */,
+			);
+			path = Chart;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -431,6 +442,7 @@
 				254AFC8C240215B5006B5F4E /* ActiveGoalListViewModel.swift in Sources */,
 				254AFBD223F04121006B5F4E /* Coordinator.swift in Sources */,
 				25F8B0A92406B27300E599D8 /* GoalCalendarDayCell.swift in Sources */,
+				25F8B0C32413970700E599D8 /* GoalChartView.swift in Sources */,
 				254AFC722400C5DA006B5F4E /* SmallSteps.xcdatamodeld in Sources */,
 				254AFCA22402692D006B5F4E /* DefaultCreateGoalViewModel.swift in Sources */,
 				25F8B08F2403658300E599D8 /* GoalDetailViewController.swift in Sources */,
