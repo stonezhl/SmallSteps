@@ -1,5 +1,5 @@
 //
-//  GoalDetailDayCell.swift
+//  GoalCalendarDayCell.swift
 //  SmallSteps
 //
 //  Created by Stone Zhang on 2/26/20.
@@ -9,7 +9,7 @@
 import UIKit
 import JTAppleCalendar
 
-class GoalDetailDayCell: JTACDayCell {
+class GoalCalendarDayCell: JTACDayCell {
     lazy var separatorView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false

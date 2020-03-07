@@ -1,5 +1,5 @@
 //
-//  GoalDetailMonthHeader.swift
+//  GoalCalendarMonthHeader.swift
 //  SmallSteps
 //
 //  Created by Stone Zhang on 2/27/20.
@@ -9,7 +9,7 @@
 import UIKit
 import JTAppleCalendar
 
-class GoalDetailMonthHeader: JTACMonthReusableView {
+class GoalCalendarMonthHeader: JTACMonthReusableView {
     lazy var monthsView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -26,15 +26,15 @@ class GoalDetailMonthHeader: JTACMonthReusableView {
         return stackView
     }()
 
-    var dates: (date: Date?, today: Date?) {
+    var dates: (startDate: Date?, today: Date?) {
         didSet {
-            guard let date = dates.date, let today = dates.today else {
+            guard let startDate = dates.startDate, let today = dates.today else {
                 monthsView.isHidden = true
                 return
             }
             let calendar = Calendar.current
-            let weekday = calendar.component(.weekday, from: date)
-            let month = calendar.component(.month, from: date)
+            let weekday = calendar.component(.weekday, from: startDate)
+            let month = calendar.component(.month, from: startDate)
             let isThisMonth = (month == calendar.component(.month, from: today))
             let index = weekday - 1
             let text = calendar.shortMonthSymbols[month - 1]
