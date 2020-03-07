@@ -57,6 +57,7 @@
 		25F8B0BE241276D200E599D8 /* CreateGoalInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0BD241276D200E599D8 /* CreateGoalInputCell.swift */; };
 		25F8B0C024137C1B00E599D8 /* GoalCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0BF24137C1B00E599D8 /* GoalCalendarView.swift */; };
 		25F8B0C32413970700E599D8 /* GoalChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0C22413970700E599D8 /* GoalChartView.swift */; };
+		25F8B0C62413D54900E599D8 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F8B0C52413D54900E599D8 /* Charts.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -125,6 +126,7 @@
 		25F8B0BD241276D200E599D8 /* CreateGoalInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGoalInputCell.swift; sourceTree = "<group>"; };
 		25F8B0BF24137C1B00E599D8 /* GoalCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCalendarView.swift; sourceTree = "<group>"; };
 		25F8B0C22413970700E599D8 /* GoalChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalChartView.swift; sourceTree = "<group>"; };
+		25F8B0C52413D54900E599D8 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = Carthage/Build/iOS/Charts.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +135,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				25F8B0A32406AC4400E599D8 /* JTAppleCalendar.framework in Frameworks */,
+				25F8B0C62413D54900E599D8 /* Charts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,6 +286,7 @@
 		25F8B0A12406AC4300E599D8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				25F8B0C52413D54900E599D8 /* Charts.framework */,
 				25F8B0A22406AC4400E599D8 /* JTAppleCalendar.framework */,
 			);
 			name = Frameworks;
@@ -402,11 +406,13 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/JTAppleCalendar.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Charts.framework",
 			);
 			outputFileListPaths = (
 			);
 			outputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/JTAppleCalendar.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Charts.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
