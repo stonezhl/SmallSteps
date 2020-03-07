@@ -48,12 +48,12 @@ class ArchivedGoalListCell: UITableViewCell {
         let constraints = [
             // title
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            titleLabel.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -20),
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
+            titleLabel.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -15),
             // frequency
-            frequencyLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            frequencyLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
             frequencyLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
-            frequencyLabel.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -20),
+            frequencyLabel.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -15),
         ]
         NSLayoutConstraint.activate(constraints)
     }

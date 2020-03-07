@@ -18,8 +18,9 @@ class ArchivedGoalListViewController: UIViewController {
         view.addSubview(tableView)
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.rowHeight = 64
         tableView.register(ArchivedGoalListCell.self, forCellReuseIdentifier: cellIdentifier)
+        tableView.rowHeight = 64
+        tableView.tableFooterView = UIView()
         return tableView
     }()
 
