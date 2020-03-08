@@ -27,8 +27,8 @@ class GoalDetailViewController: UIViewController {
         calendarView.isMarked = { [weak self] date in
             return self?.viewModel.hasStep(on: date)
         }
-        calendarView.isMonthChanged = { [weak self] startDate in
-            self?.title = self?.viewModel.title(on: startDate)
+        calendarView.isYearChanged = { [weak self] year in
+            self?.title = "\(year)"
         }
         return calendarView
     }()
@@ -63,16 +63,19 @@ class GoalDetailViewController: UIViewController {
                     calendarView.isHidden = false
                     chartButton.tintColor = .label
                     chartView.isHidden = true
+                    title = "\(calendarView.year)"
                 case .chart:
                     calendarButton.tintColor = .label
                     calendarView.isHidden = true
                     chartButton.tintColor = .systemOrange
                     chartView.isHidden = false
+                    title = "Steps Chart"
                 default:
                     calendarButton.tintColor = .label
                     calendarView.isHidden = true
                     chartButton.tintColor = .label
                     chartView.isHidden = true
+                    title = nil
                 }
                 return
             }
@@ -80,6 +83,7 @@ class GoalDetailViewController: UIViewController {
             if currentContent == .calendar {
                 calendarButton.tintColor = .systemOrange
                 chartButton.tintColor = .label
+                title = "\(calendarView.year)"
                 UIView.transition(from: chartView,
                                   to: calendarView,
                                   duration: 0.5,
@@ -88,6 +92,7 @@ class GoalDetailViewController: UIViewController {
             } else {
                 calendarButton.tintColor = .label
                 chartButton.tintColor = .systemOrange
+                title = "Steps Chart"
                 UIView.transition(from: calendarView,
                                   to: chartView,
                                   duration: 0.5,
@@ -108,7 +113,6 @@ class GoalDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = viewModel.title(on: viewModel.today)
         view.backgroundColor = .systemBackground
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.rightBarButtonItems = [chartButton, calendarButton]

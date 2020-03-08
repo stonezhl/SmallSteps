@@ -17,8 +17,13 @@ class GoalCalendarView: UIView {
 
     let today: Date
     let dateRange: DateRange
+    private(set) var year: Int {
+        didSet {
+            isYearChanged?(year)
+        }
+    }
     var isMarked: ((Date) -> (Bool?))?
-    var isMonthChanged: ((Date) -> Void)?
+    var isYearChanged: ((Int) -> Void)?
 
     lazy var weekdaysView: UIStackView = {
         let stackView = UIStackView()
@@ -76,6 +81,7 @@ class GoalCalendarView: UIView {
     init(today: Date, dateRange: DateRange) {
         self.today = today
         self.dateRange = dateRange
+        year = Calendar.current.component(.year, from: today)
         super.init(frame: .zero)
         setupConstraints()
     }
@@ -155,7 +161,7 @@ extension GoalCalendarView: JTACMonthViewDelegate {
         let startDate = range.start
         let header = calendar.dequeueReusableJTAppleSupplementaryView(withReuseIdentifier: headerIdentifier, for: indexPath) as! GoalCalendarMonthHeader
         header.dates = (startDate: startDate, today: today)
-        isMonthChanged?(startDate)
+        year = Calendar.current.component(.year, from: startDate)
         return header
     }
 }

@@ -8,8 +8,7 @@
 
 import Foundation
 
-protocol GoalDetailViewModelInput: AnyObject {
-    var todayIndex: IndexPath? { get set }
+protocol GoalDetailViewModelInput {
     func fetchSteps()
 }
 
@@ -18,7 +17,6 @@ protocol GoalDetailViewModelOutput {
     var startDate: Date { get }
     var endDate: Date { get }
     func hasStep(on date: Date) -> Bool?
-    func title(on date: Date) -> String
 }
 
 protocol GoalDetailViewModel: GoalDetailViewModelInput, GoalDetailViewModelOutput { }

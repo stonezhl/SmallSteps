@@ -13,8 +13,6 @@ class DefaultGoalDetailViewModel: GoalDetailViewModel {
     private let goal: Goal
     private var steps: [Step] = []
 
-    var todayIndex: IndexPath?
-
     init(dataCenter: DataCenter, goal: Goal) {
         self.dataCenter = dataCenter
         self.goal = goal
@@ -47,9 +45,5 @@ extension DefaultGoalDetailViewModel {
         guard let endDate = calendar.date(byAdding: .day, value: 1, to: startDate) else { return nil }
         let dateSteps = steps.filter { $0.createdDate >= startDate && $0.createdDate <= endDate }
         return !dateSteps.isEmpty
-    }
-
-    func title(on date: Date) -> String {
-        return String(Calendar.current.component(.year, from: date))
     }
 }
