@@ -69,7 +69,7 @@ class GoalDetailViewController: UIViewController {
                     calendarView.isHidden = true
                     chartButton.tintColor = .systemOrange
                     chartView.isHidden = false
-                    title = "Steps Chart"
+                    title = "Steps"
                 default:
                     calendarButton.tintColor = .label
                     calendarView.isHidden = true
@@ -92,7 +92,7 @@ class GoalDetailViewController: UIViewController {
             } else {
                 calendarButton.tintColor = .label
                 chartButton.tintColor = .systemOrange
-                title = "Steps Chart"
+                title = "Steps"
                 UIView.transition(from: calendarView,
                                   to: chartView,
                                   duration: 0.5,
@@ -117,7 +117,7 @@ class GoalDetailViewController: UIViewController {
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.rightBarButtonItems = [chartButton, calendarButton]
         setupConstraints()
-        viewModel.fetchSteps()
+        chartView.monthStepsCounts = viewModel.monthStepsCounts
         currentContent = .calendar
     }
 

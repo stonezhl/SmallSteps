@@ -11,16 +11,11 @@ import Foundation
 class DefaultGoalDetailViewModel: GoalDetailViewModel {
     private let dataCenter: DataCenter
     private let goal: Goal
-    private var steps: [Step] = []
+    private let steps: [Step]
 
     init(dataCenter: DataCenter, goal: Goal) {
         self.dataCenter = dataCenter
         self.goal = goal
-    }
-}
-
-extension DefaultGoalDetailViewModel {
-    func fetchSteps() {
         steps = (try? dataCenter.fetchSteps(goal: goal)) ?? []
     }
 }
@@ -45,5 +40,27 @@ extension DefaultGoalDetailViewModel {
         guard let endDate = calendar.date(byAdding: .day, value: 1, to: startDate) else { return nil }
         let dateSteps = steps.filter { $0.createdDate >= startDate && $0.createdDate <= endDate }
         return !dateSteps.isEmpty
+    }
+
+    var monthStepsCounts: [MonthStepsCount] {
+        var counts = [MonthStepsCount]()
+        let calendar = Calendar.current
+        guard let interval = calendar.dateInterval(of: .month, for: startDate) else { return [] }
+        var startOfMonth = interval.start
+        var endOfMonth = interval.end
+        while startOfMonth <= endDate {
+            let year = calendar.component(.year, from: startOfMonth)
+            let month = calendar.component(.month, from: startOfMonth)
+            let totalCount = goal.totalStepsCount(startDate: startOfMonth, endDate: min(endOfMonth, endDate))
+            let completedCount = steps.filter { $0.createdDate >= startOfMonth && $0.createdDate <= endOfMonth }.count
+            counts.append(MonthStepsCount(year: year, month: month, total: totalCount, completed: completedCount))
+            guard let nextDay = calendar.date(byAdding: .day, value: 1, to: endOfMonth),
+                let interval = calendar.dateInterval(of: .month, for: nextDay) else {
+                    break
+            }
+            startOfMonth = interval.start
+            endOfMonth = interval.end
+        }
+        return counts
     }
 }

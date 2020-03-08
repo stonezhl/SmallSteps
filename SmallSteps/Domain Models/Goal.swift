@@ -104,4 +104,19 @@ extension Goal {
         default: return false
         }
     }
+
+    func totalStepsCount(startDate: Date, endDate: Date) -> Int {
+        let startDate = max(createdDate, startDate)
+        var count = 0
+        let calendar = Calendar.current
+        var date = calendar.startOfDay(for: startDate)
+        while date <= endDate {
+            if isAvailable(date: date) {
+                count += 1
+            }
+            guard let tomorrow = calendar.date(byAdding: .day, value: 1, to: date) else { break }
+            date = tomorrow
+        }
+        return count
+    }
 }

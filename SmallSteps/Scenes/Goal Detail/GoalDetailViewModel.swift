@@ -8,15 +8,14 @@
 
 import Foundation
 
-protocol GoalDetailViewModelInput {
-    func fetchSteps()
-}
+protocol GoalDetailViewModelInput { }
 
 protocol GoalDetailViewModelOutput {
     var today: Date { get }
     var startDate: Date { get }
     var endDate: Date { get }
     func hasStep(on date: Date) -> Bool?
+    var monthStepsCounts: [MonthStepsCount] { get }
 }
 
 protocol GoalDetailViewModel: GoalDetailViewModelInput, GoalDetailViewModelOutput { }
