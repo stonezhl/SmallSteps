@@ -113,24 +113,11 @@ extension CoreDataService {
         }
     }
 
-    func restoreGoal(_ goal: Goal) throws {
-        do {
-            guard let dbModel = try fetchGoalDBModel(uuid: goal.uuid) else {
-                throw DatabaseError.goalNotFound(goal: goal)
-            }
-            dbModel.status = .active
-            dbModel.updatedDate = Date()
-            try context.save()
-        } catch {
-            print("Restoring goal failed: \(error)")
-            throw DatabaseError.restoringGoalFailed(error: error)
-        }
-    }
-
     func deleteGoal(_ goal: Goal) throws {
         do {
             guard let dbModel = try fetchGoalDBModel(uuid: goal.uuid) else { return }
             context.delete(dbModel)
+            try context.save()
         } catch {
             print("Deleting goal failed: \(error)")
             throw DatabaseError.deletingGoalFailed(error: error)

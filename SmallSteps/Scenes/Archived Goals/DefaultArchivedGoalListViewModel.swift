@@ -24,11 +24,6 @@ extension DefaultArchivedGoalListViewModel {
         goals = (try? dataCenter.fetchArchivedGoals()) ?? []
     }
 
-    func restoreGoal(at indexPath: IndexPath) {
-        let goal = goals.remove(at: indexPath.row)
-        try? dataCenter.restoreGoal(goal)
-    }
-
     func deleteGoal(at indexPath: IndexPath) {
         let goal = goals.remove(at: indexPath.row)
         try? dataCenter.deleteGoal(goal)

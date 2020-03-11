@@ -97,11 +97,6 @@ extension AppDataCenter {
         return try databaseService.fetchArchivedGoals()
     }
 
-    func restoreGoal(_ goal: Goal) throws {
-        try databaseService.restoreGoal(goal)
-        try fetchActiveGoals()
-    }
-
     func deleteGoal(_ goal: Goal) throws {
         try databaseService.deleteGoal(goal)
     }

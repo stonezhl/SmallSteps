@@ -23,7 +23,6 @@ protocol DataCenter {
     func addGoal(_ goal: Goal) throws
     // archived goals
     func fetchArchivedGoals() throws -> [Goal]
-    func restoreGoal(_ goal: Goal) throws
     func deleteGoal(_ goal: Goal) throws
     // goal detail
     func fetchSteps(goal: Goal) throws -> [Step]

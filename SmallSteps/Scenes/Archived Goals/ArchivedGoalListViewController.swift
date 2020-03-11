@@ -36,6 +36,7 @@ class ArchivedGoalListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Archived"
+        navigationItem.leftBarButtonItem = editButtonItem
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark.circle"), style: .plain, target: self, action: #selector(didTapCloseButton(sender:)))
         navigationItem.rightBarButtonItem = closeButton
         setupConstraints()
@@ -45,6 +46,16 @@ class ArchivedGoalListViewController: UIViewController {
         super.viewWillAppear(animated)
         viewModel.fetchArchivedGoals()
         tableView.reloadData()
+    }
+
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        if editing {
+            if tableView.isEditing {
+                tableView.setEditing(false, animated: true)
+            }
+        }
+        tableView.setEditing(editing, animated: true)
     }
 
     @objc func didTapCloseButton(sender: UIBarButtonItem) {
@@ -81,22 +92,17 @@ extension ArchivedGoalListViewController: UITableViewDataSource {
 }
 
 extension ArchivedGoalListViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] action, view, completion in
-            self?.viewModel.deleteGoal(at: indexPath)
-            self?.tableView.deleteRows(at: [indexPath], with: .automatic)
-            completion(true)
-        }
-        return UISwipeActionsConfiguration(actions: [deleteAction])
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return isEditing
     }
 
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let restoreAction = UIContextualAction(style: .normal, title: "Restore") { [weak self] action, view, completion in
-            self?.viewModel.restoreGoal(at: indexPath)
-            self?.tableView.deleteRows(at: [indexPath], with: .automatic)
-            completion(true)
-        }
-        return UISwipeActionsConfiguration(actions: [restoreAction])
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        viewModel.deleteGoal(at: indexPath)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
