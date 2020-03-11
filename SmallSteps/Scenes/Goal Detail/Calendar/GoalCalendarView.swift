@@ -16,6 +16,7 @@ class GoalCalendarView: UIView {
     private let headerIdentifier = "GoalCalendarMonthHeader"
 
     let today: Date
+    let archivedDate: Date?
     let dateRange: DateRange
     private(set) var year: Int {
         didSet {
@@ -78,8 +79,9 @@ class GoalCalendarView: UIView {
         return monthView
     }()
 
-    init(today: Date, dateRange: DateRange) {
+    init(today: Date, archivedDate: Date?, dateRange: DateRange) {
         self.today = today
+        self.archivedDate = archivedDate
         self.dateRange = dateRange
         year = Calendar.current.component(.year, from: today)
         super.init(frame: .zero)
@@ -145,7 +147,11 @@ extension GoalCalendarView: JTACMonthViewDelegate {
     func configureCell(cell: GoalCalendarDayCell, cellState: CellState) {
         cell.dateLabel.text = cellState.text
         if cellState.dateBelongsTo == .thisMonth {
-            cell.date = cellState.date
+            if let archivedDate = archivedDate {
+                cell.dateValue = (date: cellState.date, isArchivedDate: Calendar.current.isDate(cellState.date, inSameDayAs: archivedDate))
+            } else {
+                cell.dateValue = (date: cellState.date, isArchivedDate: false)
+            }
             cell.isMarked = isMarked?(cellState.date)
             cell.isHidden = false
         } else {

@@ -12,6 +12,7 @@ protocol GoalDetailViewModelInput { }
 
 protocol GoalDetailViewModelOutput {
     var today: Date { get }
+    var archivedDate: Date? { get }
     var startDate: Date { get }
     var endDate: Date { get }
     func hasStep(on date: Date) -> Bool?

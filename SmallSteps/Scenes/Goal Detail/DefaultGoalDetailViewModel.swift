@@ -25,19 +25,25 @@ extension DefaultGoalDetailViewModel {
         return dataCenter.today.value
     }
 
+    var archivedDate: Date? {
+        return goal.archivedDate
+    }
+
     var startDate: Date {
         return goal.createdDate
     }
 
     var endDate: Date {
-        return today
+        return goal.status == .active ? today : goal.updatedDate
     }
 
     func hasStep(on date: Date) -> Bool? {
         guard goal.isAvailable(date: date) else { return nil }
         let calendar = Calendar.current
         let startDate = calendar.startOfDay(for: date)
+        if let archivedDate = goal.archivedDate,  startDate > archivedDate { return nil }
         guard let endDate = calendar.date(byAdding: .day, value: 1, to: startDate) else { return nil }
+        if endDate < goal.createdDate { return nil }
         let dateSteps = steps.filter { $0.createdDate >= startDate && $0.createdDate <= endDate }
         return !dateSteps.isEmpty
     }

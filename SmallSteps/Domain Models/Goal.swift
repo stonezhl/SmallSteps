@@ -106,7 +106,8 @@ extension Goal {
     }
 
     func totalStepsCount(startDate: Date, endDate: Date) -> Int {
-        let startDate = max(createdDate, startDate)
+        let startDate = max(startDate, createdDate)
+        let endDate = status == .active ? endDate : min(endDate, updatedDate)
         var count = 0
         let calendar = Calendar.current
         var date = calendar.startOfDay(for: startDate)
@@ -118,5 +119,9 @@ extension Goal {
             date = tomorrow
         }
         return count
+    }
+
+    var archivedDate: Date? {
+        return status == .archived ? updatedDate : nil
     }
 }

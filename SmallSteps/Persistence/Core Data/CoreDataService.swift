@@ -35,7 +35,7 @@ extension CoreDataService {
     func fetchActiveGoals() throws -> [Goal] {
         let request: NSFetchRequest<GoalDBModel> = GoalDBModel.fetchRequest()
         request.predicate = NSPredicate(format: "statusValue = %d", GoalStatus.active.rawValue)
-        request.sortDescriptors = [NSSortDescriptor(key: "updatedDate", ascending: false)]
+        request.sortDescriptors = [NSSortDescriptor(key: "createdDate", ascending: false)]
         do {
             return try context.fetch(request).map { $0.parseToGoal() }
         } catch {
@@ -65,6 +65,7 @@ extension CoreDataService {
             let stepDBModel = StepDBModel(context: context)
             stepDBModel.parseFromStep(step)
             stepDBModel.goal = goalDBModel
+            goalDBModel.updatedDate = step.createdDate
             try context.save()
         } catch {
             print("Taking step failed: \(error)")

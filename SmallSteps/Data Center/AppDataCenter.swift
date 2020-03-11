@@ -62,7 +62,7 @@ extension AppDataCenter {
                 if isFirstOnDate != isSecondOnDate {
                     return isFirstOnDate
                 } else {
-                    return $0.updatedDate > $1.updatedDate
+                    return $0.createdDate > $1.createdDate
                 }
             }
         } catch {
