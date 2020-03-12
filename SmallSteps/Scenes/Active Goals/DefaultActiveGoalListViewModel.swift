@@ -46,8 +46,8 @@ extension DefaultActiveGoalListViewModel {
         try? dataCenter.takeStep(goal: goals[indexPath.row], step: step)
     }
 
-    func archiveGoal(at indexPath: IndexPath) {
-        try? dataCenter.archiveGoal(goals[indexPath.row])
+    func archiveOrDeleteGoal(at indexPath: IndexPath) {
+        try? dataCenter.archiveOrDeleteGoal(goals[indexPath.row])
     }
 
     func addGoal() {
@@ -82,5 +82,9 @@ extension DefaultActiveGoalListViewModel {
         let goal = goals[indexPath.row]
         let hasStep = dataCenter.hasStep(goal: goal, on: today)
         return goal.isAvailable(date: today) && !hasStep
+    }
+
+    func editActionTitle(at indexPath: IndexPath) -> String {
+        return dataCenter.stepsCount(goal: goals[indexPath.row]) > 0 ? "Archive" : "Delete"
     }
 }

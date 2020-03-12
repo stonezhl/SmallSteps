@@ -79,8 +79,12 @@ extension AppDataCenter {
         try databaseService.takeStep(goal: goal, step: step)
     }
 
-    func archiveGoal(_ goal: Goal) throws {
-        try databaseService.archiveGoal(goal)
+    func stepsCount(goal: Goal) -> Int {
+        return databaseService.stepsCount(goal: goal)
+    }
+
+    func archiveOrDeleteGoal(_ goal: Goal) throws {
+        try databaseService.archiveOrDeleteGoal(goal)
         activeGoals.valueWithoutNotification = activeGoals.value.filter { $0 != goal }
     }
 }

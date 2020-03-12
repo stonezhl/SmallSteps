@@ -11,7 +11,7 @@ import Foundation
 protocol ActiveGoalListViewModelInput {
     func fetchActiveGoals(isTodayOnly: Bool) throws
     func takeStep(at indexPath: IndexPath)
-    func archiveGoal(at indexPath: IndexPath)
+    func archiveOrDeleteGoal(at indexPath: IndexPath)
     func addGoal()
     func showArchived()
     func showDetail(at indexPath: IndexPath)
@@ -22,6 +22,7 @@ protocol ActiveGoalListViewModelOutput: AnyObject {
     var goalsCount: Int { get }
     func cellViewModel(at indexPath: IndexPath) -> ActiveGoalListCellViewModel
     func canTakeStep(at indexPath: IndexPath) -> Bool
+    func editActionTitle(at indexPath: IndexPath) -> String
     var isDataUpdated: (() -> Void)? { get set }
     var enterCreateGoalScene: (() -> Void)? { get set }
     var enterArchivedGoalsScene: (() -> Void)? { get set }

@@ -73,17 +73,30 @@ extension CoreDataService {
         }
     }
 
-    func archiveGoal(_ goal: Goal) throws {
+    func stepsCount(goal: Goal) -> Int {
+        do {
+            guard let dbModel = try fetchGoalDBModel(uuid: goal.uuid) else { return 0 }
+            return dbModel.steps.count
+        } catch {
+            return 0
+        }
+    }
+
+    func archiveOrDeleteGoal(_ goal: Goal) throws {
         do {
             guard let dbModel = try fetchGoalDBModel(uuid: goal.uuid) else {
                 throw DatabaseError.goalNotFound(goal: goal)
             }
-            dbModel.status = .archived
-            dbModel.updatedDate = Date()
+            if dbModel.steps.count > 0 {
+                dbModel.status = .archived
+                dbModel.updatedDate = Date()
+            } else {
+                context.delete(dbModel)
+            }
             try context.save()
         } catch {
-            print("Archiving goal failed: \(error)")
-            throw DatabaseError.archivingGoalFailed(error: error)
+            print("Archiving or deleting goal failed: \(error)")
+            throw DatabaseError.archivingOrDeletingGoalFailed(error: error)
         }
     }
 }

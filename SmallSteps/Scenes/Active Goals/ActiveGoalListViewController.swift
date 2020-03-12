@@ -128,11 +128,11 @@ extension ActiveGoalListViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
-        return "Archive"
+        return viewModel.editActionTitle(at: indexPath)
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        viewModel.archiveGoal(at: indexPath)
+        viewModel.archiveOrDeleteGoal(at: indexPath)
         tableView.deleteRows(at: [indexPath], with: .automatic)
     }
 

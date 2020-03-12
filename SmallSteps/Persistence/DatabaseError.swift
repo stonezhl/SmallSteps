@@ -12,7 +12,7 @@ enum DatabaseError: Error {
     case goalNotFound(goal: Goal)
     case fetchingActiveGoalsFailed(error: Error)
     case takingStepFailed(error: Error)
-    case archivingGoalFailed(error: Error)
+    case archivingOrDeletingGoalFailed(error: Error)
     case addingGoalFailed(error: Error)
     case fetchingArchivedGoalsFailed(error: Error)
     case deletingGoalFailed(error: Error)
