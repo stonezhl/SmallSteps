@@ -34,6 +34,7 @@
 		254AFCA22402692D006B5F4E /* DefaultCreateGoalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AFCA12402692D006B5F4E /* DefaultCreateGoalViewModel.swift */; };
 		25B4468A2414F44F008C36D1 /* MonthAxisValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B446892414F44F008C36D1 /* MonthAxisValueFormatter.swift */; };
 		25CA682A241BB1C200054E5D /* Date+Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CA6829241BB1C200054E5D /* Date+Calendar.swift */; };
+		25CA682C241BC4AB00054E5D /* HGPlaceholders.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25CA682B241BC4AB00054E5D /* HGPlaceholders.framework */; };
 		25E846F72415114C00A83F45 /* GoalBarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E846F62415114C00A83F45 /* GoalBarChartView.swift */; };
 		25E846F92415125500A83F45 /* GoalPieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E846F82415125500A83F45 /* GoalPieChartView.swift */; };
 		25F8B0812403560700E599D8 /* ArchivedGoalListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0802403560700E599D8 /* ArchivedGoalListViewModel.swift */; };
@@ -63,19 +64,6 @@
 		25F8B0C32413970700E599D8 /* GoalChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0C22413970700E599D8 /* GoalChartView.swift */; };
 		25F8B0C62413D54900E599D8 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F8B0C52413D54900E599D8 /* Charts.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		25F8B0A52406AC4400E599D8 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		254AFBB923F03885006B5F4E /* SmallSteps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmallSteps.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,6 +95,7 @@
 		254AFCA12402692D006B5F4E /* DefaultCreateGoalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCreateGoalViewModel.swift; sourceTree = "<group>"; };
 		25B446892414F44F008C36D1 /* MonthAxisValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthAxisValueFormatter.swift; sourceTree = "<group>"; };
 		25CA6829241BB1C200054E5D /* Date+Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Calendar.swift"; sourceTree = "<group>"; };
+		25CA682B241BC4AB00054E5D /* HGPlaceholders.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HGPlaceholders.framework; path = Carthage/Build/iOS/HGPlaceholders.framework; sourceTree = "<group>"; };
 		25E846F62415114C00A83F45 /* GoalBarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalBarChartView.swift; sourceTree = "<group>"; };
 		25E846F82415125500A83F45 /* GoalPieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalPieChartView.swift; sourceTree = "<group>"; };
 		25F8B0802403560700E599D8 /* ArchivedGoalListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivedGoalListViewModel.swift; sourceTree = "<group>"; };
@@ -142,6 +131,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25CA682C241BC4AB00054E5D /* HGPlaceholders.framework in Frameworks */,
 				25F8B0A32406AC4400E599D8 /* JTAppleCalendar.framework in Frameworks */,
 				25F8B0C62413D54900E599D8 /* Charts.framework in Frameworks */,
 			);
@@ -294,6 +284,7 @@
 		25F8B0A12406AC4300E599D8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				25CA682B241BC4AB00054E5D /* HGPlaceholders.framework */,
 				25F8B0C52413D54900E599D8 /* Charts.framework */,
 				25F8B0A22406AC4400E599D8 /* JTAppleCalendar.framework */,
 			);
@@ -351,7 +342,6 @@
 				254AFBB523F03885006B5F4E /* Sources */,
 				254AFBB623F03885006B5F4E /* Frameworks */,
 				254AFBB723F03885006B5F4E /* Resources */,
-				25F8B0A52406AC4400E599D8 /* Embed Frameworks */,
 				25F8B0A62406AC6B00E599D8 /* ShellScript */,
 			);
 			buildRules = (
@@ -419,12 +409,14 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/JTAppleCalendar.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Charts.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/HGPlaceholders.framework",
 			);
 			outputFileListPaths = (
 			);
 			outputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/JTAppleCalendar.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Charts.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/HGPlaceholders.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
