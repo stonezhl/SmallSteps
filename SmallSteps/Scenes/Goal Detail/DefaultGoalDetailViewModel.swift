@@ -30,7 +30,7 @@ extension DefaultGoalDetailViewModel {
     }
 
     var startDate: Date {
-        return goal.createdDate
+        return goal.createdDate.startOfDay
     }
 
     var endDate: Date {
@@ -39,33 +39,28 @@ extension DefaultGoalDetailViewModel {
 
     func hasStep(on date: Date) -> Bool? {
         guard goal.isAvailable(date: date) else { return nil }
-        let calendar = Calendar.current
-        let startDate = calendar.startOfDay(for: date)
-        if let archivedDate = goal.archivedDate,  startDate > archivedDate { return nil }
-        guard let endDate = calendar.date(byAdding: .day, value: 1, to: startDate) else { return nil }
-        if endDate < goal.createdDate { return nil }
-        let dateSteps = steps.filter { $0.createdDate >= startDate && $0.createdDate <= endDate }
+        let startOfDay = date.startOfDay
+        if let archivedDate = goal.archivedDate,  startOfDay > archivedDate { return nil }
+        guard let endOfDay = date.endOfDay else { return nil }
+        if endOfDay < goal.createdDate { return nil }
+        let dateSteps = steps.filter { $0.createdDate >= startOfDay && $0.createdDate <= endOfDay }
         return !dateSteps.isEmpty
     }
 
     var monthStepsCounts: [MonthStepsCount] {
         var counts = [MonthStepsCount]()
-        let calendar = Calendar.current
-        guard let interval = calendar.dateInterval(of: .month, for: startDate) else { return [] }
-        var startOfMonth = interval.start
-        var endOfMonth = interval.end
+        guard let monthInterval = startDate.monthInterval else { return [] }
+        var startOfMonth = monthInterval.start
+        var endOfMonth = monthInterval.end
         while startOfMonth <= endDate {
-            let year = calendar.component(.year, from: startOfMonth)
-            let month = calendar.component(.month, from: startOfMonth)
+            let year = startOfMonth.year
+            let month = startOfMonth.month
             let totalCount = goal.totalStepsCount(startDate: startOfMonth, endDate: min(endOfMonth, endDate))
             let completedCount = steps.filter { $0.createdDate >= startOfMonth && $0.createdDate <= endOfMonth }.count
             counts.append(MonthStepsCount(year: year, month: month, total: totalCount, completed: completedCount))
-            guard let nextDay = calendar.date(byAdding: .day, value: 1, to: endOfMonth),
-                let interval = calendar.dateInterval(of: .month, for: nextDay) else {
-                    break
-            }
-            startOfMonth = interval.start
-            endOfMonth = interval.end
+            guard let nextDay = endOfMonth.nextDay, let monthInterval = nextDay.monthInterval else { break }
+            startOfMonth = monthInterval.start
+            endOfMonth = monthInterval.end
         }
         return counts
     }

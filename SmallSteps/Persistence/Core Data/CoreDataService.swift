@@ -47,10 +47,9 @@ extension CoreDataService {
     func hasStep(goal: Goal, on date: Date) -> Bool {
         do {
             guard let dbModel = try fetchGoalDBModel(uuid: goal.uuid) else { return false }
-            let calendar = Calendar.current
-            let startDate = calendar.startOfDay(for: date)
-            guard let endDate = calendar.date(byAdding: .day, value: 1, to: startDate) else { return false }
-            let steps = dbModel.steps.filtered(using: NSPredicate(format: "createdDate >= %@ && createdDate <= %@", startDate as NSDate, endDate as NSDate))
+            let startOfDay = date.startOfDay
+            guard let endOfDay = date.endOfDay else { return false }
+            let steps = dbModel.steps.filtered(using: NSPredicate(format: "createdDate >= %@ && createdDate <= %@", startOfDay as NSDate, endOfDay as NSDate))
             return !steps.isEmpty
         } catch {
             return false

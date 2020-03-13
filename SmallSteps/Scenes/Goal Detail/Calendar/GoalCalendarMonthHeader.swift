@@ -32,12 +32,10 @@ class GoalCalendarMonthHeader: JTACMonthReusableView {
                 monthsView.isHidden = true
                 return
             }
-            let calendar = Calendar.current
-            let weekday = calendar.component(.weekday, from: startDate)
-            let month = calendar.component(.month, from: startDate)
-            let isThisMonth = (month == calendar.component(.month, from: today))
-            let index = weekday - 1
-            let text = calendar.shortMonthSymbols[month - 1]
+            let index = startDate.weekday - 1
+            let month = startDate.month
+            let isThisMonth = (month == today.month)
+            let text = Calendar.current.shortMonthSymbols[month - 1]
             monthsView.arrangedSubviews.enumerated().forEach { offset, view in
                 guard let label = view as? UILabel else { return }
                 if offset == index {

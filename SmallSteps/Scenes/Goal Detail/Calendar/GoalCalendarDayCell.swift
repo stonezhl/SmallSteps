@@ -51,12 +51,11 @@ class GoalCalendarDayCell: JTACDayCell {
                 backView.backgroundColor = .clear
                 return
             }
-            let calendar = Calendar.current
-            if calendar.isDateInToday(value.date) {
+            if value.date.isInToday {
                 dateLabel.textColor = .white
                 backView.backgroundColor = .systemOrange
             } else {
-                dateLabel.textColor = calendar.isDateInWeekend(value.date) ? .secondaryLabel : .label
+                dateLabel.textColor = value.date.isInWeekend ? .secondaryLabel : .label
                 backView.backgroundColor = value.isArchivedDate ? .systemFill : .clear
             }
         }

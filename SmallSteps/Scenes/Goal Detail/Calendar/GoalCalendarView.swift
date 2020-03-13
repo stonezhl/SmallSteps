@@ -83,7 +83,7 @@ class GoalCalendarView: UIView {
         self.today = today
         self.archivedDate = archivedDate
         self.dateRange = dateRange
-        year = Calendar.current.component(.year, from: today)
+        year = today.year
         super.init(frame: .zero)
         setupConstraints()
     }
@@ -148,7 +148,7 @@ extension GoalCalendarView: JTACMonthViewDelegate {
         cell.dateLabel.text = cellState.text
         if cellState.dateBelongsTo == .thisMonth {
             if let archivedDate = archivedDate {
-                cell.dateValue = (date: cellState.date, isArchivedDate: Calendar.current.isDate(cellState.date, inSameDayAs: archivedDate))
+                cell.dateValue = (date: cellState.date, isArchivedDate: cellState.date.inSameDayAs(archivedDate))
             } else {
                 cell.dateValue = (date: cellState.date, isArchivedDate: false)
             }
@@ -167,7 +167,7 @@ extension GoalCalendarView: JTACMonthViewDelegate {
         let startDate = range.start
         let header = calendar.dequeueReusableJTAppleSupplementaryView(withReuseIdentifier: headerIdentifier, for: indexPath) as! GoalCalendarMonthHeader
         header.dates = (startDate: startDate, today: today)
-        year = Calendar.current.component(.year, from: startDate)
+        year = startDate.year
         return header
     }
 }

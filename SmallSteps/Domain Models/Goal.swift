@@ -92,7 +92,7 @@ extension Goal {
     }
 
     func isAvailable(date: Date) -> Bool {
-        let weekday = Calendar.current.component(.weekday, from: date)
+        let weekday = date.weekday
         switch weekday {
         case 1: return frequency.contains(.everySunday)
         case 2: return frequency.contains(.everyMonday)
@@ -109,14 +109,13 @@ extension Goal {
         let startDate = max(startDate, createdDate)
         let endDate = status == .active ? endDate : min(endDate, updatedDate)
         var count = 0
-        let calendar = Calendar.current
-        var date = calendar.startOfDay(for: startDate)
-        while date <= endDate {
-            if isAvailable(date: date) {
+        var startOfDay = startDate.startOfDay
+        while startOfDay <= endDate {
+            if isAvailable(date: startOfDay) {
                 count += 1
             }
-            guard let tomorrow = calendar.date(byAdding: .day, value: 1, to: date) else { break }
-            date = tomorrow
+            guard let nextStartOfDay = startOfDay.nextDay else { break }
+            startOfDay = nextStartOfDay
         }
         return count
     }
