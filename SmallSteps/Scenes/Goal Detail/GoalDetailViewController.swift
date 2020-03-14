@@ -20,7 +20,7 @@ class GoalDetailViewController: UIViewController {
     private let headerIdentifier = "GoalDetailMonthHeader"
 
     lazy var calendarView: GoalCalendarView = {
-        let calendarView = GoalCalendarView(today: viewModel.today, archivedDate: viewModel.archivedDate, dateRange: (startDate: viewModel.startDate, endDate: viewModel.endDate))
+        let calendarView = GoalCalendarView(today: viewModel.today, createdDate:viewModel.createdDate, archivedDate: viewModel.archivedDate, dateRange: (startDate: viewModel.startDate, endDate: viewModel.endDate))
         calendarView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(calendarView)
         calendarView.isMarked = { [weak self] date in

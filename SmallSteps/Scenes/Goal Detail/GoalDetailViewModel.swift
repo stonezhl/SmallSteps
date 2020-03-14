@@ -12,6 +12,7 @@ protocol GoalDetailViewModelInput { }
 
 protocol GoalDetailViewModelOutput {
     var today: Date { get }
+    var createdDate: Date { get }
     var archivedDate: Date? { get }
     var startDate: Date { get }
     var endDate: Date { get }

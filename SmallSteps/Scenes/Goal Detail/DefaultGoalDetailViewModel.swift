@@ -25,6 +25,10 @@ extension DefaultGoalDetailViewModel {
         return dataCenter.today.value
     }
 
+    var createdDate: Date {
+        return goal.createdDate
+    }
+
     var archivedDate: Date? {
         return goal.archivedDate
     }
