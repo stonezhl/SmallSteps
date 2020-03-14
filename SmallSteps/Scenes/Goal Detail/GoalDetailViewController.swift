@@ -18,7 +18,6 @@ enum GoalDetailContent {
 class GoalDetailViewController: UIViewController {
     private let cellIdentifier = "GoalDetailDayCell"
     private let headerIdentifier = "GoalDetailMonthHeader"
-    let viewModel: GoalDetailViewModel
 
     lazy var calendarView: GoalCalendarView = {
         let calendarView = GoalCalendarView(today: viewModel.today, archivedDate: viewModel.archivedDate, dateRange: (startDate: viewModel.startDate, endDate: viewModel.endDate))
@@ -101,6 +100,8 @@ class GoalDetailViewController: UIViewController {
             }
         }
     }
+
+    let viewModel: GoalDetailViewModel
 
     init(viewModel: GoalDetailViewModel) {
         self.viewModel = viewModel

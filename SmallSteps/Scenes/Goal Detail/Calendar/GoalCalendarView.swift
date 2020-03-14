@@ -15,17 +15,6 @@ class GoalCalendarView: UIView {
     private let cellIdentifier = "GoalCalendarDayCell"
     private let headerIdentifier = "GoalCalendarMonthHeader"
 
-    let today: Date
-    let archivedDate: Date?
-    let dateRange: DateRange
-    private(set) var year: Int {
-        didSet {
-            isYearChanged?(year)
-        }
-    }
-    var isMarked: ((Date) -> (Bool?))?
-    var isYearChanged: ((Int) -> Void)?
-
     lazy var weekdaysView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -78,6 +67,17 @@ class GoalCalendarView: UIView {
         monthView.backgroundColor = .systemBackground
         return monthView
     }()
+
+    let today: Date
+    let archivedDate: Date?
+    let dateRange: DateRange
+    private(set) var year: Int {
+        didSet {
+            isYearChanged?(year)
+        }
+    }
+    var isMarked: ((Date) -> (Bool?))?
+    var isYearChanged: ((Int) -> Void)?
 
     init(today: Date, archivedDate: Date?, dateRange: DateRange) {
         self.today = today

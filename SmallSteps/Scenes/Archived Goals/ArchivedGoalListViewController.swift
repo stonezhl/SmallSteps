@@ -10,7 +10,6 @@ import UIKit
 
 class ArchivedGoalListViewController: UIViewController {
     private let cellIdentifier = "ArchivedGoalListCell"
-    let viewModel: ArchivedGoalListViewModel
 
     lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -23,6 +22,8 @@ class ArchivedGoalListViewController: UIViewController {
         tableView.tableFooterView = UIView()
         return tableView
     }()
+
+    let viewModel: ArchivedGoalListViewModel
 
     init(viewModel: ArchivedGoalListViewModel) {
         self.viewModel = viewModel

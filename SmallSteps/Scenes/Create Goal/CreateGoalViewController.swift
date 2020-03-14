@@ -11,11 +11,6 @@ import UIKit
 class CreateGoalViewController: UIViewController {
     private let inputCellIdentifier = "CreateGoalInputCell"
     private let cellIdentifier = "CreateGoalFrequencyCell"
-    let viewModel: CreateGoalViewModel
-
-    var titleTextField: UITextField {
-        return (tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! CreateGoalInputCell).textField
-    }
 
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -29,6 +24,12 @@ class CreateGoalViewController: UIViewController {
         tableView.rowHeight = 44
         return tableView
     }()
+
+    var titleTextField: UITextField {
+        return (tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! CreateGoalInputCell).textField
+    }
+
+    let viewModel: CreateGoalViewModel
 
     init(viewModel: CreateGoalViewModel) {
         self.viewModel = viewModel

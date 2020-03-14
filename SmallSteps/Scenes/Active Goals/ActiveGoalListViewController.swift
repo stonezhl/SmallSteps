@@ -10,9 +10,8 @@ import UIKit
 
 class ActiveGoalListViewController: UIViewController {
     private let cellIdentifier = "ActiveGoalListCell"
-    let viewModel: ActiveGoalListViewModel
 
-    private lazy var segmentedControl: UISegmentedControl = {
+    lazy var segmentedControl: UISegmentedControl = {
         let segmentedControl = UISegmentedControl()
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
         segmentedControl.insertSegment(withTitle: "Today", at: 0, animated: false)
@@ -33,6 +32,8 @@ class ActiveGoalListViewController: UIViewController {
         tableView.tableFooterView = UIView()
         return tableView
     }()
+
+    let viewModel: ActiveGoalListViewModel
 
     init(viewModel: ActiveGoalListViewModel) {
         self.viewModel = viewModel
