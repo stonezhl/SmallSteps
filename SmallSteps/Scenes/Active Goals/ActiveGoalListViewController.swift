@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import HGPlaceholders
 
 class ActiveGoalListViewController: UIViewController {
     private let cellIdentifier = "ActiveGoalListCell"
@@ -22,15 +23,34 @@ class ActiveGoalListViewController: UIViewController {
     }()
 
     lazy var tableView: UITableView = {
-        let tableView = UITableView()
+        let tableView = TableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tableView)
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.placeholderDelegate = self
         tableView.register(ActiveGoalListCell.self, forCellReuseIdentifier: cellIdentifier)
         tableView.rowHeight = 64
         tableView.tableFooterView = UIView()
+        tableView.placeholdersProvider = .default
+        tableView.placeholdersProvider.add(placeholders: noActiveGoalsPlaceholder)
         return tableView
+    }()
+
+    lazy var noActiveGoalsPlaceholder: Placeholder = {
+        var style = PlaceholderStyle()
+        style.backgroundColor = .systemBackground
+        style.titleColor = .label
+        style.subtitleColor = .secondaryLabel
+        style.actionBackgroundColor = .systemOrange
+        style.actionTitleColor = .systemBackground
+        style.isAnimated = false
+        var data = PlaceholderData()
+        data.image = UIImage(named: "empty_active")
+        data.title = "No goals found"
+        data.subtitle = "Let's add a goal and then take steps to achieve it."
+        data.action = "Add a Goal"
+        return Placeholder(data: data, style: style, key: .noResultsKey)
     }()
 
     let viewModel: ActiveGoalListViewModel
@@ -150,5 +170,11 @@ extension ActiveGoalListViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.showDetail(at: indexPath)
+    }
+}
+
+extension ActiveGoalListViewController: PlaceholderDelegate {
+    func view(_ view: Any, actionButtonTappedFor placeholder: Placeholder) {
+        viewModel.addGoal()
     }
 }

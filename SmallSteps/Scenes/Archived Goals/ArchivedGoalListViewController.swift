@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import HGPlaceholders
 
 class ArchivedGoalListViewController: UIViewController {
     private let cellIdentifier = "ArchivedGoalListCell"
 
     lazy var tableView: UITableView = {
-        let tableView = UITableView()
+        let tableView = TableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tableView)
         tableView.dataSource = self
@@ -20,7 +21,23 @@ class ArchivedGoalListViewController: UIViewController {
         tableView.register(ArchivedGoalListCell.self, forCellReuseIdentifier: cellIdentifier)
         tableView.rowHeight = 64
         tableView.tableFooterView = UIView()
+        tableView.placeholdersProvider = .default
+        tableView.placeholdersProvider.add(placeholders: noArchivedGoalsPlaceholder)
         return tableView
+    }()
+
+    lazy var noArchivedGoalsPlaceholder: Placeholder = {
+        var style = PlaceholderStyle()
+        style.backgroundColor = .systemBackground
+        style.titleColor = .label
+        style.subtitleColor = .secondaryLabel
+        style.isAnimated = false
+        var data = PlaceholderData()
+        data.image = UIImage(named: "empty_archived")
+        data.title = "No goals found"
+        data.subtitle = "You haven't archive any goal yet."
+        data.action = nil
+        return Placeholder(data: data, style: style, key: .noResultsKey)
     }()
 
     let viewModel: ArchivedGoalListViewModel
