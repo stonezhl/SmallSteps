@@ -46,11 +46,11 @@ extension CoreDataService {
 
     func hasStep(goal: Goal, on date: Date) -> Bool {
         do {
-            guard let dbModel = try fetchGoalDBModel(uuid: goal.uuid) else { return false }
+            guard let goalDBModel = try fetchGoalDBModel(uuid: goal.uuid) else { return false }
             let startOfDay = date.startOfDay
             guard let endOfDay = date.endOfDay else { return false }
-            let steps = dbModel.steps.filtered(using: NSPredicate(format: "createdDate >= %@ && createdDate <= %@", startOfDay as NSDate, endOfDay as NSDate))
-            return !steps.isEmpty
+            let stepDBModels = goalDBModel.steps.filtered(using: NSPredicate(format: "createdDate >= %@ && createdDate <= %@", startOfDay as NSDate, endOfDay as NSDate))
+            return !stepDBModels.isEmpty
         } catch {
             return false
         }
@@ -72,10 +72,26 @@ extension CoreDataService {
         }
     }
 
+    func deleteSteps(goal: Goal, on date: Date) throws {
+        do {
+            guard let goalDBModel = try fetchGoalDBModel(uuid: goal.uuid) else {
+                throw DatabaseError.goalNotFound(goal: goal)
+            }
+            let startOfDay = date.startOfDay
+            guard let endOfDay = date.endOfDay else { return }
+            let stepDBModels = goalDBModel.steps.filtered(using: NSPredicate(format: "createdDate >= %@ && createdDate <= %@", startOfDay as NSDate, endOfDay as NSDate))
+            stepDBModels.forEach { context.delete($0 as! StepDBModel) }
+            try context.save()
+        } catch {
+            print("Deleting steps failed: \(error)")
+            throw DatabaseError.deletingStepsFailed(error: error)
+        }
+    }
+
     func stepsCount(goal: Goal) -> Int {
         do {
-            guard let dbModel = try fetchGoalDBModel(uuid: goal.uuid) else { return 0 }
-            return dbModel.steps.count
+            guard let goalDBModel = try fetchGoalDBModel(uuid: goal.uuid) else { return 0 }
+            return goalDBModel.steps.count
         } catch {
             return 0
         }
@@ -83,14 +99,14 @@ extension CoreDataService {
 
     func archiveOrDeleteGoal(_ goal: Goal) throws {
         do {
-            guard let dbModel = try fetchGoalDBModel(uuid: goal.uuid) else {
+            guard let goalDBModel = try fetchGoalDBModel(uuid: goal.uuid) else {
                 throw DatabaseError.goalNotFound(goal: goal)
             }
-            if dbModel.steps.count > 0 {
-                dbModel.status = .archived
-                dbModel.updatedDate = Date()
+            if goalDBModel.steps.count > 0 {
+                goalDBModel.status = .archived
+                goalDBModel.updatedDate = Date()
             } else {
-                context.delete(dbModel)
+                context.delete(goalDBModel)
             }
             try context.save()
         } catch {
@@ -102,8 +118,8 @@ extension CoreDataService {
 
 extension CoreDataService {
     func addGoal(_ goal: Goal) throws {
-        let dbModel = GoalDBModel(context: context)
-        dbModel.parseFromGoal(goal)
+        let goalDBModel = GoalDBModel(context: context)
+        goalDBModel.parseFromGoal(goal)
         do {
             try context.save()
         } catch {
@@ -128,8 +144,8 @@ extension CoreDataService {
 
     func deleteGoal(_ goal: Goal) throws {
         do {
-            guard let dbModel = try fetchGoalDBModel(uuid: goal.uuid) else { return }
-            context.delete(dbModel)
+            guard let goalDBModel = try fetchGoalDBModel(uuid: goal.uuid) else { return }
+            context.delete(goalDBModel)
             try context.save()
         } catch {
             print("Deleting goal failed: \(error)")
@@ -141,10 +157,10 @@ extension CoreDataService {
 extension CoreDataService {
     func fetchSteps(goal: Goal) throws -> [Step] {
         do {
-            guard let dbModel = try fetchGoalDBModel(uuid: goal.uuid) else {
+            guard let goalDBModel = try fetchGoalDBModel(uuid: goal.uuid) else {
                 throw DatabaseError.goalNotFound(goal: goal)
             }
-            return dbModel.steps.compactMap { ($0 as? StepDBModel)?.parseToStep() }.sorted { $0.createdDate < $1.createdDate }
+            return goalDBModel.steps.compactMap { ($0 as? StepDBModel)?.parseToStep() }.sorted { $0.createdDate < $1.createdDate }
         } catch {
             print("Fetching steps failed: \(error)")
             throw DatabaseError.fetchingStepsFailed(error: error)

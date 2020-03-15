@@ -40,6 +40,17 @@ class ArchivedGoalListViewController: UIViewController {
         return Placeholder(data: data, style: style, key: .noResultsKey)
     }()
 
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        if viewModel.goalsCount == 0 { return }
+        super.setEditing(editing, animated: animated)
+        if editing {
+            if tableView.isEditing {
+                tableView.setEditing(false, animated: true)
+            }
+        }
+        tableView.setEditing(editing, animated: true)
+    }
+
     let viewModel: ArchivedGoalListViewModel
 
     init(viewModel: ArchivedGoalListViewModel) {
@@ -58,22 +69,6 @@ class ArchivedGoalListViewController: UIViewController {
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark.circle"), style: .plain, target: self, action: #selector(didTapCloseButton(sender:)))
         navigationItem.rightBarButtonItem = closeButton
         setupConstraints()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        viewModel.fetchArchivedGoals()
-        tableView.reloadData()
-    }
-
-    override func setEditing(_ editing: Bool, animated: Bool) {
-        super.setEditing(editing, animated: animated)
-        if editing {
-            if tableView.isEditing {
-                tableView.setEditing(false, animated: true)
-            }
-        }
-        tableView.setEditing(editing, animated: true)
     }
 
     @objc func didTapCloseButton(sender: UIBarButtonItem) {
@@ -110,17 +105,15 @@ extension ArchivedGoalListViewController: UITableViewDataSource {
 }
 
 extension ArchivedGoalListViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return isEditing
-    }
-
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        return .delete
-    }
-
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        viewModel.deleteGoal(at: indexPath)
-        tableView.deleteRows(at: [indexPath], with: .automatic)
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        if !isEditing { return nil }
+        let action = UIContextualAction(style: .destructive, title: nil) { [weak self] action, view, completion in
+            self?.viewModel.deleteGoal(at: indexPath)
+            self?.tableView.deleteRows(at: [indexPath], with: .automatic)
+            completion(true)
+        }
+        action.image = UIImage(systemName: "trash")
+        return UISwipeActionsConfiguration(actions: [action])
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

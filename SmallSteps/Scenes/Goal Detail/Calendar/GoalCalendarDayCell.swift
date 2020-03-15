@@ -52,13 +52,13 @@ class GoalCalendarDayCell: JTACDayCell {
                 return
             }
             if value.date.isInToday {
-                dateLabel.textColor = .systemBackground
+                dateLabel.textColor = .white
                 backView.backgroundColor = .systemOrange
             } else if value.isArchivedDate {
-                dateLabel.textColor = .systemBackground
+                dateLabel.textColor = .white
                 backView.backgroundColor = .red
             } else if value.isCreatedDate {
-                dateLabel.textColor = .systemBackground
+                dateLabel.textColor = .white
                 backView.backgroundColor = .green
             } else {
                 dateLabel.textColor = value.date.isInWeekend ? .secondaryLabel : .label

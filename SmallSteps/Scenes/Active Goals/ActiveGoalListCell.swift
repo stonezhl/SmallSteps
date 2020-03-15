@@ -26,24 +26,37 @@ class ActiveGoalListCell: UITableViewCell {
         return label
     }()
 
-    lazy var markImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(imageView)
-        imageView.contentMode = .scaleAspectFit
-        return imageView
+    lazy var disableTouchEventView: UIView = {
+        let disableView = UIView()
+        disableView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(disableView)
+        disableView.addGestureRecognizer(UITapGestureRecognizer())
+        return disableView
     }()
 
-    lazy var markImageViewTrailingConstraint: NSLayoutConstraint = markImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15)
+    lazy var stepButton: StepButton = {
+        let button = StepButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        disableTouchEventView.addSubview(button)
+        button.addTarget(self, action: #selector(didTapStepButton(sender:)), for: .touchDown)
+        return button
+    }()
+
+    lazy var stepButtonTrailingConstraint: NSLayoutConstraint = stepButton.trailingAnchor.constraint(equalTo: disableTouchEventView.trailingAnchor, constant: -5)
 
     var viewModel: ActiveGoalListCellViewModel? {
         didSet {
             guard let viewModel = viewModel else { return }
             titleLabel.text = viewModel.title
             frequencyLabel.text = viewModel.frequency
-            markImageView.image = viewModel.footImage
-            markImageView.tintColor = viewModel.markColor
-            markImageViewTrailingConstraint.constant = viewModel.isLeftFoot ? -55 : -15
+            if let isLeftFoot = viewModel.isLeftFoot {
+                stepButton.isLeftFoot = isLeftFoot
+                stepButton.isSelected = viewModel.isSelected
+                stepButton.isHidden = false
+                stepButtonTrailingConstraint.constant = isLeftFoot ? -45 : -5
+            } else {
+                stepButton.isHidden = true
+            }
         }
     }
 
@@ -57,21 +70,31 @@ class ActiveGoalListCell: UITableViewCell {
         setupConstraints()
     }
 
+    @objc func didTapStepButton(sender: StepButton) {
+        sender.isSelected = !sender.isSelected
+        viewModel?.takeStep?(sender.isSelected)
+    }
+
     private func setupConstraints() {
         let constraints = [
             // title
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
-            titleLabel.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -110),
+            titleLabel.trailingAnchor.constraint(lessThanOrEqualTo: disableTouchEventView.leadingAnchor),
             // frequency
             frequencyLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
             frequencyLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
-            frequencyLabel.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -110),
-            // mark
-            markImageViewTrailingConstraint,
-            markImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            markImageView.widthAnchor.constraint(equalToConstant: 40),
-            markImageView.heightAnchor.constraint(equalToConstant: 40),
+            frequencyLabel.trailingAnchor.constraint(lessThanOrEqualTo: disableTouchEventView.leadingAnchor),
+            // disable
+            disableTouchEventView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            disableTouchEventView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            disableTouchEventView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            disableTouchEventView.widthAnchor.constraint(equalToConstant: 110),
+            // button
+            stepButtonTrailingConstraint,
+            stepButton.centerYAnchor.constraint(equalTo: disableTouchEventView.centerYAnchor),
+            stepButton.widthAnchor.constraint(equalToConstant: 60),
+            stepButton.heightAnchor.constraint(equalToConstant: 60),
         ]
         NSLayoutConstraint.activate(constraints)
     }

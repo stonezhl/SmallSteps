@@ -35,6 +35,7 @@
 		25B4468A2414F44F008C36D1 /* MonthAxisValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B446892414F44F008C36D1 /* MonthAxisValueFormatter.swift */; };
 		25CA682A241BB1C200054E5D /* Date+Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CA6829241BB1C200054E5D /* Date+Calendar.swift */; };
 		25CA682C241BC4AB00054E5D /* HGPlaceholders.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25CA682B241BC4AB00054E5D /* HGPlaceholders.framework */; };
+		25CA682F241CF87900054E5D /* StepButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CA682E241CF87800054E5D /* StepButton.swift */; };
 		25E846F72415114C00A83F45 /* GoalBarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E846F62415114C00A83F45 /* GoalBarChartView.swift */; };
 		25E846F92415125500A83F45 /* GoalPieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E846F82415125500A83F45 /* GoalPieChartView.swift */; };
 		25F8B0812403560700E599D8 /* ArchivedGoalListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0802403560700E599D8 /* ArchivedGoalListViewModel.swift */; };
@@ -96,6 +97,7 @@
 		25B446892414F44F008C36D1 /* MonthAxisValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthAxisValueFormatter.swift; sourceTree = "<group>"; };
 		25CA6829241BB1C200054E5D /* Date+Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Calendar.swift"; sourceTree = "<group>"; };
 		25CA682B241BC4AB00054E5D /* HGPlaceholders.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HGPlaceholders.framework; path = Carthage/Build/iOS/HGPlaceholders.framework; sourceTree = "<group>"; };
+		25CA682E241CF87800054E5D /* StepButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepButton.swift; sourceTree = "<group>"; };
 		25E846F62415114C00A83F45 /* GoalBarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalBarChartView.swift; sourceTree = "<group>"; };
 		25E846F82415125500A83F45 /* GoalPieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalPieChartView.swift; sourceTree = "<group>"; };
 		25F8B0802403560700E599D8 /* ArchivedGoalListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivedGoalListViewModel.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 				254AFC8D24021619006B5F4E /* DefaultActiveGoalListViewModel.swift */,
 				254AFC862402116B006B5F4E /* ActiveGoalListCell.swift */,
 				254AFC892402125F006B5F4E /* ActiveGoalListCellViewModel.swift */,
+				25CA682E241CF87800054E5D /* StepButton.swift */,
 			);
 			path = "Active Goals";
 			sourceTree = "<group>";
@@ -452,6 +455,7 @@
 				25F8B0B8240EAE5500E599D8 /* AppDataCenter.swift in Sources */,
 				25F8B09A2403A32800E599D8 /* StepDBModel+CoreDataProperties.swift in Sources */,
 				25F8B0882403572A00E599D8 /* ArchivedGoalListCellViewModel.swift in Sources */,
+				25CA682F241CF87900054E5D /* StepButton.swift in Sources */,
 				25F8B0A02404101400E599D8 /* Step.swift in Sources */,
 				254AFC8C240215B5006B5F4E /* ActiveGoalListViewModel.swift in Sources */,
 				254AFBD223F04121006B5F4E /* Coordinator.swift in Sources */,

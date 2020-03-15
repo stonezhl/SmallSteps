@@ -16,14 +16,11 @@ class DefaultArchivedGoalListViewModel: ArchivedGoalListViewModel {
 
     init(dataCenter: DataCenter) {
         self.dataCenter = dataCenter
+        goals = (try? dataCenter.fetchArchivedGoals()) ?? []
     }
 }
 
 extension DefaultArchivedGoalListViewModel {
-    func fetchArchivedGoals() {
-        goals = (try? dataCenter.fetchArchivedGoals()) ?? []
-    }
-
     func deleteGoal(at indexPath: IndexPath) {
         let goal = goals.remove(at: indexPath.row)
         try? dataCenter.deleteGoal(goal)

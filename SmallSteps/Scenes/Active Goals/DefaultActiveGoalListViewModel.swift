@@ -6,7 +6,7 @@
 //  Copyright © 2020 Stone Zhang. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class DefaultActiveGoalListViewModel: ActiveGoalListViewModel {
     private let dataCenter: DataCenter
@@ -28,6 +28,17 @@ class DefaultActiveGoalListViewModel: ActiveGoalListViewModel {
         self.dataCenter.activeGoals.addObserver(self) { [weak self] goals in
             self?.isDataUpdated?()
         }
+        try? self.dataCenter.fetchActiveGoals()
+    }
+
+    private func takeStep(at indexPath: IndexPath, isCreated: Bool) {
+        let step = Step(uuid: UUID().uuidString, createdDate: Date())
+        if isCreated {
+            try? dataCenter.takeStep(goal: goals[indexPath.row], step: step)
+        } else {
+            try? dataCenter.deleteSteps(goal: goals[indexPath.row], on: today)
+        }
+
     }
 
     deinit {
@@ -39,11 +50,6 @@ extension DefaultActiveGoalListViewModel {
     func fetchActiveGoals(isTodayOnly: Bool) throws {
         dataCenter.isTodayOnly.value = isTodayOnly
         try? dataCenter.fetchActiveGoals()
-    }
-
-    func takeStep(at indexPath: IndexPath) {
-        let step = Step(uuid: UUID().uuidString, createdDate: Date())
-        try? dataCenter.takeStep(goal: goals[indexPath.row], step: step)
     }
 
     func archiveOrDeleteGoal(at indexPath: IndexPath) {
@@ -75,16 +81,16 @@ extension DefaultActiveGoalListViewModel {
     func cellViewModel(at indexPath: IndexPath) -> ActiveGoalListCellViewModel {
         let goal = goals[indexPath.row]
         let hasStep = dataCenter.hasStep(goal: goal, on: today)
-        return ActiveGoalListCellViewModel(goal: goal, hasStep: hasStep, date: today, indexPath: indexPath)
+        return ActiveGoalListCellViewModel(goal: goal, hasStep: hasStep, date: today, indexPath: indexPath) { [weak self] isCreated in
+            self?.takeStep(at: indexPath, isCreated: isCreated)
+        }
     }
 
-    func canTakeStep(at indexPath: IndexPath) -> Bool {
-        let goal = goals[indexPath.row]
-        let hasStep = dataCenter.hasStep(goal: goal, on: today)
-        return goal.isAvailable(date: today) && !hasStep
-    }
-
-    func editActionTitle(at indexPath: IndexPath) -> String {
-        return dataCenter.stepsCount(goal: goals[indexPath.row]) > 0 ? "Archive" : "Delete"
+    func editActionImage(at indexPath: IndexPath) -> UIImage {
+        if dataCenter.stepsCount(goal: goals[indexPath.row]) > 0 {
+            return UIImage(systemName: "archivebox")!
+        } else {
+            return UIImage(systemName: "trash")!
+        }
     }
 }

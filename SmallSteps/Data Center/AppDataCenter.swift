@@ -79,6 +79,10 @@ extension AppDataCenter {
         try databaseService.takeStep(goal: goal, step: step)
     }
 
+    func deleteSteps(goal: Goal, on date: Date) throws {
+        try databaseService.deleteSteps(goal: goal, on: date)
+    }
+
     func stepsCount(goal: Goal) -> Int {
         return databaseService.stepsCount(goal: goal)
     }

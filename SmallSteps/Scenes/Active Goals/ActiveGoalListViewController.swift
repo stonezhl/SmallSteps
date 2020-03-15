@@ -43,7 +43,7 @@ class ActiveGoalListViewController: UIViewController {
         style.titleColor = .label
         style.subtitleColor = .secondaryLabel
         style.actionBackgroundColor = .systemOrange
-        style.actionTitleColor = .systemBackground
+        style.actionTitleColor = .white
         style.isAnimated = false
         var data = PlaceholderData()
         data.image = UIImage(named: "empty_active")
@@ -52,6 +52,24 @@ class ActiveGoalListViewController: UIViewController {
         data.action = "Add a Goal"
         return Placeholder(data: data, style: style, key: .noResultsKey)
     }()
+
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        if editing, viewModel.goalsCount == 0 { return }
+        super.setEditing(editing, animated: animated)
+        if editing {
+            if tableView.isEditing {
+                tableView.setEditing(false, animated: true)
+            }
+        }
+        tableView.setEditing(editing, animated: true)
+        if editing == false {
+            tableView.visibleCells.forEach { cell in
+                guard let indexPath = tableView.indexPath(for: cell) else { return }
+                let cell = cell as! ActiveGoalListCell
+                cell.viewModel = self.viewModel.cellViewModel(at: indexPath)
+            }
+        }
+    }
 
     let viewModel: ActiveGoalListViewModel
 
@@ -78,30 +96,8 @@ class ActiveGoalListViewController: UIViewController {
         }
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        refreshTableView()
-    }
-
     @objc func segmentedControlValueChanged(sender: UISegmentedControl) {
-        refreshTableView()
-    }
-
-    override func setEditing(_ editing: Bool, animated: Bool) {
-        super.setEditing(editing, animated: animated)
-        if editing {
-            if tableView.isEditing {
-                tableView.setEditing(false, animated: true)
-            }
-        }
-        tableView.setEditing(editing, animated: true)
-        if editing == false {
-            tableView.visibleCells.forEach { cell in
-                guard let indexPath = tableView.indexPath(for: cell) else { return }
-                let cell = cell as! ActiveGoalListCell
-                cell.viewModel = self.viewModel.cellViewModel(at: indexPath)
-            }
-        }
+        try? viewModel.fetchActiveGoals(isTodayOnly: sender.selectedSegmentIndex == 0)
     }
 
     @objc func didTapAddButton(sender: UIBarButtonItem) {
@@ -110,10 +106,6 @@ class ActiveGoalListViewController: UIViewController {
 
     @objc func didTapArchiveButton(sender: UIBarButtonItem) {
         viewModel.showArchived()
-    }
-
-    private func refreshTableView() {
-        try? viewModel.fetchActiveGoals(isTodayOnly: segmentedControl.selectedSegmentIndex == 0)
     }
 
     private func setupConstraints() {
@@ -140,32 +132,15 @@ extension ActiveGoalListViewController: UITableViewDataSource {
 }
 
 extension ActiveGoalListViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        return isEditing ? .delete : .none
-    }
-
-    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
-        return viewModel.editActionTitle(at: indexPath)
-    }
-
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        viewModel.archiveOrDeleteGoal(at: indexPath)
-        tableView.deleteRows(at: [indexPath], with: .automatic)
-    }
-
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        guard !isEditing, viewModel.canTakeStep(at: indexPath) else { return nil }
-        let stepAction = UIContextualAction(style: .normal, title: "Take a step") { [weak self] action, view, completion in
-            self?.viewModel.takeStep(at: indexPath)
-            let cell = tableView.cellForRow(at: indexPath) as! ActiveGoalListCell
-            cell.viewModel = self?.viewModel.cellViewModel(at: indexPath)
+        if !isEditing { return nil }
+        let action = UIContextualAction(style: .destructive, title: nil) { [weak self] action, view, completion in
+            self?.viewModel.archiveOrDeleteGoal(at: indexPath)
+            self?.tableView.deleteRows(at: [indexPath], with: .automatic)
             completion(true)
         }
-        return UISwipeActionsConfiguration(actions: [stepAction])
+        action.image = viewModel.editActionImage(at: indexPath)
+        return UISwipeActionsConfiguration(actions: [action])
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

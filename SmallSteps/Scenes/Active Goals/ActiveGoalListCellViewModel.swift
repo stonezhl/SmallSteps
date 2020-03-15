@@ -11,23 +11,20 @@ import UIKit
 struct ActiveGoalListCellViewModel {
     let title: String
     let frequency: String
-    let isLeftFoot: Bool
-    let footImage: UIImage?
-    let markColor: UIColor?
+    let isLeftFoot: Bool?
+    let isSelected: Bool
+    let takeStep: ((Bool) -> Void)?
 
-    init(goal: Goal, hasStep: Bool, date: Date, indexPath: IndexPath) {
+    init(goal: Goal, hasStep: Bool, date: Date, indexPath: IndexPath, takeStep: ((Bool) -> Void)? = nil) {
         title = goal.title
         frequency = goal.frequencyDescription
         if goal.isAvailable(date: date) {
             isLeftFoot = (indexPath.row % 2 == 0)
-            let imageName = isLeftFoot ? "left_foot" : "right_foot"
-            let image = UIImage(named: imageName)
-            footImage = image?.withRenderingMode(.alwaysTemplate)
-            markColor = hasStep ? .systemOrange : .systemFill
+            isSelected = hasStep
         } else {
-            isLeftFoot = false
-            footImage = nil
-            markColor = nil
+            isLeftFoot = nil
+            isSelected = false
         }
+        self.takeStep = takeStep
     }
 }

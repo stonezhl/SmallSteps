@@ -14,6 +14,7 @@ protocol DatabaseService {
     func fetchActiveGoals() throws -> [Goal]
     func hasStep(goal: Goal, on date: Date) -> Bool
     func takeStep(goal: Goal, step: Step) throws
+    func deleteSteps(goal: Goal, on date: Date) throws
     func stepsCount(goal: Goal) -> Int
     func archiveOrDeleteGoal(_ goal: Goal) throws
     // create goal
