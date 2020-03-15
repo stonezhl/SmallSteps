@@ -94,9 +94,13 @@ class GoalCalendarView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func scrollToToday(animated: Bool) {
+    func scrollToEndDate() {
         // https://github.com/patchthecode/JTAppleCalendar/issues/1230
-//        monthView.scrollToDate(today)
+        if let archivedDate = archivedDate {
+            monthView.scrollToHeaderForDate(archivedDate)
+        } else {
+            monthView.scrollToHeaderForDate(today)
+        }
     }
 
     private func setupConstraints() {

@@ -63,6 +63,7 @@ class GoalDetailViewController: UIViewController {
                     chartButton.tintColor = .label
                     chartView.isHidden = true
                     title = "\(calendarView.year)"
+                    calendarView.scrollToEndDate()
                 case .chart:
                     calendarButton.tintColor = .label
                     calendarView.isHidden = true
@@ -78,7 +79,12 @@ class GoalDetailViewController: UIViewController {
                 }
                 return
             }
-            guard currentContent != oldValue else { return }
+            guard currentContent != oldValue else {
+                if currentContent == .calendar {
+                    calendarView.scrollToEndDate()
+                }
+                return
+            }
             if currentContent == .calendar {
                 calendarButton.tintColor = .systemOrange
                 chartButton.tintColor = .label
