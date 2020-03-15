@@ -71,6 +71,13 @@ class ActiveGoalListCell: UITableViewCell {
     }
 
     @objc func didTapStepButton(sender: StepButton) {
+        if sender.isSelected {
+            let generator = UIImpactFeedbackGenerator(style: .light)
+            generator.impactOccurred()
+        } else {
+            let generator = UINotificationFeedbackGenerator()
+            generator.notificationOccurred(.success)
+        }
         sender.isSelected = !sender.isSelected
         viewModel?.takeStep?(sender.isSelected)
     }
