@@ -26,6 +26,9 @@ class GoalBarChartView: BarChartView {
             completedDataSet.colors = [.systemOrange]
             completedDataSet.drawValuesEnabled = false
             let data = BarChartData(dataSets: [totalDataSet, completedDataSet])
+            if monthStepsCounts.count < 5 {
+                data.barWidth = 0.2 * Double(monthStepsCounts.count)
+            }
             self.data = data
         }
     }
