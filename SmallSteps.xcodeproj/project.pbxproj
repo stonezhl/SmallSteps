@@ -36,6 +36,7 @@
 		25CA682A241BB1C200054E5D /* Date+Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CA6829241BB1C200054E5D /* Date+Calendar.swift */; };
 		25CA682C241BC4AB00054E5D /* HGPlaceholders.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25CA682B241BC4AB00054E5D /* HGPlaceholders.framework */; };
 		25CA682F241CF87900054E5D /* StepButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CA682E241CF87800054E5D /* StepButton.swift */; };
+		25CA6835241E475A00054E5D /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 25CA6834241E475A00054E5D /* Settings.bundle */; };
 		25E846F72415114C00A83F45 /* GoalBarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E846F62415114C00A83F45 /* GoalBarChartView.swift */; };
 		25E846F92415125500A83F45 /* GoalPieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E846F82415125500A83F45 /* GoalPieChartView.swift */; };
 		25F8B0812403560700E599D8 /* ArchivedGoalListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0802403560700E599D8 /* ArchivedGoalListViewModel.swift */; };
@@ -98,6 +99,7 @@
 		25CA6829241BB1C200054E5D /* Date+Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Calendar.swift"; sourceTree = "<group>"; };
 		25CA682B241BC4AB00054E5D /* HGPlaceholders.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HGPlaceholders.framework; path = Carthage/Build/iOS/HGPlaceholders.framework; sourceTree = "<group>"; };
 		25CA682E241CF87800054E5D /* StepButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepButton.swift; sourceTree = "<group>"; };
+		25CA6834241E475A00054E5D /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		25E846F62415114C00A83F45 /* GoalBarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalBarChartView.swift; sourceTree = "<group>"; };
 		25E846F82415125500A83F45 /* GoalPieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalPieChartView.swift; sourceTree = "<group>"; };
 		25F8B0802403560700E599D8 /* ArchivedGoalListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivedGoalListViewModel.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				254AFBC523F03888006B5F4E /* Assets.xcassets */,
 				254AFBC723F03888006B5F4E /* LaunchScreen.storyboard */,
 				254AFBCA23F03888006B5F4E /* Info.plist */,
+				25CA6834241E475A00054E5D /* Settings.bundle */,
 			);
 			path = SmallSteps;
 			sourceTree = "<group>";
@@ -395,6 +398,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				254AFBC923F03888006B5F4E /* LaunchScreen.storyboard in Resources */,
+				25CA6835241E475A00054E5D /* Settings.bundle in Resources */,
 				254AFBC623F03888006B5F4E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
