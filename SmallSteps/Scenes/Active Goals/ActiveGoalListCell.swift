@@ -38,7 +38,7 @@ class ActiveGoalListCell: UITableViewCell {
         let button = StepButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         disableTouchEventView.addSubview(button)
-        button.addTarget(self, action: #selector(didTapStepButton(sender:)), for: .touchDown)
+        button.addTarget(self, action: #selector(didTapStepButton(sender:)), for: .touchUpInside)
         return button
     }()
 
