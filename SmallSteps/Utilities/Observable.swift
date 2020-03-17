@@ -10,6 +10,12 @@ import Foundation
 
 typealias BindingClosure<T> = (T) -> Void
 
+enum InitialNotificationType {
+    case none
+    case sync
+    case async
+}
+
 class Observable<T> {
     struct Observer<T> {
         weak var observer: AnyObject?
@@ -21,9 +27,7 @@ class Observable<T> {
     private var internalValue: T
 
     var value: T {
-        get {
-            return internalValue
-        }
+        get { internalValue }
         set {
             internalValue = newValue
             notifyObservers()
@@ -31,12 +35,8 @@ class Observable<T> {
     }
 
     var valueWithoutNotification: T {
-        get {
-            return internalValue
-        }
-        set {
-            internalValue = newValue
-        }
+        get { internalValue }
+        set { internalValue = newValue }
     }
 
     init(_ value: T) {
@@ -44,11 +44,17 @@ class Observable<T> {
         notifyObservers()
     }
 
-    func addObserver(_ observer: AnyObject, bindingClosure: @escaping BindingClosure<T>) {
+    func addObserver(_ observer: AnyObject, initialNotificationType: InitialNotificationType, bindingClosure: @escaping BindingClosure<T>) {
         let observer = Observer<T>(observer: observer, bindingClosure: bindingClosure)
         observers.append(observer)
-        DispatchQueue.main.async {
+        switch initialNotificationType {
+        case .none: break
+        case .sync:
             bindingClosure(self.value)
+        case .async:
+            DispatchQueue.main.async {
+                bindingClosure(self.value)
+            }
         }
     }
 

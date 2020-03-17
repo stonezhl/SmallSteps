@@ -9,6 +9,8 @@
 import Foundation
 
 protocol DataCenter {
+    // prefrences
+    var appAppearance: Observable<AppAppearance> { get }
     // app
     var today: Observable<Date> { get }
     func saveData()

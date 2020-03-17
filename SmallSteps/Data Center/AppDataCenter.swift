@@ -12,13 +12,18 @@ class AppDataCenter: DataCenter {
     private let databaseService: DatabaseService = CoreDataService(name: "SmallSteps")
     private let preferencesService: PreferencesService = UserDefaultsService()
 
+    let appAppearance: Observable<AppAppearance>
     let today: Observable<Date> = Observable(Date())
     let isTodayOnly: Observable<Bool>
     let activeGoals: Observable<[Goal]> = Observable([])
 
     init() {
+        appAppearance = Observable(preferencesService.appAppearance)
         isTodayOnly = Observable(preferencesService.isTodayOnly)
-        isTodayOnly.addObserver(self) { [weak self] isTodayOnly in
+        preferencesService.isAppAppearanceChanged = { [weak self] appearance in
+            self?.appAppearance.value = appearance
+        }
+        isTodayOnly.addObserver(self, initialNotificationType: .none) { [weak self] isTodayOnly in
             self?.preferencesService.isTodayOnly = isTodayOnly
         }
         NotificationCenter.default.addObserver(self, selector: #selector(dayChanged(notification:)), name: .NSCalendarDayChanged, object: nil)

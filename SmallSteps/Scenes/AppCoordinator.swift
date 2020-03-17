@@ -14,6 +14,17 @@ class AppCoordinator: BaseCoordinator {
 
     init(window: UIWindow) {
         self.window = window
+        super.init()
+        dataCenter.appAppearance.addObserver(self, initialNotificationType: .sync) { [weak self] appearance in
+            switch appearance {
+            case .automatic:
+                self?.window.overrideUserInterfaceStyle = .unspecified
+            case .light:
+                self?.window.overrideUserInterfaceStyle = .light
+            case .dark:
+                self?.window.overrideUserInterfaceStyle = .dark
+            }
+        }
     }
 
     override func start() {

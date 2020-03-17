@@ -25,7 +25,7 @@ class DefaultActiveGoalListViewModel: ActiveGoalListViewModel {
 
     init(dataCenter: DataCenter) {
         self.dataCenter = dataCenter
-        self.dataCenter.activeGoals.addObserver(self) { [weak self] goals in
+        self.dataCenter.activeGoals.addObserver(self, initialNotificationType: .none) { [weak self] goals in
             self?.isDataUpdated?()
         }
         try? self.dataCenter.fetchActiveGoals()

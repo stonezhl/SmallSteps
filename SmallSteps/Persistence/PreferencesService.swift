@@ -8,6 +8,14 @@
 
 import Foundation
 
+enum AppAppearance: Int {
+    case automatic = 0
+    case light = 1
+    case dark = 2
+}
+
 protocol PreferencesService: AnyObject {
+    var appAppearance: AppAppearance { get }
+    var isAppAppearanceChanged: ((AppAppearance) -> Void)? { get set }
     var isTodayOnly: Bool { get set }
 }

@@ -11,12 +11,12 @@ import CoreData
 @objc(GoalDBModel)
 public class GoalDBModel: NSManagedObject {
     var frequency: GoalFrequency {
-        get { return GoalFrequency(rawValue: frequencyValue) }
+        get { GoalFrequency(rawValue: frequencyValue) }
         set { frequencyValue = newValue.rawValue }
     }
 
     var status: GoalStatus {
-        get { return GoalStatus(rawValue: statusValue) ?? .active }
+        get { GoalStatus(rawValue: statusValue) ?? .active }
         set { statusValue = newValue.rawValue }
     }
 }

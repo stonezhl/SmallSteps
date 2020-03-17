@@ -39,9 +39,7 @@ class GoalChartView: UIView {
     }()
 
     var monthStepsCounts: [MonthStepsCount] {
-        get {
-            return barChartView.monthStepsCounts ?? []
-        }
+        get { barChartView.monthStepsCounts ?? [] }
         set {
             var total = 0
             var completed = 0
