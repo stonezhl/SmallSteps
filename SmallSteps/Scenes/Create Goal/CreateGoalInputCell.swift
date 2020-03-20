@@ -13,7 +13,7 @@ class CreateGoalInputCell: UITableViewCell {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(textField)
-        textField.placeholder = "Enter a title for your goal"
+        textField.placeholder = NSLocalizedString("Enter a title for your goal", comment: "Placeholder of input goal's title")
         textField.font = .systemFont(ofSize: 17)
         textField.tintColor = .systemOrange
         textField.clearButtonMode = .whileEditing

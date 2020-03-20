@@ -17,7 +17,7 @@ class AppCoordinator: BaseCoordinator {
         super.init()
         dataCenter.appAppearance.addObserver(self, initialNotificationType: .sync) { [weak self] appearance in
             switch appearance {
-            case .automatic:
+            case .system:
                 self?.window.overrideUserInterfaceStyle = .unspecified
             case .light:
                 self?.window.overrideUserInterfaceStyle = .light

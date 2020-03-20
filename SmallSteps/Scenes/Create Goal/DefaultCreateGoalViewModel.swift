@@ -13,13 +13,13 @@ class DefaultCreateGoalViewModel: CreateGoalViewModel {
     var didExitScene: (() -> Void)?
 
     let frequencyTitles = [
-        "Every Sunday",
-        "Every Monday",
-        "Every Tuesday",
-        "Every Wednesday",
-        "Every Thursday",
-        "Every Friday",
-        "Every Saturday",
+        NSLocalizedString("Every Sunday", comment: "Goal's frequency"),
+        NSLocalizedString("Every Monday", comment: "Goal's frequency"),
+        NSLocalizedString("Every Tuesday", comment: "Goal's frequency"),
+        NSLocalizedString("Every Wednesday", comment: "Goal's frequency"),
+        NSLocalizedString("Every Thursday", comment: "Goal's frequency"),
+        NSLocalizedString("Every Friday", comment: "Goal's frequency"),
+        NSLocalizedString("Every Saturday", comment: "Goal's frequency"),
     ]
 
     init(dataCenter: DataCenter) {

@@ -44,49 +44,50 @@ struct Goal: Equatable {
 extension Goal {
     var frequencyDescription: String {
         if frequency == .everyday {
-            return "Every day"
+            return NSLocalizedString("Every day", comment: "Goal's frequency")
         } else if frequency == .weekdays {
-            return "Every weekday"
+            return NSLocalizedString("Every weekday", comment: "Goal's frequency")
         } else if frequency == .weekends {
-            return "Every weekend"
+            return NSLocalizedString("Every weekend", comment: "Goal's frequency")
         } else if frequency == .everyMonday {
-            return "Every Monday"
+            return NSLocalizedString("Every Monday", comment: "Goal's frequency")
         } else if frequency == .everyTuesday {
-            return "Every Tuesday"
+            return NSLocalizedString("Every Tuesday", comment: "Goal's frequency")
         } else if frequency == .everyWednesday {
-            return "Every Wednesday"
+            return NSLocalizedString("Every Wednesday", comment: "Goal's frequency")
         } else if frequency == .everyThursday {
-            return "Every Thursday"
+            return NSLocalizedString("Every Thursday", comment: "Goal's frequency")
         } else if frequency == .everyFriday {
-            return "Every Friday"
+            return NSLocalizedString("Every Friday", comment: "Goal's frequency")
         } else if frequency == .everySaturday {
-            return "Every Saturday"
+            return NSLocalizedString("Every Saturday", comment: "Goal's frequency")
         } else if frequency == .everySunday {
-            return "Every Sunday"
+            return NSLocalizedString("Every Sunday", comment: "Goal's frequency")
         } else {
-            var description: String = "Every "
+            var description: String = ""
+            let weekdaySymbols = Calendar.current.shortWeekdaySymbols
             if frequency.contains(.everyMonday) {
-                description += "Mon, "
+                description += "\(weekdaySymbols[1]) "
             }
             if frequency.contains(.everyTuesday) {
-                description += "Tue, "
+                description += "\(weekdaySymbols[2]) "
             }
             if frequency.contains(.everyWednesday) {
-                description += "Wed, "
+                description += "\(weekdaySymbols[3]) "
             }
             if frequency.contains(.everyThursday) {
-                description += "Thu, "
+                description += "\(weekdaySymbols[4]) "
             }
             if frequency.contains(.everyFriday) {
-                description += "Fri, "
+                description += "\(weekdaySymbols[5]) "
             }
             if frequency.contains(.everySaturday) {
-                description += "Sat, "
+                description += "\(weekdaySymbols[6]) "
             }
             if frequency.contains(.everySunday) {
-                description += "Sun, "
+                description += "\(weekdaySymbols[0]) "
             }
-            description = String(description.dropLast(2))
+            description = String(description.dropLast())
             return description
         }
     }

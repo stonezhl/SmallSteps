@@ -12,7 +12,7 @@ class UserDefaultsService: NSObject, PreferencesService {
     private let userDefaults = UserDefaults.standard
 
     var appAppearance: AppAppearance {
-        return AppAppearance(rawValue: userDefaults.integer(forKey: "APP_APPEARANCE")) ?? .automatic
+        return AppAppearance(rawValue: userDefaults.integer(forKey: "APP_APPEARANCE")) ?? .system
     }
 
     var isAppAppearanceChanged: ((AppAppearance) -> Void)?

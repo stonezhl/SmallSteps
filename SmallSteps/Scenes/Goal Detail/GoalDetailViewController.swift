@@ -69,7 +69,7 @@ class GoalDetailViewController: UIViewController {
                     calendarView.isHidden = true
                     chartButton.tintColor = .systemOrange
                     chartView.isHidden = false
-                    title = "Steps"
+                    title = NSLocalizedString("Steps", comment: "Title of goal's chart scene")
                 default:
                     calendarButton.tintColor = .label
                     calendarView.isHidden = true
@@ -97,7 +97,7 @@ class GoalDetailViewController: UIViewController {
             } else {
                 calendarButton.tintColor = .label
                 chartButton.tintColor = .systemOrange
-                title = "Steps"
+                title = NSLocalizedString("Steps", comment: "Title of goal's chart scene")
                 UIView.transition(from: calendarView,
                                   to: chartView,
                                   duration: 0.5,

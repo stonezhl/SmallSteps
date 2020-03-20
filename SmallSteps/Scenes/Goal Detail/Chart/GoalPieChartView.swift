@@ -14,8 +14,8 @@ class GoalPieChartView: PieChartView {
         didSet {
             guard let stepsCount = stepsCount else { return }
             let dataEntries = [
-                PieChartDataEntry(value: Double(stepsCount.completed), label: "Completed"),
-                PieChartDataEntry(value: Double(stepsCount.total - stepsCount.completed), label: "Incomplete"),
+                PieChartDataEntry(value: Double(stepsCount.completed), label: NSLocalizedString("Completed", comment: "Label of completed steps")),
+                PieChartDataEntry(value: Double(stepsCount.total - stepsCount.completed), label: NSLocalizedString("Incomplete", comment: "Label of incomplete steps")),
             ]
             let dataSet = PieChartDataSet(entries: dataEntries)
             dataSet.colors = [.systemOrange, .systemFill]

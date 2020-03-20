@@ -15,8 +15,8 @@ class ActiveGoalListViewController: UIViewController {
     lazy var segmentedControl: UISegmentedControl = {
         let segmentedControl = UISegmentedControl()
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
-        segmentedControl.insertSegment(withTitle: "Today", at: 0, animated: false)
-        segmentedControl.insertSegment(withTitle: "All", at: 1, animated: false)
+        segmentedControl.insertSegment(withTitle: NSLocalizedString("Today", comment: "Filter of active goals scene"), at: 0, animated: false)
+        segmentedControl.insertSegment(withTitle: NSLocalizedString("All", comment: "Filter of active goals scene"), at: 1, animated: false)
         segmentedControl.selectedSegmentIndex = viewModel.isTodayOnly ? 0 : 1
         segmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged(sender:)), for: .valueChanged)
         return segmentedControl
@@ -47,9 +47,9 @@ class ActiveGoalListViewController: UIViewController {
         style.isAnimated = false
         var data = PlaceholderData()
         data.image = UIImage(named: "empty_active")
-        data.title = "No goals found"
-        data.subtitle = "Let's add a goal and then take steps to achieve it."
-        data.action = "Add a Goal"
+        data.title =  NSLocalizedString("No goals found", comment: "Title of empty active goals scene")
+        data.subtitle = NSLocalizedString("You can take steps to achieve your goal but you need to plan them first", comment: "Subtitle of empty active goals scene")
+        data.action = NSLocalizedString("Add a Goal", comment: "Action of empty active goals scene")
         return Placeholder(data: data, style: style, key: .noResultsKey)
     }()
 

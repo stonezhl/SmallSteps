@@ -27,7 +27,7 @@ class ActiveGoalListCoordinator: BaseCoordinator {
     override func start() {
         let viewModel = DefaultActiveGoalListViewModel(dataCenter: dataCenter)
         let viewController = ActiveGoalListViewController(viewModel: viewModel)
-        viewController.title = "Goals"
+        viewController.title = NSLocalizedString("Goals", comment: "Title of active goals scene")
         viewModel.enterCreateGoalScene = { [weak self] in
             self?.showCreateGoalScene()
         }

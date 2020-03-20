@@ -34,8 +34,8 @@ class ArchivedGoalListViewController: UIViewController {
         style.isAnimated = false
         var data = PlaceholderData()
         data.image = UIImage(named: "empty_archived")
-        data.title = "No goals found"
-        data.subtitle = "You haven't archive any goal yet."
+        data.title = NSLocalizedString("No goals found", comment: "Title of empty archived goals scene")
+        data.subtitle = NSLocalizedString("You haven't archived any goals yet", comment: "Subtitle of empty archived goals scene")
         data.action = nil
         return Placeholder(data: data, style: style, key: .noResultsKey)
     }()
@@ -64,7 +64,7 @@ class ArchivedGoalListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Archived"
+        title = NSLocalizedString("Archived", comment: "Title of archived goals scene")
         navigationItem.leftBarButtonItem = editButtonItem
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark.circle"), style: .plain, target: self, action: #selector(didTapCloseButton(sender:)))
         navigationItem.rightBarButtonItem = closeButton

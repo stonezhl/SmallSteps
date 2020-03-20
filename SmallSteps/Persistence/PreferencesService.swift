@@ -9,7 +9,7 @@
 import Foundation
 
 enum AppAppearance: Int {
-    case automatic = 0
+    case system = 0
     case light = 1
     case dark = 2
 }

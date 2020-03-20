@@ -42,7 +42,7 @@ class CreateGoalViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Add Goal"
+        title = NSLocalizedString("Add Goal", comment: "Title of create goal scene")
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(didTapCancelButton(sender:)))
         navigationItem.leftBarButtonItem = cancelButton
         let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(didTapSaveButton(sender:)))
@@ -53,11 +53,11 @@ class CreateGoalViewController: UIViewController {
 
     @objc func didTapSaveButton(sender: UIBarButtonItem) {
         guard let title = titleTextField.text, !title.isEmpty else {
-            showAlert(title: "Empty Title", message: "Title can't be empty")
+            showAlert(title: NSLocalizedString("Empty Title", comment: "Title of empty goal's title alert"), message: NSLocalizedString("Title can't be empty", comment: "Message of empty goal's title alert"))
             return
         }
         guard let indexPaths = tableView.indexPathsForSelectedRows else {
-            showAlert(title: "Invalid Frequency", message: "Please select at least one frequency")
+            showAlert(title: NSLocalizedString("Invalid Frequency", comment: "Title of invalid goal's frequency alert"), message: NSLocalizedString("Please select at least one frequency", comment: "Message of invalid goal's frequency alert"))
             return
         }
         viewModel.saveGoal(title: title, selectedIndexPaths: indexPaths)
@@ -76,7 +76,7 @@ class CreateGoalViewController: UIViewController {
 
     private func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Confirm action of alert"), style: .default, handler: nil))
         present(alert, animated: true)
     }
 
