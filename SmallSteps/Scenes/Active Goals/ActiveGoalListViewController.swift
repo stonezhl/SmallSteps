@@ -96,6 +96,13 @@ class ActiveGoalListViewController: UIViewController {
         }
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let indexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+    }
+
     @objc func segmentedControlValueChanged(sender: UISegmentedControl) {
         try? viewModel.fetchActiveGoals(isTodayOnly: sender.selectedSegmentIndex == 0)
     }

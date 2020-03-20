@@ -71,6 +71,13 @@ class ArchivedGoalListViewController: UIViewController {
         setupConstraints()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let indexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+    }
+
     @objc func didTapCloseButton(sender: UIBarButtonItem) {
         dismiss()
     }
