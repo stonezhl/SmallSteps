@@ -1,0 +1,8 @@
+app_identifier("com.stonezhl.SmallSteps") # The bundle identifier of your app
+apple_id("stnzhl@gmail.com") # Your Apple email address
+
+itc_team_id("119492183") # App Store Connect Team ID
+team_id("CCBW5GSHKT") # Developer Portal Team ID
+
+# For more information about the Appfile, see:
+#     https://docs.fastlane.tools/advanced/#appfile

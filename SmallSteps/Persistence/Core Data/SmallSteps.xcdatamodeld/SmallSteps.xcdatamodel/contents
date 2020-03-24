@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19D76" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="GoalDBModel" representedClassName="GoalDBModel" syncable="YES">
+        <attribute name="createdDate" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="frequencyValue" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="statusValue" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="title" attributeType="String"/>
+        <attribute name="updatedDate" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="uuid" attributeType="String"/>
+        <relationship name="steps" toMany="YES" deletionRule="Cascade" destinationEntity="StepDBModel" inverseName="goal" inverseEntity="StepDBModel"/>
+    </entity>
+    <entity name="StepDBModel" representedClassName="StepDBModel" syncable="YES">
+        <attribute name="createdDate" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="uuid" attributeType="String"/>
+        <relationship name="goal" maxCount="1" deletionRule="Nullify" destinationEntity="GoalDBModel" inverseName="steps" inverseEntity="GoalDBModel"/>
+    </entity>
+    <elements>
+        <element name="GoalDBModel" positionX="-63" positionY="-18" width="128" height="148"/>
+        <element name="StepDBModel" positionX="-54" positionY="-9" width="128" height="88"/>
+    </elements>
+</model>

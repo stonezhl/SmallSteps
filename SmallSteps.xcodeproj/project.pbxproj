@@ -1,0 +1,731 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		254AFBBD23F03885006B5F4E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AFBBC23F03885006B5F4E /* AppDelegate.swift */; };
+		254AFBBF23F03885006B5F4E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AFBBE23F03885006B5F4E /* SceneDelegate.swift */; };
+		254AFBC623F03888006B5F4E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 254AFBC523F03888006B5F4E /* Assets.xcassets */; };
+		254AFBC923F03888006B5F4E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 254AFBC723F03888006B5F4E /* LaunchScreen.storyboard */; };
+		254AFBD223F04121006B5F4E /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AFBD123F04121006B5F4E /* Coordinator.swift */; };
+		254AFBD423F041EB006B5F4E /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AFBD323F041EB006B5F4E /* AppCoordinator.swift */; };
+		254AFBD823F04A03006B5F4E /* ActiveGoalListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AFBD723F04A03006B5F4E /* ActiveGoalListCoordinator.swift */; };
+		254AFBDA23F04A13006B5F4E /* ArchivedGoalListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AFBD923F04A13006B5F4E /* ArchivedGoalListCoordinator.swift */; };
+		254AFBDD23F04AA7006B5F4E /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AFBDC23F04AA7006B5F4E /* Navigation.swift */; };
+		254AFBDF23F04B45006B5F4E /* AppNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AFBDE23F04B45006B5F4E /* AppNavigation.swift */; };
+		254AFBE123F04D34006B5F4E /* ActiveGoalListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AFBE023F04D34006B5F4E /* ActiveGoalListViewController.swift */; };
+		254AFBE323F04D46006B5F4E /* ArchivedGoalListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AFBE223F04D46006B5F4E /* ArchivedGoalListViewController.swift */; };
+		254AFC722400C5DA006B5F4E /* SmallSteps.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 254AFC702400C5DA006B5F4E /* SmallSteps.xcdatamodeld */; };
+		254AFC812401FF5F006B5F4E /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AFC802401FF5F006B5F4E /* DatabaseService.swift */; };
+		254AFC832401FFF6006B5F4E /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AFC822401FFF6006B5F4E /* CoreDataService.swift */; };
+		254AFC8524020318006B5F4E /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AFC8424020318006B5F4E /* CoreDataStack.swift */; };
+		254AFC872402116B006B5F4E /* ActiveGoalListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AFC862402116B006B5F4E /* ActiveGoalListCell.swift */; };
+		254AFC8A2402125F006B5F4E /* ActiveGoalListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AFC892402125F006B5F4E /* ActiveGoalListCellViewModel.swift */; };
+		254AFC8C240215B5006B5F4E /* ActiveGoalListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AFC8B240215B5006B5F4E /* ActiveGoalListViewModel.swift */; };
+		254AFC8E24021619006B5F4E /* DefaultActiveGoalListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AFC8D24021619006B5F4E /* DefaultActiveGoalListViewModel.swift */; };
+		254AFC902402173C006B5F4E /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AFC8F2402173C006B5F4E /* Goal.swift */; };
+		254AFC9C240268D7006B5F4E /* CreateGoalCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AFC9B240268D7006B5F4E /* CreateGoalCoordinator.swift */; };
+		254AFC9E24026906006B5F4E /* CreateGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AFC9D24026906006B5F4E /* CreateGoalViewController.swift */; };
+		254AFCA02402691A006B5F4E /* CreateGoalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AFC9F2402691A006B5F4E /* CreateGoalViewModel.swift */; };
+		254AFCA22402692D006B5F4E /* DefaultCreateGoalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AFCA12402692D006B5F4E /* DefaultCreateGoalViewModel.swift */; };
+		25B4468A2414F44F008C36D1 /* MonthAxisValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B446892414F44F008C36D1 /* MonthAxisValueFormatter.swift */; };
+		25CA682A241BB1C200054E5D /* Date+Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CA6829241BB1C200054E5D /* Date+Calendar.swift */; };
+		25CA682C241BC4AB00054E5D /* HGPlaceholders.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25CA682B241BC4AB00054E5D /* HGPlaceholders.framework */; };
+		25CA682F241CF87900054E5D /* StepButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CA682E241CF87800054E5D /* StepButton.swift */; };
+		25CA6835241E475A00054E5D /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 25CA6834241E475A00054E5D /* Settings.bundle */; };
+		25CA683824238A1C00054E5D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 25CA683A24238A1C00054E5D /* Localizable.strings */; };
+		25E846F72415114C00A83F45 /* GoalBarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E846F62415114C00A83F45 /* GoalBarChartView.swift */; };
+		25E846F92415125500A83F45 /* GoalPieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E846F82415125500A83F45 /* GoalPieChartView.swift */; };
+		25F8B0812403560700E599D8 /* ArchivedGoalListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0802403560700E599D8 /* ArchivedGoalListViewModel.swift */; };
+		25F8B0832403561D00E599D8 /* DefaultArchivedGoalListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0822403561D00E599D8 /* DefaultArchivedGoalListViewModel.swift */; };
+		25F8B0862403570B00E599D8 /* ArchivedGoalListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0852403570B00E599D8 /* ArchivedGoalListCell.swift */; };
+		25F8B0882403572A00E599D8 /* ArchivedGoalListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0872403572A00E599D8 /* ArchivedGoalListCellViewModel.swift */; };
+		25F8B08D2403656600E599D8 /* GoalDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B08C2403656600E599D8 /* GoalDetailCoordinator.swift */; };
+		25F8B08F2403658300E599D8 /* GoalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B08E2403658300E599D8 /* GoalDetailViewController.swift */; };
+		25F8B0912403659500E599D8 /* GoalDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0902403659500E599D8 /* GoalDetailViewModel.swift */; };
+		25F8B0932403662B00E599D8 /* DefaultGoalDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0922403662B00E599D8 /* DefaultGoalDetailViewModel.swift */; };
+		25F8B0992403A32800E599D8 /* StepDBModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0952403A32800E599D8 /* StepDBModel+CoreDataClass.swift */; };
+		25F8B09A2403A32800E599D8 /* StepDBModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0962403A32800E599D8 /* StepDBModel+CoreDataProperties.swift */; };
+		25F8B09B2403A32800E599D8 /* GoalDBModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0972403A32800E599D8 /* GoalDBModel+CoreDataClass.swift */; };
+		25F8B09C2403A32800E599D8 /* GoalDBModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0982403A32800E599D8 /* GoalDBModel+CoreDataProperties.swift */; };
+		25F8B09E2403B43C00E599D8 /* DatabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B09D2403B43C00E599D8 /* DatabaseError.swift */; };
+		25F8B0A02404101400E599D8 /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B09F2404101400E599D8 /* Step.swift */; };
+		25F8B0A32406AC4400E599D8 /* JTAppleCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F8B0A22406AC4400E599D8 /* JTAppleCalendar.framework */; };
+		25F8B0A92406B27300E599D8 /* GoalCalendarDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0A82406B27300E599D8 /* GoalCalendarDayCell.swift */; };
+		25F8B0AB2407FAB300E599D8 /* GoalCalendarMonthHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0AA2407FAB300E599D8 /* GoalCalendarMonthHeader.swift */; };
+		25F8B0B3240E887700E599D8 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0B2240E887700E599D8 /* Observable.swift */; };
+		25F8B0B6240EAE4500E599D8 /* DataCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0B5240EAE4500E599D8 /* DataCenter.swift */; };
+		25F8B0B8240EAE5500E599D8 /* AppDataCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0B7240EAE5500E599D8 /* AppDataCenter.swift */; };
+		25F8B0BA240F364300E599D8 /* PreferencesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0B9240F364300E599D8 /* PreferencesService.swift */; };
+		25F8B0BC240F36CE00E599D8 /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0BB240F36CE00E599D8 /* UserDefaultsService.swift */; };
+		25F8B0BE241276D200E599D8 /* CreateGoalInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0BD241276D200E599D8 /* CreateGoalInputCell.swift */; };
+		25F8B0C024137C1B00E599D8 /* GoalCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0BF24137C1B00E599D8 /* GoalCalendarView.swift */; };
+		25F8B0C32413970700E599D8 /* GoalChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8B0C22413970700E599D8 /* GoalChartView.swift */; };
+		25F8B0C62413D54900E599D8 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F8B0C52413D54900E599D8 /* Charts.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		254AFBB923F03885006B5F4E /* SmallSteps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmallSteps.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		254AFBBC23F03885006B5F4E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		254AFBBE23F03885006B5F4E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		254AFBC523F03888006B5F4E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		254AFBC823F03888006B5F4E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		254AFBCA23F03888006B5F4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		254AFBD123F04121006B5F4E /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		254AFBD323F041EB006B5F4E /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		254AFBD723F04A03006B5F4E /* ActiveGoalListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveGoalListCoordinator.swift; sourceTree = "<group>"; };
+		254AFBD923F04A13006B5F4E /* ArchivedGoalListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivedGoalListCoordinator.swift; sourceTree = "<group>"; };
+		254AFBDC23F04AA7006B5F4E /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
+		254AFBDE23F04B45006B5F4E /* AppNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigation.swift; sourceTree = "<group>"; };
+		254AFBE023F04D34006B5F4E /* ActiveGoalListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveGoalListViewController.swift; sourceTree = "<group>"; };
+		254AFBE223F04D46006B5F4E /* ArchivedGoalListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivedGoalListViewController.swift; sourceTree = "<group>"; };
+		254AFC712400C5DA006B5F4E /* SmallSteps.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SmallSteps.xcdatamodel; sourceTree = "<group>"; };
+		254AFC802401FF5F006B5F4E /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
+		254AFC822401FFF6006B5F4E /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
+		254AFC8424020318006B5F4E /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		254AFC862402116B006B5F4E /* ActiveGoalListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveGoalListCell.swift; sourceTree = "<group>"; };
+		254AFC892402125F006B5F4E /* ActiveGoalListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveGoalListCellViewModel.swift; sourceTree = "<group>"; };
+		254AFC8B240215B5006B5F4E /* ActiveGoalListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveGoalListViewModel.swift; sourceTree = "<group>"; };
+		254AFC8D24021619006B5F4E /* DefaultActiveGoalListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultActiveGoalListViewModel.swift; sourceTree = "<group>"; };
+		254AFC8F2402173C006B5F4E /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
+		254AFC9B240268D7006B5F4E /* CreateGoalCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGoalCoordinator.swift; sourceTree = "<group>"; };
+		254AFC9D24026906006B5F4E /* CreateGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGoalViewController.swift; sourceTree = "<group>"; };
+		254AFC9F2402691A006B5F4E /* CreateGoalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGoalViewModel.swift; sourceTree = "<group>"; };
+		254AFCA12402692D006B5F4E /* DefaultCreateGoalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCreateGoalViewModel.swift; sourceTree = "<group>"; };
+		25B446892414F44F008C36D1 /* MonthAxisValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthAxisValueFormatter.swift; sourceTree = "<group>"; };
+		25CA6829241BB1C200054E5D /* Date+Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Calendar.swift"; sourceTree = "<group>"; };
+		25CA682B241BC4AB00054E5D /* HGPlaceholders.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HGPlaceholders.framework; path = Carthage/Build/iOS/HGPlaceholders.framework; sourceTree = "<group>"; };
+		25CA682E241CF87800054E5D /* StepButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepButton.swift; sourceTree = "<group>"; };
+		25CA6834241E475A00054E5D /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		25CA683924238A1C00054E5D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		25CA683B24238DBA00054E5D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		25CA683D24238E3100054E5D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		25E846F62415114C00A83F45 /* GoalBarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalBarChartView.swift; sourceTree = "<group>"; };
+		25E846F82415125500A83F45 /* GoalPieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalPieChartView.swift; sourceTree = "<group>"; };
+		25F8B0802403560700E599D8 /* ArchivedGoalListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivedGoalListViewModel.swift; sourceTree = "<group>"; };
+		25F8B0822403561D00E599D8 /* DefaultArchivedGoalListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultArchivedGoalListViewModel.swift; sourceTree = "<group>"; };
+		25F8B0852403570B00E599D8 /* ArchivedGoalListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivedGoalListCell.swift; sourceTree = "<group>"; };
+		25F8B0872403572A00E599D8 /* ArchivedGoalListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivedGoalListCellViewModel.swift; sourceTree = "<group>"; };
+		25F8B08C2403656600E599D8 /* GoalDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailCoordinator.swift; sourceTree = "<group>"; };
+		25F8B08E2403658300E599D8 /* GoalDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailViewController.swift; sourceTree = "<group>"; };
+		25F8B0902403659500E599D8 /* GoalDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailViewModel.swift; sourceTree = "<group>"; };
+		25F8B0922403662B00E599D8 /* DefaultGoalDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultGoalDetailViewModel.swift; sourceTree = "<group>"; };
+		25F8B0952403A32800E599D8 /* StepDBModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StepDBModel+CoreDataClass.swift"; sourceTree = "<group>"; };
+		25F8B0962403A32800E599D8 /* StepDBModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StepDBModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		25F8B0972403A32800E599D8 /* GoalDBModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GoalDBModel+CoreDataClass.swift"; sourceTree = "<group>"; };
+		25F8B0982403A32800E599D8 /* GoalDBModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GoalDBModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		25F8B09D2403B43C00E599D8 /* DatabaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseError.swift; sourceTree = "<group>"; };
+		25F8B09F2404101400E599D8 /* Step.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step.swift; sourceTree = "<group>"; };
+		25F8B0A22406AC4400E599D8 /* JTAppleCalendar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JTAppleCalendar.framework; path = Carthage/Build/iOS/JTAppleCalendar.framework; sourceTree = "<group>"; };
+		25F8B0A82406B27300E599D8 /* GoalCalendarDayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCalendarDayCell.swift; sourceTree = "<group>"; };
+		25F8B0AA2407FAB300E599D8 /* GoalCalendarMonthHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCalendarMonthHeader.swift; sourceTree = "<group>"; };
+		25F8B0B2240E887700E599D8 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		25F8B0B5240EAE4500E599D8 /* DataCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCenter.swift; sourceTree = "<group>"; };
+		25F8B0B7240EAE5500E599D8 /* AppDataCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDataCenter.swift; sourceTree = "<group>"; };
+		25F8B0B9240F364300E599D8 /* PreferencesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesService.swift; sourceTree = "<group>"; };
+		25F8B0BB240F36CE00E599D8 /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
+		25F8B0BD241276D200E599D8 /* CreateGoalInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGoalInputCell.swift; sourceTree = "<group>"; };
+		25F8B0BF24137C1B00E599D8 /* GoalCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCalendarView.swift; sourceTree = "<group>"; };
+		25F8B0C22413970700E599D8 /* GoalChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalChartView.swift; sourceTree = "<group>"; };
+		25F8B0C52413D54900E599D8 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = Carthage/Build/iOS/Charts.framework; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		254AFBB623F03885006B5F4E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				25CA682C241BC4AB00054E5D /* HGPlaceholders.framework in Frameworks */,
+				25F8B0A32406AC4400E599D8 /* JTAppleCalendar.framework in Frameworks */,
+				25F8B0C62413D54900E599D8 /* Charts.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		254AFBB023F03885006B5F4E = {
+			isa = PBXGroup;
+			children = (
+				254AFBBB23F03885006B5F4E /* SmallSteps */,
+				254AFBBA23F03885006B5F4E /* Products */,
+				25F8B0A12406AC4300E599D8 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		254AFBBA23F03885006B5F4E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				254AFBB923F03885006B5F4E /* SmallSteps.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		254AFBBB23F03885006B5F4E /* SmallSteps */ = {
+			isa = PBXGroup;
+			children = (
+				25F8B0B1240E87B500E599D8 /* Utilities */,
+				254AFC6F2400C58F006B5F4E /* Persistence */,
+				25F8B0B4240EAE0B00E599D8 /* Data Center */,
+				254AFC91240217BE006B5F4E /* Domain Models */,
+				254AFBD023F03FBF006B5F4E /* Scenes */,
+				254AFBBC23F03885006B5F4E /* AppDelegate.swift */,
+				254AFBBE23F03885006B5F4E /* SceneDelegate.swift */,
+				254AFBC523F03888006B5F4E /* Assets.xcassets */,
+				254AFBC723F03888006B5F4E /* LaunchScreen.storyboard */,
+				254AFBCA23F03888006B5F4E /* Info.plist */,
+				25CA68452424AD4A00054E5D /* Resource */,
+			);
+			path = SmallSteps;
+			sourceTree = "<group>";
+		};
+		254AFBD023F03FBF006B5F4E /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				254AFBD123F04121006B5F4E /* Coordinator.swift */,
+				254AFBD323F041EB006B5F4E /* AppCoordinator.swift */,
+				254AFBD523F04993006B5F4E /* Active Goals */,
+				254AFC9A2402683F006B5F4E /* Create Goal */,
+				254AFBD623F0499D006B5F4E /* Archived Goals */,
+				25F8B0892403651700E599D8 /* Goal Detail */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		254AFBD523F04993006B5F4E /* Active Goals */ = {
+			isa = PBXGroup;
+			children = (
+				254AFBD723F04A03006B5F4E /* ActiveGoalListCoordinator.swift */,
+				254AFBE023F04D34006B5F4E /* ActiveGoalListViewController.swift */,
+				254AFC8B240215B5006B5F4E /* ActiveGoalListViewModel.swift */,
+				254AFC8D24021619006B5F4E /* DefaultActiveGoalListViewModel.swift */,
+				254AFC862402116B006B5F4E /* ActiveGoalListCell.swift */,
+				254AFC892402125F006B5F4E /* ActiveGoalListCellViewModel.swift */,
+				25CA682E241CF87800054E5D /* StepButton.swift */,
+			);
+			path = "Active Goals";
+			sourceTree = "<group>";
+		};
+		254AFBD623F0499D006B5F4E /* Archived Goals */ = {
+			isa = PBXGroup;
+			children = (
+				254AFBD923F04A13006B5F4E /* ArchivedGoalListCoordinator.swift */,
+				254AFBE223F04D46006B5F4E /* ArchivedGoalListViewController.swift */,
+				25F8B0802403560700E599D8 /* ArchivedGoalListViewModel.swift */,
+				25F8B0822403561D00E599D8 /* DefaultArchivedGoalListViewModel.swift */,
+				25F8B0852403570B00E599D8 /* ArchivedGoalListCell.swift */,
+				25F8B0872403572A00E599D8 /* ArchivedGoalListCellViewModel.swift */,
+			);
+			path = "Archived Goals";
+			sourceTree = "<group>";
+		};
+		254AFC6F2400C58F006B5F4E /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				25F8B09D2403B43C00E599D8 /* DatabaseError.swift */,
+				254AFC802401FF5F006B5F4E /* DatabaseService.swift */,
+				254AFC732400C653006B5F4E /* Core Data */,
+				25F8B0B9240F364300E599D8 /* PreferencesService.swift */,
+				25F8B0BB240F36CE00E599D8 /* UserDefaultsService.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		254AFC732400C653006B5F4E /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				254AFC822401FFF6006B5F4E /* CoreDataService.swift */,
+				254AFC8424020318006B5F4E /* CoreDataStack.swift */,
+				254AFC702400C5DA006B5F4E /* SmallSteps.xcdatamodeld */,
+				25F8B0942403A2C100E599D8 /* Models */,
+			);
+			path = "Core Data";
+			sourceTree = "<group>";
+		};
+		254AFC91240217BE006B5F4E /* Domain Models */ = {
+			isa = PBXGroup;
+			children = (
+				254AFC8F2402173C006B5F4E /* Goal.swift */,
+				25F8B09F2404101400E599D8 /* Step.swift */,
+			);
+			path = "Domain Models";
+			sourceTree = "<group>";
+		};
+		254AFC9A2402683F006B5F4E /* Create Goal */ = {
+			isa = PBXGroup;
+			children = (
+				254AFC9B240268D7006B5F4E /* CreateGoalCoordinator.swift */,
+				254AFC9D24026906006B5F4E /* CreateGoalViewController.swift */,
+				254AFC9F2402691A006B5F4E /* CreateGoalViewModel.swift */,
+				254AFCA12402692D006B5F4E /* DefaultCreateGoalViewModel.swift */,
+				25F8B0BD241276D200E599D8 /* CreateGoalInputCell.swift */,
+			);
+			path = "Create Goal";
+			sourceTree = "<group>";
+		};
+		25CA68452424AD4A00054E5D /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				25CA6834241E475A00054E5D /* Settings.bundle */,
+				25CA683A24238A1C00054E5D /* Localizable.strings */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		25F8B0892403651700E599D8 /* Goal Detail */ = {
+			isa = PBXGroup;
+			children = (
+				25F8B08C2403656600E599D8 /* GoalDetailCoordinator.swift */,
+				25F8B08E2403658300E599D8 /* GoalDetailViewController.swift */,
+				25F8B0902403659500E599D8 /* GoalDetailViewModel.swift */,
+				25F8B0922403662B00E599D8 /* DefaultGoalDetailViewModel.swift */,
+				25F8B0C124137CE100E599D8 /* Calendar */,
+				25F8B0C42413970B00E599D8 /* Chart */,
+			);
+			path = "Goal Detail";
+			sourceTree = "<group>";
+		};
+		25F8B0942403A2C100E599D8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				25F8B0972403A32800E599D8 /* GoalDBModel+CoreDataClass.swift */,
+				25F8B0982403A32800E599D8 /* GoalDBModel+CoreDataProperties.swift */,
+				25F8B0952403A32800E599D8 /* StepDBModel+CoreDataClass.swift */,
+				25F8B0962403A32800E599D8 /* StepDBModel+CoreDataProperties.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		25F8B0A12406AC4300E599D8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				25CA682B241BC4AB00054E5D /* HGPlaceholders.framework */,
+				25F8B0C52413D54900E599D8 /* Charts.framework */,
+				25F8B0A22406AC4400E599D8 /* JTAppleCalendar.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		25F8B0B1240E87B500E599D8 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				254AFBDC23F04AA7006B5F4E /* Navigation.swift */,
+				254AFBDE23F04B45006B5F4E /* AppNavigation.swift */,
+				25F8B0B2240E887700E599D8 /* Observable.swift */,
+				25CA6829241BB1C200054E5D /* Date+Calendar.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		25F8B0B4240EAE0B00E599D8 /* Data Center */ = {
+			isa = PBXGroup;
+			children = (
+				25F8B0B5240EAE4500E599D8 /* DataCenter.swift */,
+				25F8B0B7240EAE5500E599D8 /* AppDataCenter.swift */,
+			);
+			path = "Data Center";
+			sourceTree = "<group>";
+		};
+		25F8B0C124137CE100E599D8 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				25F8B0BF24137C1B00E599D8 /* GoalCalendarView.swift */,
+				25F8B0A82406B27300E599D8 /* GoalCalendarDayCell.swift */,
+				25F8B0AA2407FAB300E599D8 /* GoalCalendarMonthHeader.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		25F8B0C42413970B00E599D8 /* Chart */ = {
+			isa = PBXGroup;
+			children = (
+				25F8B0C22413970700E599D8 /* GoalChartView.swift */,
+				25E846F82415125500A83F45 /* GoalPieChartView.swift */,
+				25E846F62415114C00A83F45 /* GoalBarChartView.swift */,
+				25B446892414F44F008C36D1 /* MonthAxisValueFormatter.swift */,
+			);
+			path = Chart;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		254AFBB823F03885006B5F4E /* SmallSteps */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 254AFBCD23F03888006B5F4E /* Build configuration list for PBXNativeTarget "SmallSteps" */;
+			buildPhases = (
+				254AFBB523F03885006B5F4E /* Sources */,
+				254AFBB623F03885006B5F4E /* Frameworks */,
+				254AFBB723F03885006B5F4E /* Resources */,
+				25F8B0A62406AC6B00E599D8 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SmallSteps;
+			productName = SmallSteps;
+			productReference = 254AFBB923F03885006B5F4E /* SmallSteps.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		254AFBB123F03885006B5F4E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1100;
+				ORGANIZATIONNAME = "Stone Zhang";
+				TargetAttributes = {
+					254AFBB823F03885006B5F4E = {
+						CreatedOnToolsVersion = 11.0;
+					};
+				};
+			};
+			buildConfigurationList = 254AFBB423F03885006B5F4E /* Build configuration list for PBXProject "SmallSteps" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				"zh-Hans",
+				ja,
+			);
+			mainGroup = 254AFBB023F03885006B5F4E;
+			productRefGroup = 254AFBBA23F03885006B5F4E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				254AFBB823F03885006B5F4E /* SmallSteps */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		254AFBB723F03885006B5F4E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				254AFBC923F03888006B5F4E /* LaunchScreen.storyboard in Resources */,
+				25CA683824238A1C00054E5D /* Localizable.strings in Resources */,
+				25CA6835241E475A00054E5D /* Settings.bundle in Resources */,
+				254AFBC623F03888006B5F4E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		25F8B0A62406AC6B00E599D8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/JTAppleCalendar.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Charts.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/HGPlaceholders.framework",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/JTAppleCalendar.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Charts.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/HGPlaceholders.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		254AFBB523F03885006B5F4E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				254AFC812401FF5F006B5F4E /* DatabaseService.swift in Sources */,
+				25F8B0AB2407FAB300E599D8 /* GoalCalendarMonthHeader.swift in Sources */,
+				25F8B0B6240EAE4500E599D8 /* DataCenter.swift in Sources */,
+				25E846F92415125500A83F45 /* GoalPieChartView.swift in Sources */,
+				25F8B0932403662B00E599D8 /* DefaultGoalDetailViewModel.swift in Sources */,
+				25B4468A2414F44F008C36D1 /* MonthAxisValueFormatter.swift in Sources */,
+				25E846F72415114C00A83F45 /* GoalBarChartView.swift in Sources */,
+				25F8B0BA240F364300E599D8 /* PreferencesService.swift in Sources */,
+				254AFC9E24026906006B5F4E /* CreateGoalViewController.swift in Sources */,
+				254AFBD423F041EB006B5F4E /* AppCoordinator.swift in Sources */,
+				254AFBE323F04D46006B5F4E /* ArchivedGoalListViewController.swift in Sources */,
+				25F8B09E2403B43C00E599D8 /* DatabaseError.swift in Sources */,
+				25F8B08D2403656600E599D8 /* GoalDetailCoordinator.swift in Sources */,
+				254AFC8E24021619006B5F4E /* DefaultActiveGoalListViewModel.swift in Sources */,
+				254AFBBD23F03885006B5F4E /* AppDelegate.swift in Sources */,
+				25F8B0BC240F36CE00E599D8 /* UserDefaultsService.swift in Sources */,
+				254AFBDD23F04AA7006B5F4E /* Navigation.swift in Sources */,
+				25F8B0B3240E887700E599D8 /* Observable.swift in Sources */,
+				254AFBBF23F03885006B5F4E /* SceneDelegate.swift in Sources */,
+				25CA682A241BB1C200054E5D /* Date+Calendar.swift in Sources */,
+				25F8B0B8240EAE5500E599D8 /* AppDataCenter.swift in Sources */,
+				25F8B09A2403A32800E599D8 /* StepDBModel+CoreDataProperties.swift in Sources */,
+				25F8B0882403572A00E599D8 /* ArchivedGoalListCellViewModel.swift in Sources */,
+				25CA682F241CF87900054E5D /* StepButton.swift in Sources */,
+				25F8B0A02404101400E599D8 /* Step.swift in Sources */,
+				254AFC8C240215B5006B5F4E /* ActiveGoalListViewModel.swift in Sources */,
+				254AFBD223F04121006B5F4E /* Coordinator.swift in Sources */,
+				25F8B0A92406B27300E599D8 /* GoalCalendarDayCell.swift in Sources */,
+				25F8B0C32413970700E599D8 /* GoalChartView.swift in Sources */,
+				254AFC722400C5DA006B5F4E /* SmallSteps.xcdatamodeld in Sources */,
+				254AFCA22402692D006B5F4E /* DefaultCreateGoalViewModel.swift in Sources */,
+				25F8B08F2403658300E599D8 /* GoalDetailViewController.swift in Sources */,
+				254AFCA02402691A006B5F4E /* CreateGoalViewModel.swift in Sources */,
+				25F8B0992403A32800E599D8 /* StepDBModel+CoreDataClass.swift in Sources */,
+				254AFC872402116B006B5F4E /* ActiveGoalListCell.swift in Sources */,
+				25F8B0C024137C1B00E599D8 /* GoalCalendarView.swift in Sources */,
+				254AFC8A2402125F006B5F4E /* ActiveGoalListCellViewModel.swift in Sources */,
+				254AFBD823F04A03006B5F4E /* ActiveGoalListCoordinator.swift in Sources */,
+				254AFBE123F04D34006B5F4E /* ActiveGoalListViewController.swift in Sources */,
+				25F8B0912403659500E599D8 /* GoalDetailViewModel.swift in Sources */,
+				25F8B09B2403A32800E599D8 /* GoalDBModel+CoreDataClass.swift in Sources */,
+				254AFC902402173C006B5F4E /* Goal.swift in Sources */,
+				25F8B0862403570B00E599D8 /* ArchivedGoalListCell.swift in Sources */,
+				254AFC832401FFF6006B5F4E /* CoreDataService.swift in Sources */,
+				25F8B0832403561D00E599D8 /* DefaultArchivedGoalListViewModel.swift in Sources */,
+				25F8B0812403560700E599D8 /* ArchivedGoalListViewModel.swift in Sources */,
+				254AFBDA23F04A13006B5F4E /* ArchivedGoalListCoordinator.swift in Sources */,
+				254AFC9C240268D7006B5F4E /* CreateGoalCoordinator.swift in Sources */,
+				254AFC8524020318006B5F4E /* CoreDataStack.swift in Sources */,
+				254AFBDF23F04B45006B5F4E /* AppNavigation.swift in Sources */,
+				25F8B09C2403A32800E599D8 /* GoalDBModel+CoreDataProperties.swift in Sources */,
+				25F8B0BE241276D200E599D8 /* CreateGoalInputCell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		254AFBC723F03888006B5F4E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				254AFBC823F03888006B5F4E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		25CA683A24238A1C00054E5D /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				25CA683924238A1C00054E5D /* en */,
+				25CA683B24238DBA00054E5D /* zh-Hans */,
+				25CA683D24238E3100054E5D /* ja */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		254AFBCB23F03888006B5F4E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		254AFBCC23F03888006B5F4E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		254AFBCE23F03888006B5F4E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CCBW5GSHKT;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = SmallSteps/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.stonezhl.SmallSteps;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		254AFBCF23F03888006B5F4E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CCBW5GSHKT;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = SmallSteps/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.stonezhl.SmallSteps;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		254AFBB423F03885006B5F4E /* Build configuration list for PBXProject "SmallSteps" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				254AFBCB23F03888006B5F4E /* Debug */,
+				254AFBCC23F03888006B5F4E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		254AFBCD23F03888006B5F4E /* Build configuration list for PBXNativeTarget "SmallSteps" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				254AFBCE23F03888006B5F4E /* Debug */,
+				254AFBCF23F03888006B5F4E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		254AFC702400C5DA006B5F4E /* SmallSteps.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				254AFC712400C5DA006B5F4E /* SmallSteps.xcdatamodel */,
+			);
+			currentVersion = 254AFC712400C5DA006B5F4E /* SmallSteps.xcdatamodel */;
+			path = SmallSteps.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 254AFBB123F03885006B5F4E /* Project object */;
+}
