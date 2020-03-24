@@ -44,14 +44,14 @@ class GoalCalendarDayCell: JTACDayCell {
         return view
     }()
 
-    var dateValue: (date: Date, isCreatedDate: Bool, isArchivedDate: Bool)? {
+    var dateValue: (isInToday: Bool, isInWeekend: Bool, isCreatedDate: Bool, isArchivedDate: Bool)? {
         didSet {
             guard let value = dateValue else {
                 dateLabel.textColor = .label
                 backView.backgroundColor = .clear
                 return
             }
-            if value.date.isInToday {
+            if value.isInToday {
                 dateLabel.textColor = .white
                 backView.backgroundColor = .systemOrange
             } else if value.isArchivedDate {
@@ -61,7 +61,7 @@ class GoalCalendarDayCell: JTACDayCell {
                 dateLabel.textColor = .white
                 backView.backgroundColor = .green
             } else {
-                dateLabel.textColor = value.date.isInWeekend ? .secondaryLabel : .label
+                dateLabel.textColor = value.isInWeekend ? .secondaryLabel : .label
                 backView.backgroundColor = .clear
             }
         }

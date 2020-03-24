@@ -80,7 +80,7 @@ class GoalCalendarView: UIView {
     var isMarked: ((Date) -> (Bool?))?
     var isYearChanged: ((Int) -> Void)?
 
-    init(today: Date, createdDate:Date, archivedDate: Date?, dateRange: DateRange) {
+    init(today: Date, createdDate: Date, archivedDate: Date?, dateRange: DateRange) {
         self.today = today
         self.createdDate = createdDate
         self.archivedDate = archivedDate
@@ -153,12 +153,12 @@ extension GoalCalendarView: JTACMonthViewDelegate {
     func configureCell(cell: GoalCalendarDayCell, cellState: CellState) {
         cell.dateLabel.text = cellState.text
         if cellState.dateBelongsTo == .thisMonth {
-            if let archivedDate = archivedDate {
-                cell.dateValue = (date: cellState.date, isCreatedDate:cellState.date.inSameDayAs(createdDate), isArchivedDate: cellState.date.inSameDayAs(archivedDate))
-            } else {
-                cell.dateValue = (date: cellState.date, isCreatedDate:cellState.date.inSameDayAs(createdDate), isArchivedDate: false)
-            }
-            cell.isMarked = isMarked?(cellState.date)
+            let date = cellState.date
+            cell.dateValue = (isInToday: date.inSameDayAs(today),
+                              isInWeekend: date.isInWeekend,
+                              isCreatedDate: date.inSameDayAs(createdDate),
+                              isArchivedDate: archivedDate != nil ?  date.inSameDayAs(archivedDate!) : false)
+            cell.isMarked = isMarked?(date)
             cell.isHidden = false
         } else {
             cell.isHidden = true

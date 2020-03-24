@@ -41,10 +41,6 @@ extension Date {
         return calendar.dateInterval(of: .month, for: self)
     }
 
-    var isInToday: Bool {
-        return calendar.isDateInToday(self)
-    }
-
     var isInWeekend: Bool {
         return calendar.isDateInWeekend(self)
     }
